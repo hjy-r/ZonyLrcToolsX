@@ -5,8 +5,8 @@
 **[戳我去下载](https://github.com/GameBelial/ZonyLrcToolsX/releases)**
 
 ## 感谢
-Hamed J.I 的ID3Class项目 [http://www.codeproject.com/Articles/17890/Do-Anything-With-ID](http://www.codeproject.com/Articles/17890/Do-Anything-With-ID)  
-TagLib标签库：[http://taglib.org/](http://taglib.org/)
+- Hamed J.I 的ID3Class项目 [http://www.codeproject.com/Articles/17890/Do-Anything-With-ID](http://www.codeproject.com/Articles/17890/Do-Anything-With-ID)  
+- TagLib标签库：[http://taglib.org/](http://taglib.org/)
 
 ## 未来版本
 基于 [Electron.NET](https://github.com/ElectronNET/Electron.NET) 开发跨平台的 ZonyLrcToolsX 版本。
