@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ZonyLrcTools")]
 [assembly: AssemblyDescription("ZonyLrcTools")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("http://blog.myzony.com")]
+[assembly: AssemblyCompany("https://blog.myzony.com")]
 [assembly: AssemblyProduct("ZonyLrcTools")]
-[assembly: AssemblyCopyright("Copyright ©  2016-2018")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

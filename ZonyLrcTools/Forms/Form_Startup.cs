@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Zony.Lib.Infrastructures.Common.Interfaces;
 using Zony.Lib.Infrastructures.Dependency;
@@ -105,6 +106,17 @@ namespace ZonyLrcTools.Forms
 
             // 加载插件
             PluginManager.LoadPlugins();
+
+            if (PluginManager.GetAllPluginInfos().Count == 0)
+            {
+                MessageBox.Show("没有检测到有效的插件，请确认软件是解压运行，并且同目录下有 Plugins 文件夹。",
+                    "错误",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                
+                Environment.Exit(-1);
+            }
+            
             PluginManager.GetPlugins<IPluginExtensions>().ForEach(x => x.InitializePlugin(PluginManager));
         }
 
@@ -204,6 +216,21 @@ namespace ZonyLrcTools.Forms
                 if (Directory.Exists(filePath))
                 {
                     EventBus.Default.Trigger(new SearchFileEventData(filePath, true));
+                }
+
+                if (File.Exists(filePath))
+                {
+                    // 判断文件后缀是否是支持的。
+                    if (ConfigurationManager.ConfigModel.ExtensionsName.Any(x => x == $"*{Path.GetExtension(filePath)}"))
+                    {
+                        EventBus.Default.Trigger(new MusicInfoLoadEventData
+                        {
+                            MusicFilePaths = new Dictionary<string, List<string>>
+                            {
+                                {Path.GetExtension(filePath), new List<string> {filePath}}
+                            }
+                        });
+                    }
                 }
             }
         }
