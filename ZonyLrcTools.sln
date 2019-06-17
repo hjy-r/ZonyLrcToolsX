@@ -1,12 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95AF7EB0-6F20-485C-AA87-E68D78A09F9F}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZonyLrcToolsX", "ZonyLrcToolsX\ZonyLrcToolsX.csproj", "{A6640227-0C37-4A45-ACC0-E816C9F69CD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4DA91A0E-5455-45AE-BFAC-047844572003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZonyLrcToolsX.Tests", "ZonyLrcToolsX.Tests\ZonyLrcToolsX.Tests.csproj", "{37DC9548-CB97-4B74-99AD-E8318166B8BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,11 +20,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6640227-0C37-4A45-ACC0-E816C9F69CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6640227-0C37-4A45-ACC0-E816C9F69CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6640227-0C37-4A45-ACC0-E816C9F69CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6640227-0C37-4A45-ACC0-E816C9F69CD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37DC9548-CB97-4B74-99AD-E8318166B8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DC9548-CB97-4B74-99AD-E8318166B8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37DC9548-CB97-4B74-99AD-E8318166B8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37DC9548-CB97-4B74-99AD-E8318166B8BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A6191C3-CC25-4732-885C-F4DD32F9E412}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{37DC9548-CB97-4B74-99AD-E8318166B8BC} = {4DA91A0E-5455-45AE-BFAC-047844572003}
 	EndGlobalSection
 EndGlobal
