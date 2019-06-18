@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using ZonyLrcToolsX.Forms;
 
 namespace ZonyLrcToolsX
 {
@@ -8,5 +9,9 @@ namespace ZonyLrcToolsX
         {
             InitializeComponent();
         }
+
+        private void ToolStripButton_About_Click(object sender, System.EventArgs e) => new AboutForm().ShowDialog();
+
+        private void ToolStripButton_Config_Click(object sender, System.EventArgs e) => new ConfigForm().ShowDialog();
     }
 }

@@ -7,7 +7,11 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Utils
         [Fact]
         public void WriteLog_Test()
         {
-            
+            /* Arrange */
+
+            /* Act */
+
+            /* Assert */
         }
     }
 }

@@ -238,7 +238,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(178, 527);
+            this.button2.Location = new System.Drawing.Point(180, 527);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(141, 37);
             this.button2.TabIndex = 13;
@@ -255,6 +255,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AboutForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "关于 ZonyLrcToolsX";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

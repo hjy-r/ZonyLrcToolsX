@@ -95,6 +95,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DonateForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "捐赠作者";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_WechatPay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Alipay)).EndInit();

@@ -28,190 +28,195 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox_DownloadConfig = new System.Windows.Forms.GroupBox();
+            this.comboBox_LyricFileEncoding = new System.Windows.Forms.ComboBox();
+            this.label_LyricFileEncoding = new System.Windows.Forms.Label();
+            this.textBox_ProxyPort = new System.Windows.Forms.TextBox();
+            this.label_ProxyPort = new System.Windows.Forms.Label();
+            this.textBox_ProxyIp = new System.Windows.Forms.TextBox();
+            this.label_ProxyIp = new System.Windows.Forms.Label();
+            this.checkBox_IsEnableProxy = new System.Windows.Forms.CheckBox();
+            this.checkBox_IsCoverSourceLyricFile = new System.Windows.Forms.CheckBox();
+            this.textBox_SuffixName = new System.Windows.Forms.TextBox();
+            this.label_SuffixName = new System.Windows.Forms.Label();
+            this.groupBox_ProgramConfig = new System.Windows.Forms.GroupBox();
+            this.checkBox_IsAutoCheckUpdate = new System.Windows.Forms.CheckBox();
+            this.button_SaveChanges = new System.Windows.Forms.Button();
+            this.groupBox_DownloadConfig.SuspendLayout();
+            this.groupBox_ProgramConfig.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupBox_DownloadConfig
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 78);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(414, 214);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "下载设置";
+            this.groupBox_DownloadConfig.Controls.Add(this.comboBox_LyricFileEncoding);
+            this.groupBox_DownloadConfig.Controls.Add(this.label_LyricFileEncoding);
+            this.groupBox_DownloadConfig.Controls.Add(this.textBox_ProxyPort);
+            this.groupBox_DownloadConfig.Controls.Add(this.label_ProxyPort);
+            this.groupBox_DownloadConfig.Controls.Add(this.textBox_ProxyIp);
+            this.groupBox_DownloadConfig.Controls.Add(this.label_ProxyIp);
+            this.groupBox_DownloadConfig.Controls.Add(this.checkBox_IsEnableProxy);
+            this.groupBox_DownloadConfig.Controls.Add(this.checkBox_IsCoverSourceLyricFile);
+            this.groupBox_DownloadConfig.Controls.Add(this.textBox_SuffixName);
+            this.groupBox_DownloadConfig.Controls.Add(this.label_SuffixName);
+            this.groupBox_DownloadConfig.Location = new System.Drawing.Point(12, 78);
+            this.groupBox_DownloadConfig.Name = "groupBox_DownloadConfig";
+            this.groupBox_DownloadConfig.Size = new System.Drawing.Size(414, 214);
+            this.groupBox_DownloadConfig.TabIndex = 0;
+            this.groupBox_DownloadConfig.TabStop = false;
+            this.groupBox_DownloadConfig.Text = "下载设置";
             // 
-            // textBox1
+            // comboBox_LyricFileEncoding
             // 
-            this.textBox1.Location = new System.Drawing.Point(114, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(282, 27);
-            this.textBox1.TabIndex = 2;
+            this.comboBox_LyricFileEncoding.FormattingEnabled = true;
+            this.comboBox_LyricFileEncoding.Location = new System.Drawing.Point(142, 175);
+            this.comboBox_LyricFileEncoding.Name = "comboBox_LyricFileEncoding";
+            this.comboBox_LyricFileEncoding.Size = new System.Drawing.Size(254, 25);
+            this.comboBox_LyricFileEncoding.TabIndex = 7;
             // 
-            // label1
+            // label_LyricFileEncoding
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "后缀名定义:";
+            this.label_LyricFileEncoding.AutoSize = true;
+            this.label_LyricFileEncoding.Location = new System.Drawing.Point(6, 178);
+            this.label_LyricFileEncoding.Name = "label_LyricFileEncoding";
+            this.label_LyricFileEncoding.Size = new System.Drawing.Size(119, 17);
+            this.label_LyricFileEncoding.TabIndex = 0;
+            this.label_LyricFileEncoding.Text = "歌词文件编码:";
             // 
-            // groupBox2
+            // textBox_ProxyPort
             // 
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(414, 60);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "程序设置";
+            this.textBox_ProxyPort.Location = new System.Drawing.Point(142, 142);
+            this.textBox_ProxyPort.Name = "textBox_ProxyPort";
+            this.textBox_ProxyPort.Size = new System.Drawing.Size(254, 27);
+            this.textBox_ProxyPort.TabIndex = 6;
             // 
-            // checkBox1
+            // label_ProxyPort
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(9, 26);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(132, 21);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "自动检查更新";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.label_ProxyPort.AutoSize = true;
+            this.label_ProxyPort.Location = new System.Drawing.Point(6, 145);
+            this.label_ProxyPort.Name = "label_ProxyPort";
+            this.label_ProxyPort.Size = new System.Drawing.Size(85, 17);
+            this.label_ProxyPort.TabIndex = 0;
+            this.label_ProxyPort.Text = "代理端口:";
             // 
-            // checkBox2
+            // textBox_ProxyIp
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(9, 59);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(132, 21);
-            this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "覆盖歌词文件";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.textBox_ProxyIp.Location = new System.Drawing.Point(142, 109);
+            this.textBox_ProxyIp.Name = "textBox_ProxyIp";
+            this.textBox_ProxyIp.Size = new System.Drawing.Size(254, 27);
+            this.textBox_ProxyIp.TabIndex = 5;
             // 
-            // checkBox3
+            // label_ProxyIp
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(9, 86);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(132, 21);
-            this.checkBox3.TabIndex = 4;
-            this.checkBox3.Text = "启用网络代理";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.label_ProxyIp.AutoSize = true;
+            this.label_ProxyIp.Location = new System.Drawing.Point(6, 112);
+            this.label_ProxyIp.Name = "label_ProxyIp";
+            this.label_ProxyIp.Size = new System.Drawing.Size(136, 17);
+            this.label_ProxyIp.TabIndex = 0;
+            this.label_ProxyIp.Text = "代理服务器地址:";
             // 
-            // label2
+            // checkBox_IsEnableProxy
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "代理服务器地址:";
+            this.checkBox_IsEnableProxy.AutoSize = true;
+            this.checkBox_IsEnableProxy.Location = new System.Drawing.Point(9, 86);
+            this.checkBox_IsEnableProxy.Name = "checkBox_IsEnableProxy";
+            this.checkBox_IsEnableProxy.Size = new System.Drawing.Size(132, 21);
+            this.checkBox_IsEnableProxy.TabIndex = 4;
+            this.checkBox_IsEnableProxy.Text = "启用网络代理";
+            this.checkBox_IsEnableProxy.UseVisualStyleBackColor = true;
+            this.checkBox_IsEnableProxy.CheckedChanged += new System.EventHandler(this.CheckBox_IsEnableProxy_CheckedChanged);
             // 
-            // textBox2
+            // checkBox_IsCoverSourceLyricFile
             // 
-            this.textBox2.Location = new System.Drawing.Point(142, 109);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(254, 27);
-            this.textBox2.TabIndex = 5;
+            this.checkBox_IsCoverSourceLyricFile.AutoSize = true;
+            this.checkBox_IsCoverSourceLyricFile.Location = new System.Drawing.Point(9, 59);
+            this.checkBox_IsCoverSourceLyricFile.Name = "checkBox_IsCoverSourceLyricFile";
+            this.checkBox_IsCoverSourceLyricFile.Size = new System.Drawing.Size(132, 21);
+            this.checkBox_IsCoverSourceLyricFile.TabIndex = 3;
+            this.checkBox_IsCoverSourceLyricFile.Text = "覆盖歌词文件";
+            this.checkBox_IsCoverSourceLyricFile.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // textBox_SuffixName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 145);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "代理端口:";
+            this.textBox_SuffixName.Location = new System.Drawing.Point(114, 26);
+            this.textBox_SuffixName.Name = "textBox_SuffixName";
+            this.textBox_SuffixName.Size = new System.Drawing.Size(282, 27);
+            this.textBox_SuffixName.TabIndex = 2;
             // 
-            // textBox3
+            // label_SuffixName
             // 
-            this.textBox3.Location = new System.Drawing.Point(142, 142);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(254, 27);
-            this.textBox3.TabIndex = 6;
+            this.label_SuffixName.AutoSize = true;
+            this.label_SuffixName.Location = new System.Drawing.Point(6, 29);
+            this.label_SuffixName.Name = "label_SuffixName";
+            this.label_SuffixName.Size = new System.Drawing.Size(102, 17);
+            this.label_SuffixName.TabIndex = 0;
+            this.label_SuffixName.Text = "后缀名定义:";
             // 
-            // label4
+            // groupBox_ProgramConfig
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 178);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "歌词文件编码:";
+            this.groupBox_ProgramConfig.Controls.Add(this.checkBox_IsAutoCheckUpdate);
+            this.groupBox_ProgramConfig.Location = new System.Drawing.Point(12, 12);
+            this.groupBox_ProgramConfig.Name = "groupBox_ProgramConfig";
+            this.groupBox_ProgramConfig.Size = new System.Drawing.Size(414, 60);
+            this.groupBox_ProgramConfig.TabIndex = 0;
+            this.groupBox_ProgramConfig.TabStop = false;
+            this.groupBox_ProgramConfig.Text = "程序设置";
             // 
-            // comboBox1
+            // checkBox_IsAutoCheckUpdate
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(142, 175);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(254, 25);
-            this.comboBox1.TabIndex = 7;
+            this.checkBox_IsAutoCheckUpdate.AutoSize = true;
+            this.checkBox_IsAutoCheckUpdate.Location = new System.Drawing.Point(9, 26);
+            this.checkBox_IsAutoCheckUpdate.Name = "checkBox_IsAutoCheckUpdate";
+            this.checkBox_IsAutoCheckUpdate.Size = new System.Drawing.Size(132, 21);
+            this.checkBox_IsAutoCheckUpdate.TabIndex = 1;
+            this.checkBox_IsAutoCheckUpdate.Text = "自动检查更新";
+            this.checkBox_IsAutoCheckUpdate.UseVisualStyleBackColor = true;
+            this.checkBox_IsAutoCheckUpdate.CheckedChanged += new System.EventHandler(this.CheckBox_IsAutoCheckUpdate_CheckedChanged);
             // 
-            // button1
+            // button_SaveChanges
             // 
-            this.button1.Location = new System.Drawing.Point(154, 298);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 47);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "保存并应用";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_SaveChanges.Location = new System.Drawing.Point(154, 298);
+            this.button_SaveChanges.Name = "button_SaveChanges";
+            this.button_SaveChanges.Size = new System.Drawing.Size(131, 47);
+            this.button_SaveChanges.TabIndex = 8;
+            this.button_SaveChanges.Text = "保存并应用";
+            this.button_SaveChanges.UseVisualStyleBackColor = true;
+            this.button_SaveChanges.Click += new System.EventHandler(this.Button_SaveChanges_Click);
             // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(453, 354);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.button_SaveChanges);
+            this.Controls.Add(this.groupBox_ProgramConfig);
+            this.Controls.Add(this.groupBox_DownloadConfig);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ConfigForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "软件设置";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.Load += new System.EventHandler(this.ConfigForm_Load);
+            this.groupBox_DownloadConfig.ResumeLayout(false);
+            this.groupBox_DownloadConfig.PerformLayout();
+            this.groupBox_ProgramConfig.ResumeLayout(false);
+            this.groupBox_ProgramConfig.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox_DownloadConfig;
+        private System.Windows.Forms.TextBox textBox_SuffixName;
+        private System.Windows.Forms.Label label_SuffixName;
+        private System.Windows.Forms.GroupBox groupBox_ProgramConfig;
+        private System.Windows.Forms.CheckBox checkBox_IsAutoCheckUpdate;
+        private System.Windows.Forms.CheckBox checkBox_IsCoverSourceLyricFile;
+        private System.Windows.Forms.CheckBox checkBox_IsEnableProxy;
+        private System.Windows.Forms.Label label_ProxyIp;
+        private System.Windows.Forms.TextBox textBox_ProxyIp;
+        private System.Windows.Forms.Label label_ProxyPort;
+        private System.Windows.Forms.TextBox textBox_ProxyPort;
+        private System.Windows.Forms.Label label_LyricFileEncoding;
+        private System.Windows.Forms.ComboBox comboBox_LyricFileEncoding;
+        private System.Windows.Forms.Button button_SaveChanges;
     }
 }

@@ -10,9 +10,6 @@ namespace ZonyLrcToolsX.Forms
             InitializeComponent();
         }
 
-        private void Button_PayMoney_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void Button_PayMoney_Click(object sender, EventArgs e) => new DonateForm().ShowDialog();
     }
 }

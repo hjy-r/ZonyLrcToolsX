@@ -36,6 +36,9 @@
     <StartupObject>ZonyLrcToolsX.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -75,10 +78,15 @@
     </Compile>
     <Compile Include="Infrastructure\Configuration\AppConfiguration.cs" />
     <Compile Include="Infrastructure\Configuration\AppConfigurationModel.cs" />
+    <Compile Include="Infrastructure\ItemDtos\ComboboxLyricFileEncodingItemDto.cs" />
+    <Compile Include="Infrastructure\Lyric\LyricItem.cs" />
+    <Compile Include="Infrastructure\Lyric\LyricItemCollection.cs" />
+    <Compile Include="Infrastructure\MusicTag\MusicInfo.cs" />
     <Compile Include="Infrastructure\Network\Http\NewHttpClient.cs" />
     <Compile Include="Infrastructure\Utils\ExceptionUtils.cs" />
     <Compile Include="Infrastructure\Utils\LogUtils.cs" />
     <Compile Include="Infrastructure\Utils\ProgramUtils.cs" />
+    <Compile Include="Infrastructure\Utils\StringUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AboutForm.resx">
@@ -120,8 +128,6 @@
   <ItemGroup>
     <Folder Include="Downloader\Album\" />
     <Folder Include="Downloader\Lryic\" />
-    <Folder Include="Infrastructure\Lyric\" />
-    <Folder Include="Infrastructure\MusicTag\" />
     <Folder Include="MusicConverter\" />
   </ItemGroup>
   <ItemGroup>
