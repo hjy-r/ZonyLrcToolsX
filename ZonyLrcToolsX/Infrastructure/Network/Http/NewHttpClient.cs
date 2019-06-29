@@ -8,7 +8,8 @@ namespace ZonyLrcToolsX.Infrastructure.Network.Http
 
         public NewHttpClient()
         {
-            
+            // 如果启用了网络代理，则构建时增加网络代理参数。
+            _httpClient = new HttpClient();
         }
     }
 }

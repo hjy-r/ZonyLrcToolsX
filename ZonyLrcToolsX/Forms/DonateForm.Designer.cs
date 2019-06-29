@@ -39,35 +39,35 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(885, 40);
+            this.label1.Size = new System.Drawing.Size(885, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "如果您觉得本工具帮助到您了，可以选择捐赠作者来让工具更加完善，作者也十分感谢您的支持。\r\n留卡号，心意钱，打多打少是个缘。";
             // 
             // pictureBox_WechatPay
             // 
             this.pictureBox_WechatPay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_WechatPay.Location = new System.Drawing.Point(398, 52);
+            this.pictureBox_WechatPay.Location = new System.Drawing.Point(15, 46);
             this.pictureBox_WechatPay.Name = "pictureBox_WechatPay";
-            this.pictureBox_WechatPay.Size = new System.Drawing.Size(350, 550);
+            this.pictureBox_WechatPay.Size = new System.Drawing.Size(376, 582);
             this.pictureBox_WechatPay.TabIndex = 2;
             this.pictureBox_WechatPay.TabStop = false;
             // 
             // pictureBox_Alipay
             // 
             this.pictureBox_Alipay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_Alipay.Location = new System.Drawing.Point(15, 52);
+            this.pictureBox_Alipay.Location = new System.Drawing.Point(413, 46);
             this.pictureBox_Alipay.Name = "pictureBox_Alipay";
-            this.pictureBox_Alipay.Size = new System.Drawing.Size(350, 550);
+            this.pictureBox_Alipay.Size = new System.Drawing.Size(376, 582);
             this.pictureBox_Alipay.TabIndex = 1;
             this.pictureBox_Alipay.TabStop = false;
             // 
             // button_Exit
             // 
-            this.button_Exit.Location = new System.Drawing.Point(172, 608);
+            this.button_Exit.Location = new System.Drawing.Point(198, 644);
             this.button_Exit.Name = "button_Exit";
-            this.button_Exit.Size = new System.Drawing.Size(193, 39);
+            this.button_Exit.Size = new System.Drawing.Size(193, 41);
             this.button_Exit.TabIndex = 3;
             this.button_Exit.Text = "软件不错，给包烟钱";
             this.button_Exit.UseVisualStyleBackColor = true;
@@ -75,9 +75,9 @@
             // 
             // button_Exit2
             // 
-            this.button_Exit2.Location = new System.Drawing.Point(398, 607);
+            this.button_Exit2.Location = new System.Drawing.Point(413, 644);
             this.button_Exit2.Name = "button_Exit2";
-            this.button_Exit2.Size = new System.Drawing.Size(193, 39);
+            this.button_Exit2.Size = new System.Drawing.Size(193, 41);
             this.button_Exit2.TabIndex = 4;
             this.button_Exit2.Text = "我也穷";
             this.button_Exit2.UseVisualStyleBackColor = true;
@@ -85,9 +85,9 @@
             // 
             // DonateForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 658);
+            this.ClientSize = new System.Drawing.Size(801, 697);
             this.Controls.Add(this.button_Exit2);
             this.Controls.Add(this.button_Exit);
             this.Controls.Add(this.pictureBox_WechatPay);

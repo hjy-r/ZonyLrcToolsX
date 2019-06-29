@@ -30,74 +30,76 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip_Bottom = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_SearchMusicFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_DownloadLyric = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_DownloadAblumImage = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton_MusicConvert = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripMenuItem_ConvertNcm = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton_Config = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_PayMoney = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_About = new System.Windows.Forms.ToolStripButton();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listView_MusicList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_SaveChanges = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.toolStripButton_Config = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1.SuspendLayout();
+            this.textBox_MusicArtist = new System.Windows.Forms.TextBox();
+            this.label_MusicArtist = new System.Windows.Forms.Label();
+            this.textBox_MusicName = new System.Windows.Forms.TextBox();
+            this.label_MusicName = new System.Windows.Forms.Label();
+            this.linkLabel_MusicPath = new System.Windows.Forms.LinkLabel();
+            this.pictureBox_AblumImage = new System.Windows.Forms.PictureBox();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toolStrip_Bottom.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AblumImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // toolStrip_Bottom
             // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(22, 22);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_Bottom.ImageScalingSize = new System.Drawing.Size(22, 22);
+            this.toolStrip_Bottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton_SearchMusicFile,
             this.toolStripSeparator1,
             this.toolStripButton_DownloadLyric,
             this.toolStripButton_DownloadAblumImage,
             this.toolStripSeparator2,
-            this.toolStripSplitButton1,
+            this.toolStripSplitButton_MusicConvert,
             this.toolStripSeparator3,
             this.toolStripButton_Config,
             this.toolStripButton_PayMoney,
             this.toolStripButton_About});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1230, 31);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip_Bottom.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip_Bottom.Name = "toolStrip_Bottom";
+            this.toolStrip_Bottom.Size = new System.Drawing.Size(1230, 33);
+            this.toolStrip_Bottom.TabIndex = 0;
+            this.toolStrip_Bottom.Text = "toolStrip1";
             // 
             // toolStripButton_SearchMusicFile
             // 
             this.toolStripButton_SearchMusicFile.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_SearchMusicFile.Image")));
             this.toolStripButton_SearchMusicFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_SearchMusicFile.Name = "toolStripButton_SearchMusicFile";
-            this.toolStripButton_SearchMusicFile.Size = new System.Drawing.Size(104, 27);
+            this.toolStripButton_SearchMusicFile.Size = new System.Drawing.Size(108, 28);
             this.toolStripButton_SearchMusicFile.Text = "扫描歌词";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // toolStripButton_DownloadLyric
             // 
             this.toolStripButton_DownloadLyric.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_DownloadLyric.Image")));
             this.toolStripButton_DownloadLyric.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_DownloadLyric.Name = "toolStripButton_DownloadLyric";
-            this.toolStripButton_DownloadLyric.Size = new System.Drawing.Size(104, 27);
+            this.toolStripButton_DownloadLyric.Size = new System.Drawing.Size(108, 28);
             this.toolStripButton_DownloadLyric.Text = "下载歌词";
             // 
             // toolStripButton_DownloadAblumImage
@@ -105,41 +107,50 @@
             this.toolStripButton_DownloadAblumImage.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_DownloadAblumImage.Image")));
             this.toolStripButton_DownloadAblumImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_DownloadAblumImage.Name = "toolStripButton_DownloadAblumImage";
-            this.toolStripButton_DownloadAblumImage.Size = new System.Drawing.Size(138, 27);
+            this.toolStripButton_DownloadAblumImage.Size = new System.Drawing.Size(144, 28);
             this.toolStripButton_DownloadAblumImage.Text = "下载专辑图像";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
-            // toolStripSplitButton1
+            // toolStripSplitButton_MusicConvert
             // 
-            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSplitButton_MusicConvert.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_ConvertNcm});
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(120, 27);
-            this.toolStripSplitButton1.Text = "歌曲转换";
+            this.toolStripSplitButton_MusicConvert.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton_MusicConvert.Image")));
+            this.toolStripSplitButton_MusicConvert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton_MusicConvert.Name = "toolStripSplitButton_MusicConvert";
+            this.toolStripSplitButton_MusicConvert.Size = new System.Drawing.Size(125, 28);
+            this.toolStripSplitButton_MusicConvert.Text = "歌曲转换";
             // 
             // toolStripMenuItem_ConvertNcm
             // 
             this.toolStripMenuItem_ConvertNcm.Name = "toolStripMenuItem_ConvertNcm";
-            this.toolStripMenuItem_ConvertNcm.Size = new System.Drawing.Size(185, 30);
+            this.toolStripMenuItem_ConvertNcm.Size = new System.Drawing.Size(270, 34);
             this.toolStripMenuItem_ConvertNcm.Text = "NCM 转换";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
+            // 
+            // toolStripButton_Config
+            // 
+            this.toolStripButton_Config.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_Config.Image")));
+            this.toolStripButton_Config.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_Config.Name = "toolStripButton_Config";
+            this.toolStripButton_Config.Size = new System.Drawing.Size(72, 28);
+            this.toolStripButton_Config.Text = "设置";
+            this.toolStripButton_Config.Click += new System.EventHandler(this.ToolStripButton_Config_Click);
             // 
             // toolStripButton_PayMoney
             // 
             this.toolStripButton_PayMoney.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_PayMoney.Image")));
             this.toolStripButton_PayMoney.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_PayMoney.Name = "toolStripButton_PayMoney";
-            this.toolStripButton_PayMoney.Size = new System.Drawing.Size(70, 27);
+            this.toolStripButton_PayMoney.Size = new System.Drawing.Size(72, 28);
             this.toolStripButton_PayMoney.Text = "捐赠";
             // 
             // toolStripButton_About
@@ -147,160 +158,166 @@
             this.toolStripButton_About.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_About.Image")));
             this.toolStripButton_About.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_About.Name = "toolStripButton_About";
-            this.toolStripButton_About.Size = new System.Drawing.Size(70, 27);
+            this.toolStripButton_About.Size = new System.Drawing.Size(72, 28);
             this.toolStripButton_About.Text = "关于";
             this.toolStripButton_About.Click += new System.EventHandler(this.ToolStripButton_About_Click);
             // 
-            // listView1
+            // listView_MusicList
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listView_MusicList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listView_MusicList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.Location = new System.Drawing.Point(290, 34);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(928, 652);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listView_MusicList.Location = new System.Drawing.Point(290, 36);
+            this.listView_MusicList.Name = "listView_MusicList";
+            this.listView_MusicList.Size = new System.Drawing.Size(928, 690);
+            this.listView_MusicList.TabIndex = 1;
+            this.listView_MusicList.UseCompatibleStateImageBehavior = false;
+            this.listView_MusicList.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "歌曲名";
+            this.columnHeader1.Width = 272;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "歌手/艺术家";
+            this.columnHeader2.Width = 230;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.button_SaveChanges);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.linkLabel1);
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 34);
+            this.groupBox1.Controls.Add(this.textBox_MusicArtist);
+            this.groupBox1.Controls.Add(this.label_MusicArtist);
+            this.groupBox1.Controls.Add(this.textBox_MusicName);
+            this.groupBox1.Controls.Add(this.label_MusicName);
+            this.groupBox1.Controls.Add(this.linkLabel_MusicPath);
+            this.groupBox1.Controls.Add(this.pictureBox_AblumImage);
+            this.groupBox1.Location = new System.Drawing.Point(12, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(272, 652);
+            this.groupBox1.Size = new System.Drawing.Size(272, 690);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "歌曲详细信息";
             // 
-            // button1
+            // button_SaveChanges
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.button_SaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(166, 603);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 36);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "保存更改";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_SaveChanges.Location = new System.Drawing.Point(166, 638);
+            this.button_SaveChanges.Name = "button_SaveChanges";
+            this.button_SaveChanges.Size = new System.Drawing.Size(96, 38);
+            this.button_SaveChanges.TabIndex = 3;
+            this.button_SaveChanges.Text = "保存更改";
+            this.button_SaveChanges.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 440);
+            this.label3.Location = new System.Drawing.Point(6, 466);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 17);
+            this.label3.Size = new System.Drawing.Size(89, 18);
             this.label3.TabIndex = 3;
             this.label3.Text = "歌曲标签:";
             // 
-            // textBox2
+            // textBox_MusicArtist
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_MusicArtist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(80, 393);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(182, 27);
-            this.textBox2.TabIndex = 10;
+            this.textBox_MusicArtist.Location = new System.Drawing.Point(80, 414);
+            this.textBox_MusicArtist.Name = "textBox_MusicArtist";
+            this.textBox_MusicArtist.Size = new System.Drawing.Size(182, 28);
+            this.textBox_MusicArtist.TabIndex = 10;
             // 
-            // label2
+            // label_MusicArtist
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label_MusicArtist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 396);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "艺术家:";
+            this.label_MusicArtist.AutoSize = true;
+            this.label_MusicArtist.Location = new System.Drawing.Point(6, 419);
+            this.label_MusicArtist.Name = "label_MusicArtist";
+            this.label_MusicArtist.Size = new System.Drawing.Size(71, 18);
+            this.label_MusicArtist.TabIndex = 9;
+            this.label_MusicArtist.Text = "艺术家:";
             // 
-            // textBox1
+            // textBox_MusicName
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_MusicName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(80, 349);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 27);
-            this.textBox1.TabIndex = 3;
+            this.textBox_MusicName.Location = new System.Drawing.Point(80, 368);
+            this.textBox_MusicName.Name = "textBox_MusicName";
+            this.textBox_MusicName.Size = new System.Drawing.Size(182, 28);
+            this.textBox_MusicName.TabIndex = 3;
             // 
-            // label1
+            // label_MusicName
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label_MusicName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 352);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 17);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "歌曲名:";
+            this.label_MusicName.AutoSize = true;
+            this.label_MusicName.Location = new System.Drawing.Point(6, 373);
+            this.label_MusicName.Name = "label_MusicName";
+            this.label_MusicName.Size = new System.Drawing.Size(71, 18);
+            this.label_MusicName.TabIndex = 7;
+            this.label_MusicName.Text = "歌曲名:";
             // 
-            // linkLabel1
+            // linkLabel_MusicPath
             // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.linkLabel_MusicPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.Location = new System.Drawing.Point(6, 295);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(256, 51);
-            this.linkLabel1.TabIndex = 5;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "歌曲文件路径:";
+            this.linkLabel_MusicPath.Location = new System.Drawing.Point(6, 312);
+            this.linkLabel_MusicPath.Name = "linkLabel_MusicPath";
+            this.linkLabel_MusicPath.Size = new System.Drawing.Size(256, 54);
+            this.linkLabel_MusicPath.TabIndex = 5;
+            this.linkLabel_MusicPath.TabStop = true;
+            this.linkLabel_MusicPath.Text = "歌曲文件路径:";
             // 
-            // pictureBox1
+            // pictureBox_AblumImage
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox_AblumImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(256, 256);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_AblumImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox_AblumImage.Location = new System.Drawing.Point(6, 28);
+            this.pictureBox_AblumImage.Name = "pictureBox_AblumImage";
+            this.pictureBox_AblumImage.Size = new System.Drawing.Size(256, 271);
+            this.pictureBox_AblumImage.TabIndex = 4;
+            this.pictureBox_AblumImage.TabStop = false;
             // 
-            // toolStripButton_Config
+            // columnHeader3
             // 
-            this.toolStripButton_Config.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_Config.Image")));
-            this.toolStripButton_Config.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_Config.Name = "toolStripButton_Config";
-            this.toolStripButton_Config.Size = new System.Drawing.Size(70, 27);
-            this.toolStripButton_Config.Text = "设置";
-            this.toolStripButton_Config.Click += new System.EventHandler(this.ToolStripButton_Config_Click);
+            this.columnHeader3.Text = "专辑名称";
+            this.columnHeader3.Width = 229;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "状态";
+            this.columnHeader4.Width = 134;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1230, 698);
+            this.ClientSize = new System.Drawing.Size(1230, 739);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.listView_MusicList);
+            this.Controls.Add(this.toolStrip_Bottom);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ZonyLrcToolsX - Version: 1.0";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStrip_Bottom.ResumeLayout(false);
+            this.toolStrip_Bottom.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AblumImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,29 +325,31 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStrip_Bottom;
         private System.Windows.Forms.ToolStripButton toolStripButton_SearchMusicFile;
         private System.Windows.Forms.ToolStripButton toolStripButton_DownloadLyric;
         private System.Windows.Forms.ToolStripButton toolStripButton_DownloadAblumImage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton_MusicConvert;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton_PayMoney;
         private System.Windows.Forms.ToolStripButton toolStripButton_About;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listView_MusicList;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox pictureBox_AblumImage;
+        private System.Windows.Forms.LinkLabel linkLabel_MusicPath;
+        private System.Windows.Forms.Label label_MusicName;
+        private System.Windows.Forms.TextBox textBox_MusicArtist;
+        private System.Windows.Forms.Label label_MusicArtist;
+        private System.Windows.Forms.TextBox textBox_MusicName;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_SaveChanges;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_ConvertNcm;
         private System.Windows.Forms.ToolStripButton toolStripButton_Config;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
