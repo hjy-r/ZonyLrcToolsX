@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Shouldly;
@@ -12,10 +14,42 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Utils
         [Fact]
         public async Task FindFilesAsync_Test()
         {
-            var result = await FileSearchUtils.Instance.FindFilesAsync(@"E:\", new List<string> {"*.txt"});
+            // Arrange
+            var currentDir = Environment.CurrentDirectory;
+            var newChildDir = Path.Combine(currentDir, "childDir");
+            Directory.CreateDirectory(newChildDir);
+
+            var lyricFiles = new List<string>
+            {
+                Path.Combine(currentDir,"1.mp3"),
+                Path.Combine(newChildDir,"2.mp3"),
+                Path.Combine(newChildDir,"3.flac")
+            };
+
+            lyricFiles.ForEach(item =>
+            {
+                var fs = File.Create(item);
+                fs.Close();
+            });
+
+            // Act
+            var result = await FileSearchUtils.Instance.FindFilesAsync(currentDir, new List<string> { "*.mp3", "*.flac" });
+
+            // Assert
             result.ShouldNotBeNull();
-            result.Count.ShouldBe(1);
-            result.FirstOrDefault().Value.Count.ShouldBeGreaterThan(1);
+            result.Count.ShouldBe(2);
+            result.SelectMany(x=>x.Value).Count().ShouldBe(3);
+
+            // Delete files and directory.
+            foreach (var lyricFile in lyricFiles)
+            {
+                if (File.Exists(lyricFile))
+                {
+                    File.Delete(lyricFile);
+                }
+            }
+
+            Directory.Delete(newChildDir);
         }
     }
 }
