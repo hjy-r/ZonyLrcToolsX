@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloader\Lyric\ILyricDownloader.cs" />
+    <Compile Include="Downloader\Lyric\NetEase\NetEaseCloudMusicLyricDownloader.cs" />
     <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +90,8 @@
     <Compile Include="Infrastructure\Utils\LogUtils.cs" />
     <Compile Include="Infrastructure\Utils\ProgramUtils.cs" />
     <Compile Include="Infrastructure\Utils\StringUtils.cs" />
+    <Compile Include="MusicConverter\IMusicConverter.cs" />
+    <Compile Include="MusicConverter\NcmToFlac\NcmToFlacConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AboutForm.resx">
@@ -129,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Downloader\Album\" />
-    <Folder Include="MusicConverter\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo%28蜗牛%29.png" />
