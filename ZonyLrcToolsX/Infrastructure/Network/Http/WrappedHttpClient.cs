@@ -3,9 +3,11 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Newtonsoft.Json.Serialization;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.Network.Http.Exceptions;
 using ZonyLrcToolsX.Infrastructure.Utils;
@@ -54,8 +56,14 @@ namespace ZonyLrcToolsX.Infrastructure.Network.Http
             using (var responseMsg = await _httpClient.SendAsync(requestMsg))
             {
                 var responseContent = await responseMsg.Content.ReadAsStringAsync();
-                if(responseMsg.StatusCode != HttpStatusCode.OK) throw new HttpRequestFailedException("对目标服务器执行 Http Get 请求失败。", requestParamsStr, responseContent);
-                return responseContent;
+                
+                if (responseMsg.StatusCode == HttpStatusCode.OK) return responseContent;
+                if (responseMsg.StatusCode == HttpStatusCode.ServiceUnavailable)
+                {
+                    throw new ServerUnavailableException("服务接口限制，无法进行请求，请尝试使用代理服务器。");
+                }
+
+                throw new HttpRequestFailedException("对目标服务器执行 Http Get 请求失败。", requestParamsStr, responseContent);
             }
         }
 
@@ -73,8 +81,14 @@ namespace ZonyLrcToolsX.Infrastructure.Network.Http
             using (var responseMsg = await _httpClient.SendAsync(requestMsg))
             {
                 var responseContent = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.StatusCode != HttpStatusCode.OK) throw new HttpRequestFailedException("对目标服务器执行 Http Get 请求失败。", requestParamsStr, responseContent);
-                return responseContent;
+                
+                if (responseMsg.StatusCode == HttpStatusCode.OK) return responseContent;
+                if (responseMsg.StatusCode == HttpStatusCode.ServiceUnavailable)
+                {
+                    throw new ServerUnavailableException("服务接口限制，无法进行请求，请尝试使用代理服务器。");
+                }
+
+                throw new HttpRequestFailedException("对目标服务器执行 Http Get 请求失败。", requestParamsStr, responseContent);
             }
         }
 
@@ -135,7 +149,10 @@ namespace ZonyLrcToolsX.Infrastructure.Network.Http
 
             foreach (var propertyInfo in properties)
             {
-                paramBuilder.Append($"{propertyInfo.Name}={propertyInfo.GetValue(parameters)}&");
+                var jsonProperty = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
+                var propertyName = jsonProperty != null ? jsonProperty.PropertyName : propertyInfo.Name;
+                
+                paramBuilder.Append($"{propertyName}={propertyInfo.GetValue(parameters)}&");
             }
 
             return paramBuilder.ToString().TrimEnd('&');
