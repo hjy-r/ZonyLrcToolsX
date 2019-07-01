@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Shouldly, Version=3.0.2.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941">
       <HintPath>..\packages\Shouldly.3.0.2\lib\net451\Shouldly.dll</HintPath>
       <Private>True</Private>
@@ -56,7 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Downloader\LyricDownloader\NetEaseCloudMusicLyricDownloader_Tests.cs" />
     <Compile Include="Infrastructure\Configuration\AppConfiguration_Tests.cs" />
+    <Compile Include="Infrastructure\Network\Http\WrappedHttpClient_Tests.cs" />
     <Compile Include="Infrastructure\Utils\FileSearchUtils_Tests.cs" />
     <Compile Include="Infrastructure\Utils\LogUtils_Tests.cs" />
     <Compile Include="Tests.cs" />

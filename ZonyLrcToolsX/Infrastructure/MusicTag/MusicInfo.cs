@@ -6,7 +6,7 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
     public class MusicInfo
     {
         /// <summary>
-        /// 歌曲名称。
+        /// 歌曲的名称。
         /// </summary>
         public string Name { get; set; }
 

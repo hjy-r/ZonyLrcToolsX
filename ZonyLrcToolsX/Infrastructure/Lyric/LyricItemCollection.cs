@@ -13,6 +13,11 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
     public class LyricItemCollection : List<LyricItem>
     {
         /// <summary>
+        /// 歌曲是否是没有歌词的纯音乐。
+        /// </summary>
+        public bool IsPureMusic { get; private set; }
+
+        /// <summary>
         /// 构造一个新的 <see cref="LyricItemCollection"/> 对象实例。
         /// </summary>
         public LyricItemCollection()
@@ -22,7 +27,11 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
 
         public LyricItemCollection(string srcLyricText)
         {
-            if (srcLyricText.IsNullOrEmptyOrWhite()) return;
+            if (srcLyricText.IsNullOrEmptyOrWhite())
+            {
+                IsPureMusic = true;
+                return;
+            }
             
             // 根据正则获取所有的歌词条目，并将其加入到集合当中。
             var regex = new Regex(@"\[\d+:\d+.\d+\].+\n");

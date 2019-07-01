@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloader\Lyric\ILyricDownloader.cs" />
+    <Compile Include="Downloader\Lyric\LyricDownloaderContainer.cs" />
     <Compile Include="Downloader\Lyric\NetEase\NetEaseCloudMusicLyricDownloader.cs" />
     <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
@@ -84,7 +86,9 @@
     <Compile Include="Infrastructure\Lyric\LyricItem.cs" />
     <Compile Include="Infrastructure\Lyric\LyricItemCollection.cs" />
     <Compile Include="Infrastructure\MusicTag\MusicInfo.cs" />
-    <Compile Include="Infrastructure\Network\Http\NewHttpClient.cs" />
+    <Compile Include="Infrastructure\Network\Http\Exceptions\HttpRequestFailedException.cs" />
+    <Compile Include="Infrastructure\Network\Http\Exceptions\ServerInternalErrorException.cs" />
+    <Compile Include="Infrastructure\Network\Http\WrappedHttpClient.cs" />
     <Compile Include="Infrastructure\Utils\ExceptionUtils.cs" />
     <Compile Include="Infrastructure\Utils\FileSearchUtils.cs" />
     <Compile Include="Infrastructure\Utils\LogUtils.cs" />

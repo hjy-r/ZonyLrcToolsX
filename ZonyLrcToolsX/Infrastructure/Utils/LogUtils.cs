@@ -18,9 +18,9 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
     /// </remarks>
     public class LogUtils
     {
-        private readonly object _locker = new object();
+        private static readonly object _locker = new object();
 
-        private LogUtils _instance;
+        private static LogUtils _instance;
         private FileStream _logFileStream;
         private FileStream _exceptionFileStream;
         private StreamWriter _logFileStreamWriter;
@@ -37,7 +37,7 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
         /// <summary>
         /// 获得 <see cref="LogUtils"/> 的单例实例。
         /// </summary>
-        public LogUtils Instance
+        public static LogUtils Instance
         {
             get
             {
