@@ -22,6 +22,7 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Configuration
             AppConfiguration.Instance.Configuration.ShouldNotBeNull();
             AppConfiguration.Instance.Configuration.IsAutoCheckUpdate = true;
             AppConfiguration.Instance.Configuration.SuffixName.Contains("*.mp3").ShouldBe(true);
+            AppConfiguration.Instance.Configuration.LyricContentType.ShouldBe(LyricContentTypes.Original);
             File.Exists(configFile).ShouldBe(true);
             File.Delete(configFile);
         }
@@ -45,6 +46,7 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Configuration
             AppConfiguration.Instance.Configuration.IsAutoCheckUpdate = true;
             AppConfiguration.Instance.Configuration.SuffixName.Contains("*.mp3").ShouldBe(true);
             AppConfiguration.Instance.Configuration.ProxyIp.ShouldBe("127.0.0.1");
+            AppConfiguration.Instance.Configuration.LyricContentType.ShouldBe(LyricContentTypes.Original);
             File.Delete(configFile);
         }
     }

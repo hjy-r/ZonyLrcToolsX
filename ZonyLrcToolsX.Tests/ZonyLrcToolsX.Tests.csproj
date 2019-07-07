@@ -64,7 +64,6 @@
     <Compile Include="Infrastructure\Network\Http\WrappedHttpClient_Tests.cs" />
     <Compile Include="Infrastructure\Utils\FileSearchUtils_Tests.cs" />
     <Compile Include="Infrastructure\Utils\LogUtils_Tests.cs" />
-    <Compile Include="Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

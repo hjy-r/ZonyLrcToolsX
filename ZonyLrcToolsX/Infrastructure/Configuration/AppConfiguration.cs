@@ -88,7 +88,8 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
                     "*.flac",
                     "*.m4a",
                     "*.wav"
-                }
+                },
+                LyricContentType = LyricContentTypes.Original
             };
         }
     }

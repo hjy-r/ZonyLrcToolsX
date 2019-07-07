@@ -85,6 +85,8 @@
     </Compile>
     <Compile Include="Infrastructure\Configuration\AppConfiguration.cs" />
     <Compile Include="Infrastructure\Configuration\AppConfigurationModel.cs" />
+    <Compile Include="Infrastructure\Configuration\LyricContentTypes.cs" />
+    <Compile Include="Infrastructure\ItemDtos\ComboBoxLyricContentTypeItemDto.cs" />
     <Compile Include="Infrastructure\ItemDtos\ComboboxLyricFileEncodingItemDto.cs" />
     <Compile Include="Infrastructure\Lyric\LyricItem.cs" />
     <Compile Include="Infrastructure\Lyric\LyricItemCollection.cs" />

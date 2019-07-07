@@ -33,7 +33,17 @@ namespace ZonyLrcToolsX.Forms
             {
                 comboBox_LyricFileEncoding.SelectedItem = comboBoxItems.FindIndex(item => item.Value == AppConfiguration.Instance.Configuration.CodePage);
             }
-
+            
+            // 构建歌词内容类型下拉框。
+            var lyricContentTypeComboBox = new List<ComboBoxLyricContentTypeItemDto>
+            {
+                new ComboBoxLyricContentTypeItemDto {Text = "原始歌词",Value = LyricContentTypes.Original},
+                new ComboBoxLyricContentTypeItemDto {Text = "翻译歌词",Value = LyricContentTypes.Translation},
+                new ComboBoxLyricContentTypeItemDto {Text = "双语歌词",Value = LyricContentTypes.OriginalAndTranslation}
+            };
+            comboBox_LyricContentType.DataSource = lyricContentTypeComboBox;
+            comboBox_LyricContentType.SelectedItem = lyricContentTypeComboBox.FindIndex(item => item.Value == AppConfiguration.Instance.Configuration.LyricContentType);
+            
             checkBox_IsEnableProxy.Checked = AppConfiguration.Instance.Configuration.IsEnableProxy;
             CheckBox_IsEnableProxy_CheckedChanged(sender,e);
             checkBox_IsCoverSourceLyricFile.Checked = AppConfiguration.Instance.Configuration.IsCoverSourceLyricFile;
@@ -77,6 +87,7 @@ namespace ZonyLrcToolsX.Forms
             AppConfiguration.Instance.Configuration.CodePage = (comboBox_LyricFileEncoding.SelectedItem as ComboboxLyricFileEncodingItemDto)?.Value ?? 0;
             AppConfiguration.Instance.Configuration.ProxyIp = textBox_ProxyIp.Text;
             AppConfiguration.Instance.Configuration.ProxyPort = int.Parse(textBox_ProxyPort.Text);
+            AppConfiguration.Instance.Configuration.LyricContentType = (comboBox_LyricContentType.SelectedItem as ComboBoxLyricContentTypeItemDto)?.Value ?? LyricContentTypes.Original;
 
             AppConfiguration.Instance.Save();
             Close();

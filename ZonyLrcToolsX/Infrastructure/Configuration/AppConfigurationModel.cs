@@ -3,44 +3,49 @@ using System.Collections.Generic;
 namespace ZonyLrcToolsX.Infrastructure.Configuration
 {
     /// <summary>
-    /// Èí¼şµÄÅäÖÃĞÅÏ¢¡£
+    /// è½¯ä»¶çš„é…ç½®ä¿¡æ¯ã€‚
     /// </summary>
     public class AppConfigurationModel
     {
         /// <summary>
-        /// Ö§³ÖµÄ¸èÇúÎÄ¼şºó×ºÃû¡£
+        /// æ”¯æŒçš„æ­Œæ›²æ–‡ä»¶åç¼€åã€‚
         /// </summary>
         public List<string> SuffixName { get; set; }
 
         /// <summary>
-        /// ´æ´¢µÄ¸è´ÊÎÄ¼ş±àÂë·½Ê½¡£
+        /// å­˜å‚¨çš„æ­Œè¯æ–‡ä»¶ç¼–ç æ–¹å¼ã€‚
         /// </summary>
         public int CodePage { get; set; }
 
         /// <summary>
-        /// ÊÇ·ñÆôÓÃÁËÍøÂç´úÀí¹¦ÄÜ¡£
+        /// æ˜¯å¦å¯ç”¨äº†ç½‘ç»œä»£ç†åŠŸèƒ½ã€‚
         /// </summary>
         public bool IsEnableProxy { get; set; }
 
         /// <summary>
-        /// ÍøÂç´úÀí·şÎñÆ÷µÄ IP¡£
+        /// ç½‘ç»œä»£ç†æœåŠ¡å™¨çš„ IPã€‚
         /// </summary>
         public string ProxyIp { get; set; }
 
         /// <summary>
-        /// ÍøÂç´úÀí·şÎñÆ÷µÄ¶Ë¿ÚºÅ¡£
+        /// ç½‘ç»œä»£ç†æœåŠ¡å™¨çš„ç«¯å£å·ã€‚
         /// </summary>
         public int ProxyPort { get; set; }
 
         /// <summary>
-        /// Èç¹û´æÔÚÓĞÍ¬ÃûµÄ Lyric ÎÄ¼ş£¬ÊÇ·ñ½øĞĞ¸²¸Ç²Ù×÷¡£
+        /// å¦‚æœå­˜åœ¨æœ‰åŒåçš„ Lyric æ–‡ä»¶ï¼Œæ˜¯å¦è¿›è¡Œè¦†ç›–æ“ä½œã€‚
         /// </summary>
         public bool IsCoverSourceLyricFile { get; set; }
 
         /// <summary>
-        /// ÊÇ·ñ×Ô¶¯¼ì²âÈí¼ş¸üĞÂ£¬ÆôÓÃ×Ô¶¯¼ì²âÔòÎª True£¬²»ÆôÓÃÔòÎª False¡£
+        /// æ˜¯å¦è‡ªåŠ¨æ£€æµ‹è½¯ä»¶æ›´æ–°ï¼Œå¯ç”¨è‡ªåŠ¨æ£€æµ‹åˆ™ä¸º Trueï¼Œä¸å¯ç”¨åˆ™ä¸º Falseã€‚
         /// </summary>
         public bool IsAutoCheckUpdate { get; set; }
+
+        /// <summary>
+        /// ä¸‹è½½æ­Œè¯çš„å†…å®¹ï¼Œè¯·å‚è€ƒ <see cref="LyricContentTypes"/> æšä¸¾ç±»å‹ã€‚
+        /// </summary>
+        public LyricContentTypes LyricContentType { get; set; }
 
         public AppConfigurationModel()
         {
