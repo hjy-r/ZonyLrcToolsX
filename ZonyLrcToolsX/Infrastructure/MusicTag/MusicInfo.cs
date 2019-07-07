@@ -1,8 +1,11 @@
+using System;
+
 namespace ZonyLrcToolsX.Infrastructure.MusicTag
 {
     /// <summary>
     /// 歌曲信息定义，存放了软件所需要使用的歌曲元数据。
     /// </summary>
+    [Serializable]
     public class MusicInfo
     {
         /// <summary>

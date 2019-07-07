@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
 using ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels;
+using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.Lyric;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.Network.Http;
@@ -34,15 +34,28 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase
             {
                 throw new RequestErrorException("网易云音乐接口没有正常返回结果...", musicInfo);
             }
-            if (searchResult.Items.SongCount <= 0 ) return new LyricItemCollection(null);
+            if (searchResult.Items.SongCount <= 0 ) throw new NotFoundSongException("没有搜索到指定的歌曲。",musicInfo);
 
-            // TODO: 等待完善歌词合并等操作。
-            var lyricJsonObj = await _wrappedHttpClient.GetAsync<object>(
+            var lyricJsonObj = await _wrappedHttpClient.GetAsync<MusicGetLyricResponse>(
                 url: @"https://music.163.com/api/song/lyric",
-                parameters: new object(),
-                refererUrl: @"hhttps://music.163.com");
+                parameters: new MusicGetLyricRequest(searchResult.Items.SongItems[0].Id),
+                refererUrl: @"https://music.163.com");
+
+            if (lyricJsonObj?.OriginalLyric == null) return new LyricItemCollection(string.Empty);
             
-            return new LyricItemCollection();
+            // 确认歌词的构建方式，根据不同的方式返回不同的歌词结果。
+            if (AppConfiguration.Instance.Configuration.LyricContentType == LyricContentTypes.Original)
+            {
+                return new LyricItemCollection(lyricJsonObj.OriginalLyric.Text);
+            }
+
+            if (AppConfiguration.Instance.Configuration.LyricContentType == LyricContentTypes.Translation 
+                && lyricJsonObj.TranslationLyric != null)
+            {
+                return new LyricItemCollection(lyricJsonObj.TranslationLyric.Text);
+            }
+
+            return new LyricItemCollection(lyricJsonObj.OriginalLyric.Text).Merge(new LyricItemCollection(lyricJsonObj.TranslationLyric?.Text));
         }
     }
 }

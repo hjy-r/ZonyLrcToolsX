@@ -54,6 +54,7 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
         /// <returns> 合并成功的歌词结果 </returns>
         public LyricItemCollection Merge(LyricItemCollection otherCollection, bool intoOneLine = true)
         {
+            if (otherCollection.IsPureMusic) return this;
             var lyricItemCollection = new LyricItemCollection();
             var indexDiff = this.Count - otherCollection.Count;
 

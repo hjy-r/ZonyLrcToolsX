@@ -68,7 +68,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
         /// <summary>
         /// 专辑图像的 Url 地址。
         /// </summary>
-        [JsonProperty("picUrl")]
+        [JsonProperty("img1v1Url")]
         public string PictureUrl { get; set; }
     }
 }
