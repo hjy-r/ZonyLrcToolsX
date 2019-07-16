@@ -18,6 +18,8 @@ namespace ZonyLrcToolsX.Forms
 
         private void ConfigForm_Load(object sender, EventArgs e)
         {
+            AppConfiguration.Instance.Load();
+
             // 构建常用的歌词文件编码。
             var comboBoxItems = new List<ComboboxLyricFileEncodingItemDto>();
             foreach (var encodingInfo in Encoding.GetEncodings())
@@ -95,8 +97,11 @@ namespace ZonyLrcToolsX.Forms
             AppConfiguration.Instance.Configuration.IsEnableProxy = checkBox_IsEnableProxy.Checked;
             AppConfiguration.Instance.Configuration.SuffixName = textBox_SuffixName.Text.Split(';').ToList();
             AppConfiguration.Instance.Configuration.CodePage = (comboBox_LyricFileEncoding.SelectedItem as ComboboxLyricFileEncodingItemDto)?.Value ?? 0;
-            AppConfiguration.Instance.Configuration.ProxyIp = textBox_ProxyIp.Text;
-            AppConfiguration.Instance.Configuration.ProxyPort = int.Parse(textBox_ProxyPort.Text);
+            if (AppConfiguration.Instance.Configuration.IsEnableProxy)
+            {
+                AppConfiguration.Instance.Configuration.ProxyIp = textBox_ProxyIp.Text;
+                AppConfiguration.Instance.Configuration.ProxyPort = int.Parse(textBox_ProxyPort.Text);
+            }
             AppConfiguration.Instance.Configuration.LyricContentType = (comboBox_LyricContentType.SelectedItem as ComboBoxLyricContentTypeItemDto)?.Value ?? LyricContentTypes.Original;
             AppConfiguration.Instance.Configuration.SelectedLyricDownloader = (comboBox_LyricDownloader.SelectedItem as ComboBoxLyricDownloaderItemDto)?.Value ?? LyricDownloaderEnum.NetEase;
 

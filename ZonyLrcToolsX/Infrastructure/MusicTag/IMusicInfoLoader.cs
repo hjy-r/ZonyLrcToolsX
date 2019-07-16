@@ -2,11 +2,11 @@ using System.Threading.Tasks;
 
 namespace ZonyLrcToolsX.Infrastructure.MusicTag
 {
-    public interface IMusicLoader
+    public interface IMusicInfoLoader
     {
-        MusicInfo Load();
+        MusicInfo Load(string musicFilePath);
 
-        Task<MusicInfo> LoadAsync();
+        Task<MusicInfo> LoadAsync(string musicFilePath);
 
         void Save(string musicFilePath,MusicInfo musicInfo);
 

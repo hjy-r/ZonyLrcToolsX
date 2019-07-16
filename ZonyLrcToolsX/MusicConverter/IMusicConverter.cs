@@ -4,6 +4,6 @@ namespace ZonyLrcToolsX.MusicConverter
 {
     public interface IMusicConverter
     {
-        MemoryStream Convert(MemoryStream srcStream);
+        MemoryStream Convert(MemoryStream sourceStream);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZonyLrcToolsX.Forms;
 using ZonyLrcToolsX.Infrastructure.Utils;
 
 // ReSharper disable LocalizableElement

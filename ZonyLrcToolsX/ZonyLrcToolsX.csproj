@@ -39,6 +39,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\packages\taglib.2.1.0.0\lib\policy.2.0.taglib-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -51,6 +54,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\packages\taglib.2.1.0.0\lib\taglib-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloader\Album\IAlbumDownloader.cs" />
@@ -100,9 +106,10 @@
     <Compile Include="Infrastructure\ItemDtos\ComboboxLyricFileEncodingItemDto.cs" />
     <Compile Include="Infrastructure\Lyric\LyricItem.cs" />
     <Compile Include="Infrastructure\Lyric\LyricItemCollection.cs" />
-    <Compile Include="Infrastructure\MusicTag\IMusicLoader.cs" />
+    <Compile Include="Infrastructure\MusicTag\IMusicInfoLoader.cs" />
     <Compile Include="Infrastructure\MusicTag\MusicInfo.cs" />
     <Compile Include="Infrastructure\MusicTag\MusicInfoLoader.cs" />
+    <Compile Include="Infrastructure\MusicTag\TagLib\MusicInfoLoaderByTagLib.cs" />
     <Compile Include="Infrastructure\Network\Http\Exceptions\HttpRequestFailedException.cs" />
     <Compile Include="Infrastructure\Network\Http\Exceptions\ServerInternalErrorException.cs" />
     <Compile Include="Infrastructure\Network\Http\Exceptions\ServerUnavailableException.cs" />
@@ -112,8 +119,10 @@
     <Compile Include="Infrastructure\Utils\LogUtils.cs" />
     <Compile Include="Infrastructure\Utils\ProgramUtils.cs" />
     <Compile Include="Infrastructure\Utils\StringUtils.cs" />
+    <Compile Include="Infrastructure\Utils\WinFormUtils.cs" />
     <Compile Include="MusicConverter\IMusicConverter.cs" />
     <Compile Include="MusicConverter\NcmToFlac\NcmToFlacConverter.cs" />
+    <Compile Include="MusicConverter\Qmc0ToFlac\Qmc0ToFlacConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AboutForm.resx">
