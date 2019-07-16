@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ZonyLrcToolsX.Downloader.Lyric;
 
 namespace ZonyLrcToolsX.Infrastructure.Configuration
 {
@@ -46,6 +47,11 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
         /// 下载歌词的内容，请参考 <see cref="LyricContentTypes"/> 枚举类型。
         /// </summary>
         public LyricContentTypes LyricContentType { get; set; }
+
+        /// <summary>
+        /// 已经选择的歌词下载源。
+        /// </summary>
+        public LyricDownloaderEnum SelectedLyricDownloader { get; set; }
 
         public AppConfigurationModel()
         {

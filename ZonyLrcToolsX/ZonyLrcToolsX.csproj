@@ -58,6 +58,7 @@
     <Compile Include="Downloader\Lyric\Exceptions\RequestErrorException.cs" />
     <Compile Include="Downloader\Lyric\ILyricDownloader.cs" />
     <Compile Include="Downloader\Lyric\LyricDownloaderContainer.cs" />
+    <Compile Include="Downloader\Lyric\LyricDownloaderEnum.cs" />
     <Compile Include="Downloader\Lyric\NetEase\JsonModels\MusicGetLyricRequest.cs" />
     <Compile Include="Downloader\Lyric\NetEase\JsonModels\MusicGetLyricResponse.cs" />
     <Compile Include="Downloader\Lyric\NetEase\JsonModels\MusicSearchRequestModel.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Infrastructure\Configuration\AppConfigurationModel.cs" />
     <Compile Include="Infrastructure\Configuration\LyricContentTypes.cs" />
     <Compile Include="Infrastructure\ItemDtos\ComboBoxLyricContentTypeItemDto.cs" />
+    <Compile Include="Infrastructure\ItemDtos\ComboBoxLyricDownloaderItemDto.cs" />
     <Compile Include="Infrastructure\ItemDtos\ComboboxLyricFileEncodingItemDto.cs" />
     <Compile Include="Infrastructure\Lyric\LyricItem.cs" />
     <Compile Include="Infrastructure\Lyric\LyricItemCollection.cs" />
@@ -147,9 +149,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Downloader\Album\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Logo%28蜗牛%29.png" />
   </ItemGroup>

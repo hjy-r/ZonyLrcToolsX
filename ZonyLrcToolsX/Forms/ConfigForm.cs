@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ZonyLrcToolsX.Downloader.Lyric;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.ItemDtos;
 
@@ -43,6 +44,15 @@ namespace ZonyLrcToolsX.Forms
             };
             comboBox_LyricContentType.DataSource = lyricContentTypeComboBox;
             comboBox_LyricContentType.SelectedItem = lyricContentTypeComboBox.FindIndex(item => item.Value == AppConfiguration.Instance.Configuration.LyricContentType);
+
+            // 构建歌词源下拉框。
+            var lyricDownloaderComboBox = new List<ComboBoxLyricDownloaderItemDto>
+            {
+                new ComboBoxLyricDownloaderItemDto {Text = "网易云音乐", Value = LyricDownloaderEnum.NetEase},
+                new ComboBoxLyricDownloaderItemDto {Text = "QQ 音乐", Value = LyricDownloaderEnum.QQMusic}
+            };
+            comboBox_LyricDownloader.DataSource = lyricDownloaderComboBox;
+            comboBox_LyricDownloader.SelectedItem = lyricDownloaderComboBox.FindIndex(item => item.Value == AppConfiguration.Instance.Configuration.SelectedLyricDownloader);
             
             checkBox_IsEnableProxy.Checked = AppConfiguration.Instance.Configuration.IsEnableProxy;
             CheckBox_IsEnableProxy_CheckedChanged(sender,e);
@@ -88,6 +98,7 @@ namespace ZonyLrcToolsX.Forms
             AppConfiguration.Instance.Configuration.ProxyIp = textBox_ProxyIp.Text;
             AppConfiguration.Instance.Configuration.ProxyPort = int.Parse(textBox_ProxyPort.Text);
             AppConfiguration.Instance.Configuration.LyricContentType = (comboBox_LyricContentType.SelectedItem as ComboBoxLyricContentTypeItemDto)?.Value ?? LyricContentTypes.Original;
+            AppConfiguration.Instance.Configuration.SelectedLyricDownloader = (comboBox_LyricDownloader.SelectedItem as ComboBoxLyricDownloaderItemDto)?.Value ?? LyricDownloaderEnum.NetEase;
 
             AppConfiguration.Instance.Save();
             Close();

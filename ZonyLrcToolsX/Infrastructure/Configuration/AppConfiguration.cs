@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using ZonyLrcToolsX.Downloader.Lyric;
 using ZonyLrcToolsX.Infrastructure.Utils;
 
 // ReSharper disable InconsistentNaming
@@ -89,7 +90,8 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
                     "*.m4a",
                     "*.wav"
                 },
-                LyricContentType = LyricContentTypes.Original
+                LyricContentType = LyricContentTypes.Original,
+                SelectedLyricDownloader = LyricDownloaderEnum.NetEase
             };
         }
     }
