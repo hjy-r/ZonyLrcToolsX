@@ -49,8 +49,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase
                 return new LyricItemCollection(lyricJsonObj.OriginalLyric.Text);
             }
 
-            if (AppConfiguration.Instance.Configuration.LyricContentType == LyricContentTypes.Translation 
-                && lyricJsonObj.TranslationLyric != null)
+            if (AppConfiguration.Instance.Configuration.LyricContentType == LyricContentTypes.Translation && lyricJsonObj.TranslationLyric != null)
             {
                 return new LyricItemCollection(lyricJsonObj.TranslationLyric.Text);
             }

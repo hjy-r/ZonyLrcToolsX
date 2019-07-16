@@ -64,6 +64,9 @@
     <Compile Include="Downloader\Lyric\NetEase\JsonModels\MusicSearchRequestModel.cs" />
     <Compile Include="Downloader\Lyric\NetEase\JsonModels\MusicSearchResponseModel.cs" />
     <Compile Include="Downloader\Lyric\NetEase\NetEaseCloudMusicLyricDownloader.cs" />
+    <Compile Include="Downloader\Lyric\QQMusic\JsonModels\MusicGetLyricRequest.cs" />
+    <Compile Include="Downloader\Lyric\QQMusic\JsonModels\MusicGetLyricResponse.cs" />
+    <Compile Include="Downloader\Lyric\QQMusic\JsonModels\MusicSearchResponseModel.cs" />
     <Compile Include="Downloader\Lyric\QQMusic\QQMusicCloudMusicLyricDownloader.cs" />
     <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
@@ -135,6 +138,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Downloader\Lyric\QQMusic\JsonModels\MusicSearchRequestModel.cs" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
