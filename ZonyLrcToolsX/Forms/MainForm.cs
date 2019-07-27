@@ -30,6 +30,8 @@ namespace ZonyLrcToolsX.Forms
 
         private void ToolStripButton_Config_Click(object sender, System.EventArgs e) => new ConfigForm().ShowDialog();
 
+        private void ToolStripButton_PayMoney_Click(object sender, System.EventArgs e) => new DonateForm().ShowDialog();
+
         private void ToolStripButton_SearchMusicFile_Click(object sender, System.EventArgs e)
         {
             var dirDlg = new FolderBrowserDialog();

@@ -134,7 +134,7 @@
             // toolStripMenuItem_ConvertNcm
             // 
             this.toolStripMenuItem_ConvertNcm.Name = "toolStripMenuItem_ConvertNcm";
-            this.toolStripMenuItem_ConvertNcm.Size = new System.Drawing.Size(261, 44);
+            this.toolStripMenuItem_ConvertNcm.Size = new System.Drawing.Size(359, 44);
             this.toolStripMenuItem_ConvertNcm.Text = "NCM 转换";
             // 
             // toolStripSeparator3
@@ -158,6 +158,7 @@
             this.toolStripButton_PayMoney.Name = "toolStripButton_PayMoney";
             this.toolStripButton_PayMoney.Size = new System.Drawing.Size(91, 36);
             this.toolStripButton_PayMoney.Text = "捐赠";
+            this.toolStripButton_PayMoney.Click += new System.EventHandler(this.ToolStripButton_PayMoney_Click);
             // 
             // toolStripButton_About
             // 
