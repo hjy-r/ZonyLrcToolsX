@@ -62,6 +62,7 @@
     <Compile Include="Downloader\LyricDownloader\NetEaseCloudMusicLyricDownloader_Tests.cs" />
     <Compile Include="Downloader\LyricDownloader\QQMusicLyricDownloader_Tests.cs" />
     <Compile Include="Infrastructure\Configuration\AppConfiguration_Tests.cs" />
+    <Compile Include="Infrastructure\MusicTag\MusicInfoLoaderByTaglib_Tests.cs" />
     <Compile Include="Infrastructure\Network\Http\WrappedHttpClient_Tests.cs" />
     <Compile Include="Infrastructure\Utils\FileSearchUtils_Tests.cs" />
     <Compile Include="Infrastructure\Utils\LogUtils_Tests.cs" />
