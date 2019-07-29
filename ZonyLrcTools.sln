@@ -14,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4DA91A0E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZonyLrcToolsX.Tests", "ZonyLrcToolsX.Tests\ZonyLrcToolsX.Tests.csproj", "{37DC9548-CB97-4B74-99AD-E8318166B8BC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testFiles", "testFiles", "{DA3884C9-6C83-4885-9784-724A84222564}"
+ProjectSection(SolutionItems) = preProject
+	testFiles\tagLib 读取标签问题歌曲.mp3 = testFiles\tagLib 读取标签问题歌曲.mp3
+	testFiles\tagLib 读取正常歌曲.mp3 = testFiles\tagLib 读取正常歌曲.mp3
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +43,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{37DC9548-CB97-4B74-99AD-E8318166B8BC} = {4DA91A0E-5455-45AE-BFAC-047844572003}
+		{DA3884C9-6C83-4885-9784-724A84222564} = {4DA91A0E-5455-45AE-BFAC-047844572003}
 	EndGlobalSection
 EndGlobal

@@ -27,5 +27,10 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
         /// 歌曲的专辑图像。
         /// </summary>
         public byte[] AlbumImage { get; set; }
+
+        /// <summary>
+        /// 歌曲对应的物理文件路径。
+        /// </summary>
+        public string FilePath { get; set; }
     }
 }

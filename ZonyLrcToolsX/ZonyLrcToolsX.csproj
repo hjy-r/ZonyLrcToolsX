@@ -117,6 +117,7 @@
     <Compile Include="Infrastructure\Utils\ExceptionUtils.cs" />
     <Compile Include="Infrastructure\Utils\FileSearchUtils.cs" />
     <Compile Include="Infrastructure\Utils\LogUtils.cs" />
+    <Compile Include="Infrastructure\Utils\PathUtils.cs" />
     <Compile Include="Infrastructure\Utils\ProgramUtils.cs" />
     <Compile Include="Infrastructure\Utils\StringUtils.cs" />
     <Compile Include="Infrastructure\Utils\WinFormUtils.cs" />
