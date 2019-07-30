@@ -45,46 +45,22 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             var downloader = new NetEaseCloudMusicLyricDownloader();
             
             // 仅包含原始歌词。
-            var musicInfo1 = new MusicInfo
-            {
-                Name = "黄金甲",
-                Artist = "周杰伦"
-            };
+            var musicInfo1 = new MusicInfo("黄金甲","周杰伦");
             
             // 包含原始 + 翻译歌词。
-            var musicInfo2 = new MusicInfo
-            {
-                Name = "あさき、ゆめみし",
-                Artist = "瀧沢一留"
-            };
+            var musicInfo2 = new MusicInfo("あさき、ゆめみし", "瀧沢一留");
             
             // 纯音乐歌词。
-            var musicInfo3 = new MusicInfo
-            {
-                Name = "Masked Heroes",
-                Artist = "Vexento"
-            };
+            var musicInfo3 = new MusicInfo("Masked Heroes", "Vexento");
             
             // 不存在的歌曲。
-            var musicInfo4 = new MusicInfo
-            {
-                Name = "AAAAAAAAAAADDDDFF",
-                Artist = "ASDASDF"
-            };
+            var musicInfo4 = new MusicInfo("AAAAAAAAAAADDDDFF", "ASDASDF");
 
             // 数据为 NULL。
-            var musicInfo5 = new MusicInfo
-            {
-                Name = null,
-                Artist = null
-            };
+            var musicInfo5 = new MusicInfo(null, null);
 
             // 空字符串。
-            var musicInfo6 = new MusicInfo
-            {
-                Name = "",
-                Artist = ""
-            };
+            var musicInfo6 = new MusicInfo("", "");
 
             // Act
             var result1 = await downloader.DownloadAsync(musicInfo1);

@@ -109,6 +109,7 @@
     <Compile Include="Infrastructure\MusicTag\IMusicInfoLoader.cs" />
     <Compile Include="Infrastructure\MusicTag\MusicInfo.cs" />
     <Compile Include="Infrastructure\MusicTag\MusicInfoLoader.cs" />
+    <Compile Include="Infrastructure\MusicTag\MusicInfoStatus.cs" />
     <Compile Include="Infrastructure\MusicTag\TagLib\MusicInfoLoaderByTagLib.cs" />
     <Compile Include="Infrastructure\Network\Http\Exceptions\HttpRequestFailedException.cs" />
     <Compile Include="Infrastructure\Network\Http\Exceptions\ServerInternalErrorException.cs" />

@@ -7,6 +7,8 @@ using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.MusicTag.TagLib;
 using ZonyLrcToolsX.Infrastructure.Utils;
 
+// ReSharper disable LocalizableElement
+
 namespace ZonyLrcToolsX.Forms
 {
     public partial class MainForm : Form
@@ -45,6 +47,8 @@ namespace ZonyLrcToolsX.Forms
 
             WinFormUtils.InvokeAction(this, async () =>
             {
+                listView_MusicList.Items.Clear();
+
                 toolStripStatusLabel1.Text = "软件状态: 正在搜索文件...";
                 var files = await FileSearchUtils.Instance.FindFilesAsync(dirDlg.SelectedPath, AppConfiguration.Instance.Configuration.SuffixName);
 
@@ -59,11 +63,14 @@ namespace ZonyLrcToolsX.Forms
 
                 MessageBox.Show(messageBuilder.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // 填充主页面的 ListView 控件。
                 toolStripStatusLabel1.Text = "软件状态: 正在加载文件数据...";
                 foreach (var file in files.SelectMany(x=>x.Value))
                 {
                     var musicInfo = await _musicInfoLoader.LoadAsync(file);
+                    listView_MusicList.Items.Add(musicInfo.ToListViewItem());
                 }
+                toolStripStatusLabel1.Text = "软件状态: 歌词数据加载完成...";
             });
         }
     }
