@@ -53,6 +53,11 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
         /// </summary>
         public LyricDownloaderEnum SelectedLyricDownloader { get; set; }
 
+        /// <summary>
+        /// 歌词下载/封面下载的最大线程数。
+        /// </summary>
+        public int DownloadThreadNumber { get; set; }
+
         public AppConfigurationModel()
         {
             SuffixName = new List<string>();

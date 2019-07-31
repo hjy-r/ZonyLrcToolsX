@@ -91,7 +91,8 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
                     "*.wav"
                 },
                 LyricContentType = LyricContentTypes.Original,
-                SelectedLyricDownloader = LyricDownloaderEnum.NetEase
+                SelectedLyricDownloader = LyricDownloaderEnum.NetEase,
+                DownloadThreadNumber = 1
             };
         }
     }
