@@ -107,6 +107,7 @@
             this.toolStripButton_DownloadLyric.Name = "toolStripButton_DownloadLyric";
             this.toolStripButton_DownloadLyric.Size = new System.Drawing.Size(141, 36);
             this.toolStripButton_DownloadLyric.Text = "下载歌词";
+            this.toolStripButton_DownloadLyric.Click += new System.EventHandler(this.ToolStripButton_DownloadLyric_Click);
             // 
             // toolStripButton_DownloadAblumImage
             // 
@@ -134,7 +135,7 @@
             // toolStripMenuItem_ConvertNcm
             // 
             this.toolStripMenuItem_ConvertNcm.Name = "toolStripMenuItem_ConvertNcm";
-            this.toolStripMenuItem_ConvertNcm.Size = new System.Drawing.Size(359, 44);
+            this.toolStripMenuItem_ConvertNcm.Size = new System.Drawing.Size(261, 44);
             this.toolStripMenuItem_ConvertNcm.Text = "NCM 转换";
             // 
             // toolStripSeparator3

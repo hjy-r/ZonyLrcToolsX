@@ -140,7 +140,7 @@ namespace ZonyLrcToolsX.Forms
         private void InitializeSuffixName()
         {
             var suffixNameBuilder = new StringBuilder();
-            ConfigurationInstance.Configuration.SuffixName.ForEach(name => suffixNameBuilder.Append(name).Append(','));
+            ConfigurationInstance.Configuration.SuffixName.ForEach(name => suffixNameBuilder.Append(name).Append(';'));
             textBox_SuffixName.Text = suffixNameBuilder.ToString().Trim(',');
         }
     }

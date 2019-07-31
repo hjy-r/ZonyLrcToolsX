@@ -1,7 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Async;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZonyLrcToolsX.Downloader.Lyric;
+using ZonyLrcToolsX.Downloader.Lyric.NetEase;
+using ZonyLrcToolsX.Infrastructure;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.MusicTag.TagLib;
@@ -14,6 +20,7 @@ namespace ZonyLrcToolsX.Forms
     public partial class MainForm : Form
     {
         private IMusicInfoLoader _musicInfoLoader;
+        private ILyricDownloader _lyricDownloader;
 
         public MainForm()
         {
@@ -26,6 +33,7 @@ namespace ZonyLrcToolsX.Forms
         private void InitializeInfrastructure()
         {
             _musicInfoLoader = new MusicInfoLoaderByTagLib();
+            _lyricDownloader = new NetEaseCloudMusicLyricDownloader();
         }
 
         private void ToolStripButton_About_Click(object sender, System.EventArgs e) => new AboutForm().ShowDialog();
@@ -45,16 +53,17 @@ namespace ZonyLrcToolsX.Forms
                 return;
             }
 
+            listView_MusicList.Items.Clear();
+            toolStripStatusLabel1.Text = "软件状态: 正在搜索文件...";
+
             WinFormUtils.InvokeAction(this, async () =>
             {
-                listView_MusicList.Items.Clear();
-
-                toolStripStatusLabel1.Text = "软件状态: 正在搜索文件...";
-                var files = await FileSearchUtils.Instance.FindFilesAsync(dirDlg.SelectedPath, AppConfiguration.Instance.Configuration.SuffixName);
+                var files = await FileSearchUtils.Instance.FindFilesAsync(dirDlg.SelectedPath,
+                    AppConfiguration.Instance.Configuration.SuffixName);
 
                 // 构建提示信息。
                 var messageBuilder = new StringBuilder();
-                messageBuilder.Append($"文件搜索完毕，一共找到了 {files.SelectMany(x=>x.Value).Count()} 个文件。").Append("\r\n");
+                messageBuilder.Append($"文件搜索完毕，一共找到了 {files.SelectMany(x => x.Value).Count()} 个文件。").Append("\r\n");
                 messageBuilder.Append("------------------------------").Append("\r\n");
                 foreach (var file in files)
                 {
@@ -65,12 +74,57 @@ namespace ZonyLrcToolsX.Forms
 
                 // 填充主页面的 ListView 控件。
                 toolStripStatusLabel1.Text = "软件状态: 正在加载文件数据...";
-                foreach (var file in files.SelectMany(x=>x.Value))
+                foreach (var file in files.SelectMany(x => x.Value))
                 {
                     var musicInfo = await _musicInfoLoader.LoadAsync(file);
                     listView_MusicList.Items.Add(musicInfo.ToListViewItem());
                 }
-                toolStripStatusLabel1.Text = "软件状态: 歌词数据加载完成...";
+            });
+
+            toolStripStatusLabel1.Text = "软件状态: 歌词数据加载完成...";
+        }
+
+        private async void ToolStripButton_DownloadLyric_Click(object sender, System.EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "软件状态: 开始下载歌曲歌词...";
+
+            using (BeginImportantOperation())
+            {
+//                var items = listView_MusicList.Items.Cast<ListViewItem>();
+//
+//                await items.ParallelForEachAsync(async item =>
+//                {
+//                    try
+//                    {
+//                        var musicInfo = item.Tag as MusicInfo;
+//                        var result = await _lyricDownloader.DownloadAsync(musicInfo);
+//
+//                        if (result.IsPureMusic) item.SubItems[3].Text = "无歌词";
+//                        item.SubItems[3].Text = "完成";
+//                    }
+//                    catch (Exception exception)
+//                    {
+//                        item.SubItems[3].Text = "异常";
+//                    }
+//                });
+            }
+
+            toolStripStatusLabel1.Text = $"软件状态: {listView_MusicList.Items.Count} 歌曲的歌词已经下载完成...";
+        }
+
+        private DisposeAction BeginImportantOperation()
+        {
+            toolStripButton_SearchMusicFile.Enabled = false;
+            toolStripButton_DownloadLyric.Enabled = false;
+            toolStripButton_DownloadAblumImage.Enabled = false;
+            toolStripButton_Config.Enabled = false;
+
+            return new DisposeAction(() =>
+            {
+                toolStripButton_SearchMusicFile.Enabled = true;
+                toolStripButton_DownloadLyric.Enabled = true;
+                toolStripButton_DownloadAblumImage.Enabled = true;
+                toolStripButton_Config.Enabled = false;
             });
         }
     }
