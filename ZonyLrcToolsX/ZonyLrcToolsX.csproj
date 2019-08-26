@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloader\Album\IAlbumDownloader.cs" />
+    <Compile Include="Downloader\Album\NetEase\NetEaseCloudMusicAlbumDownloader.cs" />
     <Compile Include="Downloader\Lyric\Exceptions\NotFoundSongException.cs" />
     <Compile Include="Downloader\Lyric\Exceptions\RequestErrorException.cs" />
     <Compile Include="Downloader\Lyric\ILyricDownloader.cs" />
