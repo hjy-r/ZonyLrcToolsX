@@ -48,7 +48,7 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
         /// <param name="intoOneLine">双语歌词是否合并为一行。</param>
         /// <remarks>
         /// <see cref="intoOneLine"/>参数只能保证时间轴一致的情况能够合并为一行，如果不一致
-        /// 则可能仍会分为两行进行处理。合并处理依据以源歌词为<c>基准</c>进行，一旦出现源歌词与翻译歌词数目不匹配
+        /// 则可能仍会分为两行进行处理。合并处理依据以源歌词为 <c>基准</c> 进行，一旦出现源歌词与翻译歌词数目不匹配
         /// 的情况会造成分行处理，但最终的结果仍然以升序排列。
         /// </remarks>
         /// <returns> 合并成功的歌词结果 </returns>
