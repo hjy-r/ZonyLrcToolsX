@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using ZonyLrcToolsX.Infrastructure.Network.Http;
 
 namespace ZonyLrcToolsX.Downloader.Album.NetEase
 {
@@ -7,9 +9,16 @@ namespace ZonyLrcToolsX.Downloader.Album.NetEase
     /// </summary>
     public class NetEaseCloudMusicAlbumDownloader : IAlbumDownloader
     {
+        private readonly WrappedHttpClient _wrappedHttpClient;
+
+        public NetEaseCloudMusicAlbumDownloader()
+        {
+            _wrappedHttpClient = new WrappedHttpClient();
+        }
+
         public Task<byte[]> DownloadAsync()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
