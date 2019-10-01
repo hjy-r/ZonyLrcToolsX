@@ -2,37 +2,43 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using ZonyLrcToolsX.Infrastructure.MusicTag;
 
 // ReSharper disable NotResolvedInText
 
 namespace ZonyLrcToolsX.Infrastructure.Utils
 {
-    public class FileSearchUtils
+    public class FileUtils
     {
         private static object _locker = new object();
-        private static FileSearchUtils _fileSearchUtils;
+        private static FileUtils _fileUtils;
 
-        public static FileSearchUtils Instance
+        public static FileUtils Instance
         {
             get
             {
-                if(_fileSearchUtils == null)
+                if(_fileUtils == null)
                 {
                     lock (_locker)
                     {
-                        if(_fileSearchUtils == null) _fileSearchUtils = new FileSearchUtils();
+                        if(_fileUtils == null) _fileUtils = new FileUtils();
                     }
                 }
 
-                return _fileSearchUtils;
+                return _fileUtils;
             }
         }
 
-        public FileSearchUtils()
+        public FileUtils()
         {
 
         }
 
+        public Task WriteToLyricFile(MusicInfo musicInfo)
+        {
+            throw new NotImplementedException();
+        }
+        
         public Task<Dictionary<string,List<string>>> FindFilesAsync(string searchPath,IList<string> fileExtensions)
         {
             if(fileExtensions == null) throw new ArgumentNullException("搜索后缀不能为空。");

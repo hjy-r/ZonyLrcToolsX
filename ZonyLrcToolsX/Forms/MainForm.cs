@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nito.AsyncEx;
 using ZonyLrcToolsX.Downloader.Lyric;
-using ZonyLrcToolsX.Downloader.Lyric.NetEase;
 using ZonyLrcToolsX.Infrastructure;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
@@ -19,7 +19,7 @@ namespace ZonyLrcToolsX.Forms
     public partial class MainForm : Form
     {
         private IMusicInfoLoader _musicInfoLoader;
-        private ILyricDownloader _lyricDownloader;
+        private LyricDownloaderContainer _lyricDownloaderContainer;
 
         public MainForm()
         {
@@ -32,7 +32,7 @@ namespace ZonyLrcToolsX.Forms
         private void InitializeInfrastructure()
         {
             _musicInfoLoader = new MusicInfoLoaderByTagLib();
-            _lyricDownloader = new NetEaseCloudMusicLyricDownloader();
+            _lyricDownloaderContainer = new LyricDownloaderContainer();
         }
 
         private void ToolStripButton_About_Click(object sender, EventArgs e) => new AboutForm().ShowDialog();
@@ -57,7 +57,7 @@ namespace ZonyLrcToolsX.Forms
 
             WinFormUtils.InvokeAction(this, async () =>
             {
-                var files = await FileSearchUtils.Instance.FindFilesAsync(dirDlg.SelectedPath,
+                var files = await FileUtils.Instance.FindFilesAsync(dirDlg.SelectedPath,
                     AppConfiguration.Instance.Configuration.SuffixName);
                 
                 MessageBox.Show(BuildSearchCompletedMessage(files), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,28 +80,26 @@ namespace ZonyLrcToolsX.Forms
 
             using (BeginImportantOperation())
             {
-//                var items = listView_MusicList.Items.Cast<ListViewItem>();
-//
-//                await items.ParallelForEachAsync(async item =>
-//                {
-//                    try
-//                    {
-//                        var musicInfo = item.Tag as MusicInfo;
-//                        var result = await _lyricDownloader.DownloadAsync(musicInfo);
-//
-//                        if (result.IsPureMusic) item.SubItems[3].Text = "无歌词";
-//                        item.SubItems[3].Text = "完成";
-//                    }
-//                    catch (Exception exception)
-//                    {
-//                        item.SubItems[3].Text = "异常";
-//                    }
-//                });
+                var items = listView_MusicList.Items.Cast<ListViewItem>();
+
+                foreach (var item in items)
+                {
+                    var musicInfo = item.Tag as MusicInfo;
+                    var defaultDownloader = _lyricDownloaderContainer.Downloader.FirstOrDefault();
+                    
+                    var result = AsyncContext.Run(() => defaultDownloader.DownloadAsync(musicInfo));
+                    if (result.IsPureMusic) SetViewItemStatus(item, "无歌词");
+
+                    SetViewItemStatus(item, "正常");
+                }
             }
 
             toolStripStatusLabel1.Text = $"软件状态: {listView_MusicList.Items.Count} 歌曲的歌词已经下载完成...";
         }
 
+        /// <summary>
+        /// 当执行关键性操作时，调用本方法禁用 MainForm 窗体上的重要控件，防止发生误操作。
+        /// </summary>
         private DisposeAction BeginImportantOperation()
         {
             toolStripButton_SearchMusicFile.Enabled = false;
@@ -133,6 +131,12 @@ namespace ZonyLrcToolsX.Forms
             }
 
             return messageBuilder.ToString();
+        }
+
+        private void SetViewItemStatus(ListViewItem listViewItem,string text)
+        {
+            if (listViewItem == null) return;
+            listViewItem.SubItems[3].Text = text;
         }
     }
 }

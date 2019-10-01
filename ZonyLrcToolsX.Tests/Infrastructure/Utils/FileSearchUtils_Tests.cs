@@ -33,7 +33,7 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Utils
             });
 
             // Act
-            var result = await FileSearchUtils.Instance.FindFilesAsync(currentDir, new List<string> { "*.mp3", "*.flac" });
+            var result = await FileUtils.Instance.FindFilesAsync(currentDir, new List<string> { "*.mp3", "*.flac" });
 
             // Assert
             result.ShouldNotBeNull();
