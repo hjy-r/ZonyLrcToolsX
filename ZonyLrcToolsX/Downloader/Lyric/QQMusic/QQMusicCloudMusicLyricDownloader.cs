@@ -1,10 +1,8 @@
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
 using ZonyLrcToolsX.Downloader.Lyric.QQMusic.JsonModels;
-using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.Lyric;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.Network.Http;
@@ -26,27 +24,37 @@ namespace ZonyLrcToolsX.Downloader.Lyric.QQMusic
             var searchResult = await _wrappedHttpClient.GetAsync<MusicSearchResponseModel>(
                 url: @"http://c.y.qq.com/soso/fcgi-bin/client_search_cp",
                 parameters: requestParameter);
+            
+            // æ ¡éªŒè¯·æ±‚ç»“æœçš„æœ‰æ•ˆæ€§ã€‚
+            ValidateResponse(searchResult, musicInfo);
+            
+            // è·å–å…·ä½“çš„æ­Œæ›²æ­Œè¯ä¿¡æ¯ã€‚
+            var lyricJsonStr = await GetLyricJsonStringAsync(searchResult);
+            lyricJsonStr = lyricJsonStr.Replace(@"MusicJsonCallback(", string.Empty).TrimEnd(')');
+            lyricJsonStr = HttpUtility.HtmlDecode(lyricJsonStr);
+            if(lyricJsonStr.Contains("æ­¤æ­Œæ›²ä¸ºæ²¡æœ‰å¡«è¯çš„çº¯éŸ³ä¹ï¼Œè¯·æ‚¨æ¬£èµ")) return new LyricItemCollection(string.Empty);
 
+            var lyricJsonObj = JsonConvert.DeserializeObject<MusicGetLyricResponse>(lyricJsonStr);
+            // TODO: æš‚æ—¶ä¸æ”¯æŒ QQ éŸ³ä¹çš„æ­Œè¯ç¿»è¯‘ï¼Œç›´æ¥è¿”å›æºè¯­è¨€æ­Œè¯ã€‚
+            return new LyricItemCollection(lyricJsonObj.LyricText);
+        }
+
+        protected virtual void ValidateResponse(MusicSearchResponseModel searchResult, MusicInfo musicInfo)
+        {
             if(searchResult == null || searchResult.StatusCode != 0 || searchResult.Data.Song.SongItems == null)
             {
-                throw new RequestErrorException("QQ ÒôÀÖ½Ó¿ÚÃ»ÓĞÕı³£·µ»Ø½á¹û...", musicInfo);
+                throw new RequestErrorException("QQ éŸ³ä¹æ¥å£æ²¡æœ‰æ­£å¸¸è¿”å›ç»“æœ...", musicInfo);
             }
-            if (searchResult.Data.Song.SongItems.Count <= 0 ) throw new NotFoundSongException("Ã»ÓĞËÑË÷µ½Ö¸¶¨µÄ¸èÇú¡£",musicInfo);
-
-            var lyricJsonStr = await _wrappedHttpClient.GetAsync(
+            if (searchResult.Data.Song.SongItems.Count <= 0 ) throw new NotFoundSongException("æ²¡æœ‰æœç´¢åˆ°æŒ‡å®šçš„æ­Œæ›²ã€‚",musicInfo);
+        }
+        
+        protected virtual Task<string> GetLyricJsonStringAsync(MusicSearchResponseModel searchResult)
+        {
+            return _wrappedHttpClient.GetAsync(
                 url: @"http://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg",
                 parameters: new MusicGetLyricRequest(searchResult.Data.Song.SongItems[0].SongId),
                 refererUrl: @"https://y.qq.com/"
             );
-
-            lyricJsonStr = lyricJsonStr.Replace(@"MusicJsonCallback(", string.Empty).TrimEnd(')');
-            lyricJsonStr = HttpUtility.HtmlDecode(lyricJsonStr);
-            if(lyricJsonStr.Contains("´Ë¸èÇúÎªÃ»ÓĞÌî´ÊµÄ´¿ÒôÀÖ£¬ÇëÄúĞÀÉÍ")) return new LyricItemCollection(string.Empty);
-
-            var lyricJsonObj = JsonConvert.DeserializeObject<MusicGetLyricResponse>(lyricJsonStr);
-
-            // TODO: ÔİÊ±²»Ö§³Ö QQ ÒôÀÖµÄ¸è´Ê·­Òë£¬Ö±½Ó·µ»ØÔ´ÓïÑÔ¸è´Ê¡£
-            return new LyricItemCollection(lyricJsonObj.LyricText);
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Async;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZonyLrcToolsX.Downloader.Lyric;
 using ZonyLrcToolsX.Downloader.Lyric.NetEase;
@@ -36,13 +35,13 @@ namespace ZonyLrcToolsX.Forms
             _lyricDownloader = new NetEaseCloudMusicLyricDownloader();
         }
 
-        private void ToolStripButton_About_Click(object sender, System.EventArgs e) => new AboutForm().ShowDialog();
+        private void ToolStripButton_About_Click(object sender, EventArgs e) => new AboutForm().ShowDialog();
 
-        private void ToolStripButton_Config_Click(object sender, System.EventArgs e) => new ConfigForm().ShowDialog();
+        private void ToolStripButton_Config_Click(object sender, EventArgs e) => new ConfigForm().ShowDialog();
 
-        private void ToolStripButton_PayMoney_Click(object sender, System.EventArgs e) => new DonateForm().ShowDialog();
+        private void ToolStripButton_PayMoney_Click(object sender, EventArgs e) => new DonateForm().ShowDialog();
 
-        private void ToolStripButton_SearchMusicFile_Click(object sender, System.EventArgs e)
+        private void ToolStripButton_SearchMusicFile_Click(object sender, EventArgs e)
         {
             var dirDlg = new FolderBrowserDialog();
 
@@ -60,17 +59,8 @@ namespace ZonyLrcToolsX.Forms
             {
                 var files = await FileSearchUtils.Instance.FindFilesAsync(dirDlg.SelectedPath,
                     AppConfiguration.Instance.Configuration.SuffixName);
-
-                // 构建提示信息。
-                var messageBuilder = new StringBuilder();
-                messageBuilder.Append($"文件搜索完毕，一共找到了 {files.SelectMany(x => x.Value).Count()} 个文件。").Append("\r\n");
-                messageBuilder.Append("------------------------------").Append("\r\n");
-                foreach (var file in files)
-                {
-                    messageBuilder.Append($"{file.Key} 文件共 {file.Value.Count} 个。").Append("\r\n");
-                }
-
-                MessageBox.Show(messageBuilder.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                MessageBox.Show(BuildSearchCompletedMessage(files), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // 填充主页面的 ListView 控件。
                 toolStripStatusLabel1.Text = "软件状态: 正在加载文件数据...";
@@ -84,7 +74,7 @@ namespace ZonyLrcToolsX.Forms
             toolStripStatusLabel1.Text = "软件状态: 歌词数据加载完成...";
         }
 
-        private async void ToolStripButton_DownloadLyric_Click(object sender, System.EventArgs e)
+        private void ToolStripButton_DownloadLyric_Click(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "软件状态: 开始下载歌曲歌词...";
 
@@ -126,6 +116,23 @@ namespace ZonyLrcToolsX.Forms
                 toolStripButton_DownloadAblumImage.Enabled = true;
                 toolStripButton_Config.Enabled = false;
             });
+        }
+
+        /// <summary>
+        /// 搜索完成之后，将会调用本方法构建提示文本框。
+        /// </summary>
+        /// <param name="files">搜索到的文件集合，以 [后缀名-文件路径集合] 的键值对构成。</param>
+        private string BuildSearchCompletedMessage(Dictionary<string,List<string>> files)
+        {
+            var messageBuilder = new StringBuilder();
+            messageBuilder.Append($"文件搜索完毕，一共找到了 {files.SelectMany(x => x.Value).Count()} 个文件。").Append("\r\n");
+            messageBuilder.Append("------------------------------").Append("\r\n");
+            foreach (var file in files)
+            {
+                messageBuilder.Append($"{file.Key} 文件共 {file.Value.Count} 个。").Append("\r\n");
+            }
+
+            return messageBuilder.ToString();
         }
     }
 }
