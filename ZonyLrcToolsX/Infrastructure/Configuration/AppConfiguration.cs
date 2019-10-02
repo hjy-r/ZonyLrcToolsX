@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using ZonyLrcToolsX.Downloader.Lyric;
 using ZonyLrcToolsX.Infrastructure.Utils;
 
@@ -79,7 +80,7 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
             return new AppConfigurationModel
             {
                 IsAutoCheckUpdate =  true,
-                CodePage = 65535,
+                CodePage = Encoding.UTF8.CodePage,
                 IsCoverSourceLyricFile = false,
                 IsEnableProxy = false,
                 SuffixName = new List<string>
