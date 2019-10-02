@@ -95,14 +95,15 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
 
         public async Task WriteExceptionAsync(Exception exception)
         {
-            if (exception == null) return;
-
-            var messageBuilder = new StringBuilder();
-            messageBuilder.Append(GetNowDateTimeString()).Append(" - 产生了异常。").Append("\r\n");
-            messageBuilder.Append(exception.GetFormatExceptionMessage()).Append("\r\n");
-
-            await _logFileStreamWriter.WriteLineAsync(messageBuilder.ToString());
-            await _logFileStreamWriter.FlushAsync();
+//            if (exception == null) return;
+//
+//            var messageBuilder = new StringBuilder();
+//            messageBuilder.Append(GetNowDateTimeString()).Append(" - 产生了异常。").Append("\r\n");
+//            messageBuilder.Append(exception.GetFormatExceptionMessage()).Append("\r\n");
+//
+//            await _logFileStreamWriter.WriteLineAsync(messageBuilder.ToString());
+//            await _logFileStreamWriter.FlushAsync();
+            await Task.FromResult(0);
         }
 
         private string GetNowDateTimeString()
