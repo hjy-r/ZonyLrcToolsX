@@ -87,7 +87,7 @@ namespace ZonyLrcToolsX.Forms
                 new ComboBoxLyricContentTypeItemDto {Text = "双语歌词",Value = LyricContentTypes.OriginalAndTranslation}
             };
             comboBox_LyricContentType.DataSource = lyricContentTypeComboBox;
-            comboBox_LyricContentType.SelectedItem = lyricContentTypeComboBox.FindIndex(item => item.Value == ConfigurationInstance.Configuration.LyricContentType);
+            comboBox_LyricContentType.SelectedIndex = lyricContentTypeComboBox.FindIndex(item => item.Value == ConfigurationInstance.Configuration.LyricContentType);
         }
 
         private void InitializeLyricDownloader()
@@ -99,7 +99,7 @@ namespace ZonyLrcToolsX.Forms
                 new ComboBoxLyricDownloaderItemDto {Text = "QQ 音乐", Value = LyricDownloaderEnum.QQMusic}
             };
             comboBox_LyricDownloader.DataSource = lyricDownloaderComboBox;
-            comboBox_LyricDownloader.SelectedItem = lyricDownloaderComboBox.FindIndex(item => item.Value == ConfigurationInstance.Configuration.SelectedLyricDownloader);
+            comboBox_LyricDownloader.SelectedIndex = lyricDownloaderComboBox.FindIndex(item => item.Value == ConfigurationInstance.Configuration.SelectedLyricDownloader);
         }
 
         private void InitializeLyricFileEncoding()
@@ -118,7 +118,7 @@ namespace ZonyLrcToolsX.Forms
             if (ConfigurationInstance.Configuration.CodePage == 0) comboBox_LyricFileEncoding.SelectedIndex = comboBoxItems.Count - 1;
             else
             {
-                comboBox_LyricFileEncoding.SelectedItem = comboBoxItems.FindIndex(item => item.Value == ConfigurationInstance.Configuration.CodePage);
+                comboBox_LyricFileEncoding.SelectedIndex = comboBoxItems.FindIndex(item => item.Value == ConfigurationInstance.Configuration.CodePage);
             }
         }
 
