@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
+using ZonyLrcToolsX.Infrastructure.Configuration;
+using ZonyLrcToolsX.Infrastructure.Lyric;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 
 // ReSharper disable NotResolvedInText
@@ -34,9 +37,27 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
 
         }
 
-        public Task WriteToLyricFile(MusicInfo musicInfo)
+        /// <summary>
+        /// 根据指定的编码，将歌词数据写入到 Lyric 文件当中。
+        /// </summary>
+        /// <param name="musicInfo">歌曲文件的详细信息。</param>
+        /// <param name="lyricData">需要写入到文件的歌词数据。</param>
+        public async Task WriteToLyricFileAsync(MusicInfo musicInfo, LyricItemCollection lyricData)
         {
-            throw new NotImplementedException();
+            var encoding = Encoding.GetEncoding(AppConfiguration.Instance.Configuration.CodePage);
+
+            var lyricFilePath = Path.Combine(Path.GetDirectoryName(musicInfo.FilePath) ?? throw new DirectoryNotFoundException("指定的歌曲文件目录存在问题。"),
+                $"{Path.GetFileNameWithoutExtension(musicInfo.FilePath)}.lrc");
+            if (File.Exists(lyricFilePath) && !AppConfiguration.Instance.Configuration.IsCoverSourceLyricFile)
+            {
+                return;
+            }
+
+            using (var newLyricFile = File.Create(lyricFilePath))
+            {
+                var newLyricFileBytes = encoding.GetBytes(lyricData.ToString());
+                await newLyricFile.WriteAsync(newLyricFileBytes,0,newLyricFileBytes.Length);
+            }
         }
         
         public Task<Dictionary<string,List<string>>> FindFilesAsync(string searchPath,IList<string> fileExtensions)

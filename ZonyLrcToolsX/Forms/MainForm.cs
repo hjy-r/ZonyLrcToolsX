@@ -53,7 +53,7 @@ namespace ZonyLrcToolsX.Forms
             }
 
             listView_MusicList.Items.Clear();
-            toolStripStatusLabel1.Text = "软件状态: 正在搜索文件...";
+            SetBottomStatusLabelText("正在搜索文件中，请稍候。");
 
             WinFormUtils.InvokeAction(this, async () =>
             {
@@ -63,7 +63,7 @@ namespace ZonyLrcToolsX.Forms
                 MessageBox.Show(BuildSearchCompletedMessage(files), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // 填充主页面的 ListView 控件。
-                toolStripStatusLabel1.Text = "软件状态: 正在加载文件数据...";
+                SetBottomStatusLabelText("正在加载文件的歌曲数据，请稍候。");
                 foreach (var file in files.SelectMany(x => x.Value))
                 {
                     var musicInfo = await _musicInfoLoader.LoadAsync(file);
@@ -71,12 +71,12 @@ namespace ZonyLrcToolsX.Forms
                 }
             });
 
-            toolStripStatusLabel1.Text = "软件状态: 歌词数据加载完成...";
+            SetBottomStatusLabelText("歌词数据加载完成。");
         }
 
         private void ToolStripButton_DownloadLyric_Click(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "软件状态: 开始下载歌曲歌词...";
+            SetBottomStatusLabelText("开始下载歌词数据。");
 
             using (BeginImportantOperation())
             {
@@ -94,7 +94,7 @@ namespace ZonyLrcToolsX.Forms
                 }
             }
 
-            toolStripStatusLabel1.Text = $"软件状态: {listView_MusicList.Items.Count} 歌曲的歌词已经下载完成...";
+            SetBottomStatusLabelText($"{listView_MusicList.Items.Count} 首歌词已经下载完成。");
         }
 
         /// <summary>
@@ -133,10 +133,15 @@ namespace ZonyLrcToolsX.Forms
             return messageBuilder.ToString();
         }
 
-        private void SetViewItemStatus(ListViewItem listViewItem,string text)
+        private void SetViewItemStatus(ListViewItem listViewItem, string text)
         {
             if (listViewItem == null) return;
             listViewItem.SubItems[3].Text = text;
+        }
+
+        private void SetBottomStatusLabelText(string text)
+        {
+            toolStripStatusLabel1.Text = $"软件状态: {text}";
         }
     }
 }

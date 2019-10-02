@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Shouldly;
 using Xunit;
+using ZonyLrcToolsX.Infrastructure.Lyric;
+using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.Utils;
 
 namespace ZonyLrcToolsX.Tests.Infrastructure.Utils
 {
-    public class FileSearchUtils_Tests
+    public class FileUtils_Tests
     {
         [Fact]
         public async Task FindFilesAsync_Test()
@@ -50,6 +52,29 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Utils
             }
 
             Directory.Delete(newChildDir);
+        }
+
+        [Fact]
+        public async Task WriteToLyricFile_Test()
+        {
+            // Arrange
+            var musicInfo = new MusicInfo("测试音乐", "测试歌手", "测试专辑", null,
+                Path.Combine(ProgramUtils.GetCurrentDirectory(), "test.mp3"));
+            var lyricItems = new LyricItemCollection
+            {
+                new LyricItem(0, 0, "歌词条目1"),
+                new LyricItem(0, 0, "歌词条目2")
+            };
+
+            // Act
+            await FileUtils.Instance.WriteToLyricFileAsync(musicInfo, lyricItems);
+
+            // Assert
+            var lyricFilePath = Path.Combine(ProgramUtils.GetCurrentDirectory(), $"{Path.GetFileNameWithoutExtension(musicInfo.FilePath)}.lrc");
+            File.Exists(lyricFilePath).ShouldBe(true);
+            File.ReadLines(lyricFilePath).Count().ShouldBe(2);
+            
+            File.Delete(lyricFilePath);
         }
     }
 }
