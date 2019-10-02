@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -95,6 +96,20 @@ namespace ZonyLrcToolsX.Forms
             }
 
             SetBottomStatusLabelText($"{listView_MusicList.Items.Count} 首歌词已经下载完成。");
+        }
+        
+        private void listView_MusicList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView_MusicList.SelectedItems.Count == 1)
+            {
+                if (listView_MusicList.SelectedItems[0].Tag is MusicInfo selectedMusicInfo)
+                {
+                    pictureBox_AblumImage.Image = Image.FromStream(new MemoryStream(selectedMusicInfo.AlbumImage));
+                    linkLabel_MusicPath.Text = $"歌曲文件路径: {selectedMusicInfo.FilePath}";
+                    textBox_MusicName.Text = selectedMusicInfo.Name;
+                    textBox_MusicArtist.Text = selectedMusicInfo.Artist;
+                }
+            }
         }
 
         /// <summary>
