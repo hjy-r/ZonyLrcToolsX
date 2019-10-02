@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 
 namespace ZonyLrcToolsX.Infrastructure.Lyric
@@ -6,7 +7,7 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
     /// 歌词条目的定义，歌词条目是歌词信息的最小单位，一个完整的
     /// 歌词数据是由诸多歌词条目组合而成。
     /// </summary>
-    public class LyricItem
+    public class LyricItem : IComparable<LyricItem>
     {
         /// <summary>
         /// 原始时间轴
