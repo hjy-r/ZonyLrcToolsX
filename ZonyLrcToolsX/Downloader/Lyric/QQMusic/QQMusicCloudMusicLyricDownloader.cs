@@ -32,6 +32,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.QQMusic
             var lyricJsonStr = await GetLyricJsonStringAsync(searchResult);
             lyricJsonStr = lyricJsonStr.Replace(@"MusicJsonCallback(", string.Empty).TrimEnd(')');
             lyricJsonStr = HttpUtility.HtmlDecode(lyricJsonStr);
+            if(lyricJsonStr.Contains("\"code\":-1901")) throw new NotFoundSongException("没有搜索到指定的歌曲。",musicInfo);
             if(lyricJsonStr.Contains("此歌曲为没有填词的纯音乐，请您欣赏")) return new LyricItemCollection(string.Empty);
 
             var lyricJsonObj = JsonConvert.DeserializeObject<MusicGetLyricResponse>(lyricJsonStr);
