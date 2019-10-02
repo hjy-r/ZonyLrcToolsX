@@ -82,7 +82,7 @@
             this.toolStrip_Bottom.Location = new System.Drawing.Point(0, 0);
             this.toolStrip_Bottom.Name = "toolStrip_Bottom";
             this.toolStrip_Bottom.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.toolStrip_Bottom.Size = new System.Drawing.Size(1640, 50);
+            this.toolStrip_Bottom.Size = new System.Drawing.Size(1640, 41);
             this.toolStrip_Bottom.TabIndex = 0;
             this.toolStrip_Bottom.Text = "toolStrip1";
             // 
@@ -91,7 +91,7 @@
             this.toolStripButton_SearchMusicFile.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_SearchMusicFile.Image")));
             this.toolStripButton_SearchMusicFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_SearchMusicFile.Name = "toolStripButton_SearchMusicFile";
-            this.toolStripButton_SearchMusicFile.Size = new System.Drawing.Size(136, 44);
+            this.toolStripButton_SearchMusicFile.Size = new System.Drawing.Size(136, 35);
             this.toolStripButton_SearchMusicFile.Text = "扫描歌词";
             this.toolStripButton_SearchMusicFile.Click += new System.EventHandler(this.ToolStripButton_SearchMusicFile_Click);
             // 
@@ -358,7 +358,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ZonyLrcToolsX - Version: 1.0";
+            this.Text = " ";
             this.toolStrip_Bottom.ResumeLayout(false);
             this.toolStrip_Bottom.PerformLayout();
             this.groupBox1.ResumeLayout(false);

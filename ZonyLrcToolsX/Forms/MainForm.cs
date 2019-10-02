@@ -25,7 +25,8 @@ namespace ZonyLrcToolsX.Forms
         public MainForm()
         {
             AppConfiguration.Instance.Load();
-
+            AppConfiguration.Instance.Save();
+            
             InitializeInfrastructure();
             InitializeComponent();
         }
@@ -60,18 +61,22 @@ namespace ZonyLrcToolsX.Forms
             {
                 var files = await FileUtils.Instance.FindFilesAsync(dirDlg.SelectedPath,
                     AppConfiguration.Instance.Configuration.SuffixName);
-                
+                InitializeProgress(files.SelectMany(x=>x.Value).Count());
+
                 MessageBox.Show(BuildSearchCompletedMessage(files), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // 填充主页面的 ListView 控件。
                 SetBottomStatusLabelText("正在加载文件的歌曲数据，请稍候。");
                 foreach (var file in files.SelectMany(x => x.Value))
                 {
+                    IncreaseProgressValue();
+                    
                     var musicInfo = await _musicInfoLoader.LoadAsync(file);
                     listView_MusicList.Items.Add(musicInfo.ToListViewItem());
                 }
             });
 
+            SetDefaultSelectedItem();
             SetBottomStatusLabelText("歌词数据加载完成。");
         }
 
@@ -82,15 +87,30 @@ namespace ZonyLrcToolsX.Forms
             using (BeginImportantOperation())
             {
                 var items = listView_MusicList.Items.Cast<ListViewItem>();
+                InitializeProgress(listView_MusicList.Items.Count);
 
+                var defaultDownloader = _lyricDownloaderContainer.Downloader.FirstOrDefault();
+                if (defaultDownloader == null) throw new NullReferenceException("程序初始化失败，无法获取到歌词下载器。");
+                
                 foreach (var item in items)
                 {
-                    var musicInfo = item.Tag as MusicInfo;
-                    var defaultDownloader = _lyricDownloaderContainer.Downloader.FirstOrDefault();
+                    IncreaseProgressValue();
                     
-                    var result = AsyncContext.Run(() => defaultDownloader.DownloadAsync(musicInfo));
-                    if (result.IsPureMusic) SetViewItemStatus(item, "无歌词");
+                    var musicInfo = item.Tag as MusicInfo;
+                    if (FileUtils.Instance.IsIgnoreWriteLyricFile(musicInfo))
+                    {
+                        SetViewItemStatus(item,"略过");
+                        continue;
+                    }
 
+                    var result = AsyncContext.Run(() => defaultDownloader.DownloadAsync(musicInfo));
+                    if (result.IsPureMusic)
+                    {
+                        SetViewItemStatus(item, "无歌词");
+                        continue;
+                    }
+
+                    AsyncContext.Run(()=> FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result));
                     SetViewItemStatus(item, "正常");
                 }
             }
@@ -127,7 +147,7 @@ namespace ZonyLrcToolsX.Forms
                 toolStripButton_SearchMusicFile.Enabled = true;
                 toolStripButton_DownloadLyric.Enabled = true;
                 toolStripButton_DownloadAblumImage.Enabled = true;
-                toolStripButton_Config.Enabled = false;
+                toolStripButton_Config.Enabled = true;
             });
         }
 
@@ -157,6 +177,25 @@ namespace ZonyLrcToolsX.Forms
         private void SetBottomStatusLabelText(string text)
         {
             toolStripStatusLabel1.Text = $"软件状态: {text}";
+        }
+
+        private void SetDefaultSelectedItem()
+        {
+            if (listView_MusicList.Items.Count > 0)
+            {
+                listView_MusicList.Items[0].Selected = true;
+            }
+        }
+
+        private void InitializeProgress(int filesCount)
+        {
+            toolStripProgressBar1.Maximum = filesCount;
+            toolStripProgressBar1.Value = 0;
+        }
+        
+        private void IncreaseProgressValue()
+        {
+            toolStripProgressBar1.Value += 1;
         }
     }
 }
