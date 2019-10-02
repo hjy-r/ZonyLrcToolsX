@@ -11,11 +11,17 @@ using ZonyLrcToolsX.Infrastructure.MusicTag;
 
 namespace ZonyLrcToolsX.Infrastructure.Utils
 {
+    /// <summary>
+    /// 封装了文件操作相关方法。
+    /// </summary>
     public class FileUtils
     {
         private static object _locker = new object();
         private static FileUtils _fileUtils;
 
+        /// <summary>
+        /// 获取一个单例的 <see cref="FileUtils"/> 实例。
+        /// </summary>
         public static FileUtils Instance
         {
             get
@@ -60,10 +66,17 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
             }
         }
         
+        /// <summary>
+        /// 递归搜索指定路径下的歌曲文件，搜索的后缀名以 <paramref name="fileExtensions"/> 参数为准。
+        /// </summary>
+        /// <param name="searchPath">需要搜索的目录路径，如果路径无效则可能会抛出 <see cref="DirectoryNotFoundException"/> 异常。</param>
+        /// <param name="fileExtensions">需要搜索的歌曲后缀名集合，该参数一般来自于 <see cref="AppConfiguration"/> 中的配置。</param>
+        /// <returns>将会以键值对的形式，返回某个后缀下面的所有歌曲文件路径。</returns>
         public Task<Dictionary<string,List<string>>> FindFilesAsync(string searchPath,IList<string> fileExtensions)
         {
-            if(fileExtensions == null) throw new ArgumentNullException("搜索后缀不能为空。");
+            if(fileExtensions == null) throw new ArgumentNullException(nameof(searchPath),"搜索后缀不能为空。");
             if(fileExtensions.Count == 0) throw new ArgumentException("搜索后缀不能够为空。");
+            if(!Directory.Exists(searchPath))throw new DirectoryNotFoundException("指定的路径不存在有效目录。");
 
             var files = new Dictionary<string,List<string>>();
             try
