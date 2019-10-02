@@ -172,7 +172,8 @@
             // 
             // listView_MusicList
             // 
-            this.listView_MusicList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.listView_MusicList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView_MusicList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
@@ -181,7 +182,7 @@
             this.columnHeader4});
             this.listView_MusicList.HideSelection = false;
             this.listView_MusicList.Location = new System.Drawing.Point(387, 48);
-            this.listView_MusicList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_MusicList.Margin = new System.Windows.Forms.Padding(4);
             this.listView_MusicList.Name = "listView_MusicList";
             this.listView_MusicList.Size = new System.Drawing.Size(1236, 919);
             this.listView_MusicList.TabIndex = 1;
@@ -211,6 +212,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.button_SaveChanges);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBox_MusicArtist);
@@ -220,9 +223,9 @@
             this.groupBox1.Controls.Add(this.linkLabel_MusicPath);
             this.groupBox1.Controls.Add(this.pictureBox_AblumImage);
             this.groupBox1.Location = new System.Drawing.Point(16, 48);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(363, 920);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -233,7 +236,7 @@
             this.button_SaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SaveChanges.Location = new System.Drawing.Point(221, 861);
-            this.button_SaveChanges.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_SaveChanges.Margin = new System.Windows.Forms.Padding(4);
             this.button_SaveChanges.Name = "button_SaveChanges";
             this.button_SaveChanges.Size = new System.Drawing.Size(128, 51);
             this.button_SaveChanges.TabIndex = 3;
@@ -257,7 +260,7 @@
             this.textBox_MusicArtist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_MusicArtist.Location = new System.Drawing.Point(107, 552);
-            this.textBox_MusicArtist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_MusicArtist.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_MusicArtist.Name = "textBox_MusicArtist";
             this.textBox_MusicArtist.Size = new System.Drawing.Size(241, 35);
             this.textBox_MusicArtist.TabIndex = 10;
@@ -279,7 +282,7 @@
             this.textBox_MusicName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_MusicName.Location = new System.Drawing.Point(107, 491);
-            this.textBox_MusicName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_MusicName.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_MusicName.Name = "textBox_MusicName";
             this.textBox_MusicName.Size = new System.Drawing.Size(241, 35);
             this.textBox_MusicName.TabIndex = 3;
@@ -314,7 +317,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_AblumImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_AblumImage.Location = new System.Drawing.Point(8, 37);
-            this.pictureBox_AblumImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox_AblumImage.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox_AblumImage.Name = "pictureBox_AblumImage";
             this.pictureBox_AblumImage.Size = new System.Drawing.Size(341, 361);
             this.pictureBox_AblumImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -355,10 +358,11 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listView_MusicList);
             this.Controls.Add(this.toolStrip_Bottom);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " ";
+            this.Text = " ZonyLrcToolsX";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip_Bottom.ResumeLayout(false);
             this.toolStrip_Bottom.PerformLayout();
             this.groupBox1.ResumeLayout(false);

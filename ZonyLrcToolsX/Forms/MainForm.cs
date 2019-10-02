@@ -31,10 +31,16 @@ namespace ZonyLrcToolsX.Forms
             InitializeComponent();
         }
 
+
         private void InitializeInfrastructure()
         {
             _musicInfoLoader = new MusicInfoLoaderByTagLib();
             _lyricDownloaderContainer = new LyricDownloaderContainer();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Icon = Properties.Resources.application;
         }
 
         private void ToolStripButton_About_Click(object sender, EventArgs e) => new AboutForm().ShowDialog();
