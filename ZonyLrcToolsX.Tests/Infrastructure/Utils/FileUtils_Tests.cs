@@ -76,5 +76,23 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Utils
             
             File.Delete(lyricFilePath);
         }
+
+        [Fact]
+        public void IsIgnoreWriteLyricFile_Test()
+        {
+            // Arrange
+            var musicInfo = new MusicInfo("测试音乐", "测试歌手", "测试专辑", null,
+                Path.Combine(ProgramUtils.GetCurrentDirectory(), "test.mp3"));
+            var lrcStream = File.Create(FileUtils.Instance.GetLyricFilePathByMusicInfo(musicInfo));
+            lrcStream.Close();
+            
+            // Act
+            var result = FileUtils.Instance.IsIgnoreWriteLyricFile(musicInfo);
+            
+            // Assert
+            result.ShouldBe(true);
+            
+            File.Delete(FileUtils.Instance.GetLyricFilePathByMusicInfo(musicInfo));
+        }
     }
 }

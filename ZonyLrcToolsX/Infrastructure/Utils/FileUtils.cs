@@ -52,11 +52,12 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
         {
             var encoding = Encoding.GetEncoding(AppConfiguration.Instance.Configuration.CodePage);
 
-            var lyricFilePath = Path.Combine(Path.GetDirectoryName(musicInfo.FilePath) ?? throw new DirectoryNotFoundException("指定的歌曲文件目录存在问题。"),
-                $"{Path.GetFileNameWithoutExtension(musicInfo.FilePath)}.lrc");
-            if (File.Exists(lyricFilePath) && !AppConfiguration.Instance.Configuration.IsCoverSourceLyricFile)
+            var lyricFilePath = GetLyricFilePathByMusicInfo(musicInfo);
+            
+            // 覆盖操作时，先删除原有 Lrc 文件，再进行下载。
+            if (File.Exists(lyricFilePath) && AppConfiguration.Instance.Configuration.IsCoverSourceLyricFile)
             {
-                return;
+                File.Delete(lyricFilePath);
             }
 
             using (var newLyricFile = File.Create(lyricFilePath))
@@ -64,6 +65,17 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
                 var newLyricFileBytes = encoding.GetBytes(lyricData.ToString());
                 await newLyricFile.WriteAsync(newLyricFileBytes,0,newLyricFileBytes.Length);
             }
+        }
+
+        /// <summary>
+        /// 如果歌曲的 Lrc 文件存在是，是否进行歌词下载。检测时会结合 <see cref="AppConfiguration"/> 的参数判定是否需要为歌曲
+        /// 下载歌词。
+        /// </summary>
+        /// <returns>当方法返回 true 时进行略过，返回 false 则进行覆盖。</returns>
+        public bool IsIgnoreWriteLyricFile(MusicInfo musicInfo)
+        {
+            var lyricFilePath = GetLyricFilePathByMusicInfo(musicInfo);
+            return File.Exists(lyricFilePath) && !AppConfiguration.Instance.Configuration.IsCoverSourceLyricFile;
         }
         
         /// <summary>
@@ -115,6 +127,12 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
             {
                 // ignored
             }
+        }
+
+        public string GetLyricFilePathByMusicInfo(MusicInfo musicInfo)
+        {
+            return Path.Combine(Path.GetDirectoryName(musicInfo.FilePath) ?? throw new DirectoryNotFoundException("指定的歌曲文件目录存在问题。"),
+                $"{Path.GetFileNameWithoutExtension(musicInfo.FilePath)}.lrc");
         }
     }
 }
