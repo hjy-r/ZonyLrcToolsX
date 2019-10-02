@@ -32,7 +32,7 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
             }
         }
 
-        public FileUtils()
+        private FileUtils()
         {
 
         }
