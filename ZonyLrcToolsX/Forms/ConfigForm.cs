@@ -62,7 +62,7 @@ namespace ZonyLrcToolsX.Forms
             ConfigurationInstance.Configuration.IsAutoCheckUpdate = checkBox_IsAutoCheckUpdate.Checked;
             ConfigurationInstance.Configuration.IsCoverSourceLyricFile = checkBox_IsCoverSourceLyricFile.Checked;
             ConfigurationInstance.Configuration.IsEnableProxy = checkBox_IsEnableProxy.Checked;
-            ConfigurationInstance.Configuration.SuffixName = textBox_SuffixName.Text.Split(';').ToList();
+            ConfigurationInstance.Configuration.SuffixName = textBox_SuffixName.Text.Split(';').Where(x=>!string.IsNullOrEmpty(x)).ToList();
             ConfigurationInstance.Configuration.CodePage = (comboBox_LyricFileEncoding.SelectedItem as ComboboxLyricFileEncodingItemDto)?.Value ?? 0;
             if (ConfigurationInstance.Configuration.IsEnableProxy)
             {
