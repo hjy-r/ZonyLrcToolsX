@@ -76,8 +76,8 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             else
             {
                 result1.IsPureMusic.ShouldBe(false);
+                result1.Count.ShouldBeGreaterThan(1);
             }
-            result1.Count.ShouldBeGreaterThan(1);
             await Task.Delay(500);
             
             result2.ShouldNotBeNull();
