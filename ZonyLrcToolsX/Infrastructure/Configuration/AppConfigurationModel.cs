@@ -63,6 +63,11 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
         /// </summary>
         public int DownloadThreadNumber { get; set; }
 
+        /// <summary>
+        /// Mp3Tag 的可执行文件 (exe) 路径。
+        /// </summary>
+        public string Mp3TagPath { get; set; }
+
         public AppConfigurationModel()
         {
             SuffixName = new List<string>();

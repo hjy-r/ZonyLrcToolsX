@@ -181,6 +181,17 @@ namespace ZonyLrcToolsX.Forms
             }
         }
 
+        private void Button_OpenMp3Tag_Click(object sender, EventArgs e)
+        {
+            if (listView_MusicList.SelectedItems.Count == 1)
+            {
+                if (listView_MusicList.SelectedItems[0].Tag is MusicInfo selectedMusicInfo)
+                {
+                    Process.Start(AppConfiguration.Instance.Configuration.Mp3TagPath, $"/fn:\"{selectedMusicInfo.FilePath}\"");
+                }
+            }
+        }
+
         #endregion
 
         private void listView_MusicList_SelectedIndexChanged(object sender, EventArgs e)

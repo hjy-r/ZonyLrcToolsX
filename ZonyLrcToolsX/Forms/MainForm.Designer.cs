@@ -59,6 +59,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.button_OpenMp3Tag = new System.Windows.Forms.Button();
             this.toolStrip_Bottom.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AblumImage)).BeginInit();
@@ -218,6 +219,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.button_OpenMp3Tag);
             this.groupBox1.Controls.Add(this.button_SaveChanges);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBox_MusicArtist);
@@ -353,6 +355,19 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(150, 16);
             // 
+            // button_OpenMp3Tag
+            // 
+            this.button_OpenMp3Tag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_OpenMp3Tag.Location = new System.Drawing.Point(6, 417);
+            this.button_OpenMp3Tag.Margin = new System.Windows.Forms.Padding(2);
+            this.button_OpenMp3Tag.Name = "button_OpenMp3Tag";
+            this.button_OpenMp3Tag.Size = new System.Drawing.Size(64, 26);
+            this.button_OpenMp3Tag.TabIndex = 11;
+            this.button_OpenMp3Tag.Text = "Mp3Tag";
+            this.button_OpenMp3Tag.UseVisualStyleBackColor = true;
+            this.button_OpenMp3Tag.Click += new System.EventHandler(this.Button_OpenMp3Tag_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -410,5 +425,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.Button button_OpenMp3Tag;
     }
 }

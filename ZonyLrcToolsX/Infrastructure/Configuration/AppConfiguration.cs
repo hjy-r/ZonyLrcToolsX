@@ -94,7 +94,8 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
                 LyricContentType = LyricContentTypes.Original,
                 LineBreakType = LineBreakTypes.Windows,
                 SelectedLyricDownloader = LyricDownloaderEnum.NetEase,
-                DownloadThreadNumber = 1
+                DownloadThreadNumber = 1,
+                Mp3TagPath = null
             };
         }
     }

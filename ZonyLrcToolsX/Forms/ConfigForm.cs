@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -31,6 +32,7 @@ namespace ZonyLrcToolsX.Forms
             InitializeNetworkProxy(sender, e);
             InitializeSuffixName();
             InitializeLineBreakComboBox();
+            InitializeMp3TagExecuteFilePath();
 
             checkBox_IsAutoCheckUpdate.Checked = ConfigurationInstance.Configuration.IsAutoCheckUpdate;
         }
@@ -74,6 +76,7 @@ namespace ZonyLrcToolsX.Forms
             ConfigurationInstance.Configuration.LineBreakType = (comboBox_LineBreak.SelectedItem as ComboBoxLineBreakItemDto)?.Value ?? LineBreakTypes.Windows;
             ConfigurationInstance.Configuration.SelectedLyricDownloader = (comboBox_LyricDownloader.SelectedItem as ComboBoxLyricDownloaderItemDto)?.Value ?? LyricDownloaderEnum.NetEase;
             ConfigurationInstance.Configuration.DownloadThreadNumber = (int)numericUpDown_DownloadThreadNumber.Value;
+            ConfigurationInstance.Configuration.Mp3TagPath = textBox_Mp3TagPath.Text;
 
             ConfigurationInstance.Save();
             Close();
@@ -157,6 +160,27 @@ namespace ZonyLrcToolsX.Forms
 
             comboBox_LineBreak.DataSource = lineBreakComboBox;
             comboBox_LineBreak.SelectedIndex = lineBreakComboBox.FindIndex(item => item.Value == ConfigurationInstance.Configuration.LineBreakType);
+        }
+
+        private void InitializeMp3TagExecuteFilePath()
+        {
+            textBox_Mp3TagPath.Text = AppConfiguration.Instance.Configuration.Mp3TagPath;
+        }
+
+        private void Button_Mp3TagPath_Click(object sender, EventArgs e)
+        {
+            var openFileDlg = new OpenFileDialog
+            {
+                Title = "选择 Mp3Tag 程序路径"
+            };
+
+            if (openFileDlg.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(openFileDlg.FileName))
+                {
+                    textBox_Mp3TagPath.Text = openFileDlg.FileName;
+                }
+            }
         }
     }
 }
