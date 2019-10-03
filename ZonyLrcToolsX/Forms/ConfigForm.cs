@@ -110,12 +110,12 @@ namespace ZonyLrcToolsX.Forms
             var comboBoxItems = new List<ComboboxLyricFileEncodingItemDto>();
             foreach (var encodingInfo in Encoding.GetEncodings())
             {
-                comboBoxItems.Add(new ComboboxLyricFileEncodingItemDto
-                {
-                    Text = encodingInfo.DisplayName,
-                    Value = encodingInfo.CodePage
-                });
+                comboBoxItems.Add(new ComboboxLyricFileEncodingItemDto(encodingInfo.DisplayName, encodingInfo.CodePage));
             }
+            
+            // 添加默认没有的 UTF-8-BOM 编码。
+            comboBoxItems.Add(new ComboboxLyricFileEncodingItemDto("UTF-8 带 BOM",ExtendEncodingCodePages.Utf8WithBom));
+            
             comboBox_LyricFileEncoding.DataSource = comboBoxItems;
             if (ConfigurationInstance.Configuration.CodePage == 0) comboBox_LyricFileEncoding.SelectedIndex = comboBoxItems.Count - 1;
             else

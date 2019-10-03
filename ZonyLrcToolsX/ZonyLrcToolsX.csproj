@@ -146,6 +146,7 @@
     </Compile>
     <Compile Include="Infrastructure\Configuration\AppConfiguration.cs" />
     <Compile Include="Infrastructure\Configuration\AppConfigurationModel.cs" />
+    <Compile Include="Infrastructure\Configuration\ExtendEncodingCodePages.cs" />
     <Compile Include="Infrastructure\Configuration\LineBreakTypes.cs" />
     <Compile Include="Infrastructure\Configuration\LyricContentTypes.cs" />
     <Compile Include="Infrastructure\DisposeAction.cs" />

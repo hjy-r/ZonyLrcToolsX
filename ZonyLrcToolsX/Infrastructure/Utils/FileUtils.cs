@@ -50,8 +50,6 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
         /// <param name="lyricData">需要写入到文件的歌词数据。</param>
         public async Task WriteToLyricFileAsync(MusicInfo musicInfo, LyricItemCollection lyricData)
         {
-            var encoding = Encoding.GetEncoding(AppConfiguration.Instance.Configuration.CodePage);
-
             var lyricFilePath = GetLyricFilePathByMusicInfo(musicInfo);
             
             // 覆盖操作时，先删除原有 Lrc 文件，再进行下载。
@@ -62,7 +60,7 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
 
             using (var newLyricFile = File.Create(lyricFilePath))
             {
-                var newLyricFileBytes = encoding.GetBytes(lyricData.ToString());
+                var newLyricFileBytes = GetBytesWithAppConfigurationEncoding(lyricData.ToString());
                 await newLyricFile.WriteAsync(newLyricFileBytes,0,newLyricFileBytes.Length);
             }
         }
@@ -133,6 +131,26 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
         {
             return Path.Combine(Path.GetDirectoryName(musicInfo.FilePath) ?? throw new DirectoryNotFoundException("指定的歌曲文件目录存在问题。"),
                 $"{Path.GetFileNameWithoutExtension(musicInfo.FilePath)}.lrc");
+        }
+
+        private byte[] GetBytesWithAppConfigurationEncoding(string lyricStr)
+        {
+            if (AppConfiguration.Instance.Configuration.CodePage == ExtendEncodingCodePages.Utf8WithBom)
+            {
+                var srcUtf8Bytes = Encoding.UTF8.GetBytes(lyricStr);
+                
+                var newUtf8WithBom = new byte[srcUtf8Bytes.Length + 3];
+                newUtf8WithBom[0] = 0xef;
+                newUtf8WithBom[1] = 0xbb;
+                newUtf8WithBom[2] = 0xbf;
+                
+                Array.Copy(srcUtf8Bytes,0,newUtf8WithBom,3,srcUtf8Bytes.Length);
+
+                return newUtf8WithBom;
+            }
+            
+            var encoding = Encoding.GetEncoding(AppConfiguration.Instance.Configuration.CodePage);
+            return encoding.GetBytes(lyricStr);
         }
     }
 }
