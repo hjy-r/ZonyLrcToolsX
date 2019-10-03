@@ -3,6 +3,9 @@
 
 namespace ZonyLrcToolsX.Infrastructure.Configuration
 {
+    /// <summary>
+    /// 歌词文件的换行符形式。
+    /// </summary>
     [Flags]
     public enum LineBreakTypes
     {
@@ -20,6 +23,9 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
         Unix
     }
 
+    /// <summary>
+    /// 针对于 <see cref="LineBreakTypes"/> 的扩展方法，主要返回具体的换行符实例。
+    /// </summary>
     public static class LineBreakTypeExtensions
     {
         public static string GetLineBreak(this LineBreakTypes breakTypes)
