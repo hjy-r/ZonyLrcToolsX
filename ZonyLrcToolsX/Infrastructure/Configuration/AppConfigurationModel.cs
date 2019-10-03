@@ -49,6 +49,11 @@ namespace ZonyLrcToolsX.Infrastructure.Configuration
         public LyricContentTypes LyricContentType { get; set; }
 
         /// <summary>
+        /// 歌词文件的换行符格式，请参考 <see cref="LineBreakTypes"/> 枚举类型。
+        /// </summary>
+        public LineBreakTypes LineBreakType { get; set; }
+
+        /// <summary>
         /// 已经选择的歌词下载源。
         /// </summary>
         public LyricDownloaderEnum SelectedLyricDownloader { get; set; }

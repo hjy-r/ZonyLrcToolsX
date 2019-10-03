@@ -30,6 +30,7 @@ namespace ZonyLrcToolsX.Forms
             InitializeDownloadThreadNumber();
             InitializeNetworkProxy(sender, e);
             InitializeSuffixName();
+            InitializeLineBreakComboBox();
 
             checkBox_IsAutoCheckUpdate.Checked = ConfigurationInstance.Configuration.IsAutoCheckUpdate;
         }
@@ -70,6 +71,7 @@ namespace ZonyLrcToolsX.Forms
                 ConfigurationInstance.Configuration.ProxyPort = int.Parse(textBox_ProxyPort.Text);
             }
             ConfigurationInstance.Configuration.LyricContentType = (comboBox_LyricContentType.SelectedItem as ComboBoxLyricContentTypeItemDto)?.Value ?? LyricContentTypes.Original;
+            ConfigurationInstance.Configuration.LineBreakType = (comboBox_LineBreak.SelectedItem as ComboBoxLineBreakItemDto)?.Value ?? LineBreakTypes.Windows;
             ConfigurationInstance.Configuration.SelectedLyricDownloader = (comboBox_LyricDownloader.SelectedItem as ComboBoxLyricDownloaderItemDto)?.Value ?? LyricDownloaderEnum.NetEase;
             ConfigurationInstance.Configuration.DownloadThreadNumber = (int)numericUpDown_DownloadThreadNumber.Value;
 
@@ -142,6 +144,19 @@ namespace ZonyLrcToolsX.Forms
             var suffixNameBuilder = new StringBuilder();
             ConfigurationInstance.Configuration.SuffixName.ForEach(name => suffixNameBuilder.Append(name).Append(';'));
             textBox_SuffixName.Text = suffixNameBuilder.ToString().Trim(',');
+        }
+
+        private void InitializeLineBreakComboBox()
+        {
+            var lineBreakComboBox = new List<ComboBoxLineBreakItemDto>
+            {
+                new ComboBoxLineBreakItemDto("Windows 换行符",LineBreakTypes.Windows),
+                new ComboBoxLineBreakItemDto("macOS 换行符",LineBreakTypes.macOS),
+                new ComboBoxLineBreakItemDto("Unix 换行符",LineBreakTypes.Unix)
+            };
+
+            comboBox_LineBreak.DataSource = lineBreakComboBox;
+            comboBox_LineBreak.SelectedIndex = lineBreakComboBox.FindIndex(item => item.Value == ConfigurationInstance.Configuration.LineBreakType);
         }
     }
 }

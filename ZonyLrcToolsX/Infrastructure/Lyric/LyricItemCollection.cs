@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.Utils;
 
 namespace ZonyLrcToolsX.Infrastructure.Lyric
@@ -127,9 +128,11 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
         /// <returns></returns>
         public override string ToString()
         {
+            var lineBreak = AppConfiguration.Instance.Configuration.LineBreakType.GetLineBreak();
+            
             var lyricBuilder = new StringBuilder();
-            ForEach(item=>lyricBuilder.Append(item).Append('\n'));
-            return lyricBuilder.ToString().TrimEnd('\n');
+            ForEach(item=>lyricBuilder.Append(item).Append(lineBreak));
+            return lyricBuilder.ToString().TrimEnd(lineBreak);
         }
     }
 }

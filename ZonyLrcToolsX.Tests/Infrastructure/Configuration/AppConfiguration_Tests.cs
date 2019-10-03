@@ -26,6 +26,8 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Configuration
             AppConfiguration.Instance.Configuration.LyricContentType.ShouldBe(LyricContentTypes.Original);
             AppConfiguration.Instance.Configuration.SelectedLyricDownloader.ShouldBe(LyricDownloaderEnum.NetEase);
             AppConfiguration.Instance.Configuration.DownloadThreadNumber.ShouldBe(1);
+            AppConfiguration.Instance.Configuration.LineBreakType.ShouldBe(LineBreakTypes.Windows);
+            
             File.Exists(configFile).ShouldBe(true);
             File.Delete(configFile);
         }
@@ -40,6 +42,7 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Configuration
             /* Act */
             AppConfiguration.Instance.Load();
             AppConfiguration.Instance.Configuration.ProxyIp = "127.0.0.1";
+            AppConfiguration.Instance.Configuration.LineBreakType = LineBreakTypes.Unix;
             AppConfiguration.Instance.Save();
 
             /* Assert */
@@ -52,6 +55,8 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.Configuration
             AppConfiguration.Instance.Configuration.LyricContentType.ShouldBe(LyricContentTypes.Original);
             AppConfiguration.Instance.Configuration.SelectedLyricDownloader.ShouldBe(LyricDownloaderEnum.NetEase);
             AppConfiguration.Instance.Configuration.DownloadThreadNumber.ShouldBe(1);
+            AppConfiguration.Instance.Configuration.LineBreakType.ShouldBe(LineBreakTypes.Unix);
+            
             File.Delete(configFile);
         }
     }
