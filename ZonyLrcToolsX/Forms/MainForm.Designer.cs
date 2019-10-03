@@ -102,9 +102,10 @@
             // 
             // toolStripButton_DownloadLyric
             // 
+            this.toolStripButton_DownloadLyric.Image = global::ZonyLrcToolsX.Properties.Resources.Download;
             this.toolStripButton_DownloadLyric.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_DownloadLyric.Name = "toolStripButton_DownloadLyric";
-            this.toolStripButton_DownloadLyric.Size = new System.Drawing.Size(114, 68);
+            this.toolStripButton_DownloadLyric.Size = new System.Drawing.Size(178, 68);
             this.toolStripButton_DownloadLyric.Text = "下载歌词";
             this.toolStripButton_DownloadLyric.Click += new System.EventHandler(this.ToolStripButton_DownloadLyric_Click);
             // 
@@ -309,6 +310,7 @@
             this.linkLabel_MusicPath.TabIndex = 5;
             this.linkLabel_MusicPath.TabStop = true;
             this.linkLabel_MusicPath.Text = "歌曲文件路径:";
+            this.linkLabel_MusicPath.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_MusicPath_LinkClicked);
             // 
             // pictureBox_AblumImage
             // 

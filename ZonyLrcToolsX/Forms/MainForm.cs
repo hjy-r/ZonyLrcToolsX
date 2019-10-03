@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -143,6 +144,17 @@ namespace ZonyLrcToolsX.Forms
                     linkLabel_MusicPath.Text = $"歌曲文件路径: {selectedMusicInfo.FilePath}";
                     textBox_MusicName.Text = selectedMusicInfo.Name;
                     textBox_MusicArtist.Text = selectedMusicInfo.Artist;
+                }
+            }
+        }
+
+        private void LinkLabel_MusicPath_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (listView_MusicList.SelectedItems.Count == 1)
+            {
+                if (listView_MusicList.SelectedItems[0].Tag is MusicInfo selectedMusicInfo)
+                {
+                    Process.Start("explorer", $"/select, {selectedMusicInfo.FilePath}");
                 }
             }
         }
