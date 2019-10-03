@@ -90,6 +90,11 @@ namespace ZonyLrcToolsX.Forms
 
         private void ToolStripButton_DownloadLyric_Click(object sender, EventArgs e)
         {
+            if (listView_MusicList.Items.Count == 0)
+            {
+                MessageBox.Show("没有可用的歌曲文件，请先扫描之后再点击下载。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             SetBottomStatusLabelText("开始下载歌词数据。");
 
             using (BeginImportantOperation())
