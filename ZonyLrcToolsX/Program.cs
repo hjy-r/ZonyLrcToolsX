@@ -16,8 +16,6 @@ namespace ZonyLrcToolsX
         [STAThread]
         static void Main()
         {
-            if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
-
             // 全局异常处理。
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += async (sender, args) => await HandleException(args.ExceptionObject as Exception);
