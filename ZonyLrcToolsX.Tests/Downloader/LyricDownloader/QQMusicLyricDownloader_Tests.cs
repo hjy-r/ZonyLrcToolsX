@@ -72,5 +72,16 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
 
             await Should.ThrowAsync<NotFoundSongException>(async () => await downloader.DownloadAsync(musicInfo6));
         }
+        
+        [Fact]
+        public async Task JayChou_Song_Should_Return_A_Lyric()
+        {
+            var downloader = new QQMusicCloudMusicLyricDownloader();
+            var lyricA = await downloader.DownloadAsync(new MusicInfo("以父之名", "周杰伦"));
+            
+            lyricA.ShouldNotBeNull();
+            lyricA.IsPureMusic.ShouldBe(false);
+            lyricA.ToString().Contains("微凉的晨露沾湿黑礼服").ShouldBe(true);
+        }
     }
 }

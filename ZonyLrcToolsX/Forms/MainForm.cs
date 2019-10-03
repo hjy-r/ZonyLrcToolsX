@@ -106,7 +106,7 @@ namespace ZonyLrcToolsX.Forms
                 var items = listView_MusicList.Items.Cast<ListViewItem>();
                 InitializeProgress(listView_MusicList.Items.Count);
 
-                var defaultDownloader = _lyricDownloaderContainer.Downloader.FirstOrDefault();
+                var defaultDownloader = _lyricDownloaderContainer.GetDownloader();
                 if (defaultDownloader == null) throw new NullReferenceException("程序初始化失败，无法获取到歌词下载器。");
                 
                 foreach (var item in items)

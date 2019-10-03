@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Xunit;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
 using ZonyLrcToolsX.Downloader.Lyric.NetEase;
+using ZonyLrcToolsX.Downloader.Lyric.QQMusic;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 
