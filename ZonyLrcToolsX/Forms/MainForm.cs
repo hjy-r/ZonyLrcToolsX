@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Nito.AsyncEx;
 using ZonyLrcToolsX.Downloader.Lyric;
+using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
 using ZonyLrcToolsX.Infrastructure;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
@@ -109,15 +110,23 @@ namespace ZonyLrcToolsX.Forms
                         continue;
                     }
 
-                    var result = AsyncContext.Run(() => defaultDownloader.DownloadAsync(musicInfo));
-                    if (result.IsPureMusic)
+                    try
                     {
-                        SetViewItemStatus(item, "无歌词");
-                        continue;
-                    }
+                        var result = AsyncContext.Run(() => defaultDownloader.DownloadAsync(musicInfo));
+                        
+                        if (result.IsPureMusic)
+                        {
+                            SetViewItemStatus(item, "无歌词");
+                            continue;
+                        }
 
-                    AsyncContext.Run(()=> FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result));
-                    SetViewItemStatus(item, "正常");
+                        AsyncContext.Run(()=> FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result));
+                        SetViewItemStatus(item, "正常");
+                    }
+                    catch (NotFoundSongException)
+                    {
+                        SetViewItemStatus(item,"没有找到歌词");
+                    }
                 }
             }
 
