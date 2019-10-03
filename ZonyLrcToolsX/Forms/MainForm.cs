@@ -131,7 +131,7 @@ namespace ZonyLrcToolsX.Forms
                         }
 
                         AsyncContext.Run(()=> FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result));
-                        SetViewItemStatus(item, "正常");
+                        SetViewItemStatus(item, "完成");
                     }
                     catch (NotFoundSongException)
                     {
@@ -166,11 +166,13 @@ namespace ZonyLrcToolsX.Forms
                     if (item.Tag is MusicInfo musicInfo)
                     {
                         SetBottomStatusLabelText($"正在下载 {musicInfo.Name} - {musicInfo.Artist} 的专辑图像。");
+                        SetViewItemStatus(item, "下载中");
 
                         var result = defaultAlbumImageDownloader.Download(musicInfo);
                         musicInfo.AlbumImage = result;
                         
                         _musicInfoLoader.Save(musicInfo);
+                        SetViewItemStatus(item, "完成");
                         SetBottomStatusLabelText($"已经将专辑图像写入到了 {musicInfo.FilePath}");
                     }
                 }
@@ -187,7 +189,12 @@ namespace ZonyLrcToolsX.Forms
             {
                 if (listView_MusicList.SelectedItems[0].Tag is MusicInfo selectedMusicInfo)
                 {
-                    pictureBox_AblumImage.Image = Image.FromStream(new MemoryStream(selectedMusicInfo.AlbumImage));
+                    pictureBox_AblumImage.Image = null;
+                    if (selectedMusicInfo.AlbumImage != null)
+                    {
+                        pictureBox_AblumImage.Image = Image.FromStream(new MemoryStream(selectedMusicInfo.AlbumImage));
+                    }
+                    
                     linkLabel_MusicPath.Text = $"歌曲文件路径: {selectedMusicInfo.FilePath}";
                     textBox_MusicName.Text = selectedMusicInfo.Name;
                     textBox_MusicArtist.Text = selectedMusicInfo.Artist;

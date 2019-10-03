@@ -92,7 +92,7 @@
             this.toolStripButton_SearchMusicFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_SearchMusicFile.Name = "toolStripButton_SearchMusicFile";
             this.toolStripButton_SearchMusicFile.Size = new System.Drawing.Size(92, 36);
-            this.toolStripButton_SearchMusicFile.Text = "扫描歌词";
+            this.toolStripButton_SearchMusicFile.Text = "扫描歌曲";
             this.toolStripButton_SearchMusicFile.Click += new System.EventHandler(this.ToolStripButton_SearchMusicFile_Click);
             // 
             // toolStripSeparator1
@@ -111,7 +111,6 @@
             // 
             // toolStripButton_DownloadAlbumImage
             // 
-            this.toolStripButton_DownloadAlbumImage.Enabled = false;
             this.toolStripButton_DownloadAlbumImage.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_DownloadAlbumImage.Image")));
             this.toolStripButton_DownloadAlbumImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_DownloadAlbumImage.Name = "toolStripButton_DownloadAlbumImage";
