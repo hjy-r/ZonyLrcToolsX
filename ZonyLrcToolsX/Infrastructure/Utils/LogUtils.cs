@@ -60,7 +60,8 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
         {
             try
             {
-                
+                _logFileStream = File.Create(Path.Combine(ProgramUtils.GetCurrentDirectory(), "exception.log"));
+                _logFileStreamWriter = new StreamWriter(_logFileStream);
             }
             catch (Exception e)
             {
@@ -95,15 +96,14 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
 
         public async Task WriteExceptionAsync(Exception exception)
         {
-//            if (exception == null) return;
-//
-//            var messageBuilder = new StringBuilder();
-//            messageBuilder.Append(GetNowDateTimeString()).Append(" - 产生了异常。").Append("\r\n");
-//            messageBuilder.Append(exception.GetFormatExceptionMessage()).Append("\r\n");
-//
-//            await _logFileStreamWriter.WriteLineAsync(messageBuilder.ToString());
-//            await _logFileStreamWriter.FlushAsync();
-            await Task.FromResult(0);
+            if (exception == null) return;
+
+            var messageBuilder = new StringBuilder();
+            messageBuilder.Append(GetNowDateTimeString()).Append(" - 产生了异常。").Append("\r\n");
+            messageBuilder.Append(exception.GetFormatExceptionMessage()).Append("\r\n");
+
+            await _logFileStreamWriter.WriteLineAsync(messageBuilder.ToString());
+            await _logFileStreamWriter.FlushAsync();
         }
 
         private string GetNowDateTimeString()

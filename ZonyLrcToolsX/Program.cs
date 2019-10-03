@@ -22,6 +22,8 @@ namespace ZonyLrcToolsX
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += async (sender, args) => await HandleException(args.ExceptionObject as Exception);
             Application.ThreadException += async (sender, args) => await HandleException(args.Exception);
+            
+            LogUtils.Instance.Initialize();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
