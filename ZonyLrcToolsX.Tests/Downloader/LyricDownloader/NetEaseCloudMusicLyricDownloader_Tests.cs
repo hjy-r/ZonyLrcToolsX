@@ -103,10 +103,14 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
         public async Task SongCount_Is_Zero_Should_Return_A_LyricCollectItem()
         {
             var downloader = new NetEaseCloudMusicLyricDownloader();
-            var result = await downloader.DownloadAsync(new MusicInfo("MOIL","須田景凪"));
+            var lyricA = await downloader.DownloadAsync(new MusicInfo("MOIL","須田景凪"));
+            var lyricB = await downloader.DownloadAsync(new MusicInfo("couch", "須田景凪"));
             
-            result.ShouldNotBeNull();
-            result.IsPureMusic.ShouldBe(false);
+            lyricA.ShouldNotBeNull();
+            lyricA.IsPureMusic.ShouldBe(false);
+            
+            lyricB.ShouldNotBeNull();
+            lyricB.IsPureMusic.ShouldBe(false);
         }
     }
 }
