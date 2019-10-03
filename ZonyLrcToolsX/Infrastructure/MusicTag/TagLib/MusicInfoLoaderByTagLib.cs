@@ -37,9 +37,9 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag.TagLib
             return Task.FromResult(Load(musicFilePath));
         }
 
-        public void Save(string musicFilePath, MusicInfo musicInfo)
+        public void Save(MusicInfo musicInfo)
         {
-            var tagFile = TagFile.Create(musicFilePath);
+            var tagFile = TagFile.Create(musicInfo.FilePath);
 
             tagFile.Tag.Title = musicInfo.Name;
             tagFile.Tag.Performers = new[] {musicInfo.Artist};
@@ -49,10 +49,11 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag.TagLib
             tagFile.Save();
         }
 
-        public Task SaveAsync(string musicFilePath, MusicInfo musicInfo)
+        public Task SaveAsync(MusicInfo musicInfo)
         {
-            Save(musicFilePath, musicInfo);
-            return Task.CompletedTask;
+            Save(musicInfo);
+
+            return Task.FromResult(0);
         }
     }
 }

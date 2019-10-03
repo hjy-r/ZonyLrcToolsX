@@ -38,7 +38,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase
 
             var lyricJsonObj = await _wrappedHttpClient.GetAsync<MusicGetLyricResponse>(
                 url: @"https://music.163.com/api/song/lyric",
-                parameters: new MusicGetLyricRequest(searchResult.Items.SongItems[0].Id),
+                parameters: new MusicGetLyricRequest(searchResult.GetFirstSongId()),
                 refererUrl: @"https://music.163.com");
 
             if (lyricJsonObj?.OriginalLyric == null) return new LyricItemCollection(string.Empty);

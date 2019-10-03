@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloader\Album\IAlbumDownloader.cs" />
+    <Compile Include="Downloader\Album\NetEase\JsonModels\MusicGetSongDetailsRequest.cs" />
     <Compile Include="Downloader\Album\NetEase\NetEaseCloudMusicAlbumDownloader.cs" />
     <Compile Include="Downloader\Lyric\Exceptions\NotFoundSongException.cs" />
     <Compile Include="Downloader\Lyric\Exceptions\RequestErrorException.cs" />

@@ -8,8 +8,8 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
 
         Task<MusicInfo> LoadAsync(string musicFilePath);
 
-        void Save(string musicFilePath,MusicInfo musicInfo);
+        void Save(MusicInfo musicInfo);
 
-        Task SaveAsync(string musicFilePath, MusicInfo musicInfo);
+        Task SaveAsync(MusicInfo musicInfo);
     }
 }

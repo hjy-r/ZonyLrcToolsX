@@ -41,7 +41,7 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.MusicTag
             info.Artist = "测试作者";
             
             // Assert
-            loader.Save(musicFilePath,info);
+            loader.Save(info);
             
             // 再次读取。
             info = loader.Load(musicFilePath);
@@ -52,7 +52,7 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.MusicTag
             // Finish
             info.Name = "凡人修仙路";
             info.Artist = "小旭音乐";
-            loader.Save(musicFilePath,info);
+            loader.Save(info);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nito.AsyncEx;
+using ZonyLrcToolsX.Downloader.Album.NetEase;
 using ZonyLrcToolsX.Downloader.Lyric;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
 using ZonyLrcToolsX.Infrastructure;
@@ -14,6 +15,7 @@ using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.MusicTag.TagLib;
 using ZonyLrcToolsX.Infrastructure.Utils;
+using ZonyLrcToolsX.Properties;
 
 // ReSharper disable LocalizableElement
 
@@ -42,8 +44,10 @@ namespace ZonyLrcToolsX.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Icon = Properties.Resources.application;
+            Icon = Resources.application;
         }
+
+        #region > 工具栏按钮点击事件 <
 
         private void ToolStripButton_About_Click(object sender, EventArgs e) => new AboutForm().ShowDialog();
 
@@ -138,7 +142,45 @@ namespace ZonyLrcToolsX.Forms
 
             SetBottomStatusLabelText($"{listView_MusicList.Items.Count} 首歌词已经下载完成。");
         }
-        
+
+        private void ToolStripButton_DownloadAlbumImage_Click(object sender, EventArgs e)
+        {
+            if (listView_MusicList.Items.Count == 0)
+            {
+                MessageBox.Show("没有可用的歌曲文件，请先扫描之后再点击下载。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            SetBottomStatusLabelText("开始下载歌词专辑数据。");
+
+            using (BeginImportantOperation())
+            {
+                var items = listView_MusicList.Items.Cast<ListViewItem>();
+                InitializeProgress(listView_MusicList.Items.Count);
+
+                var defaultAlbumImageDownloader = new NetEaseCloudMusicAlbumDownloader();
+
+                foreach (var item in items)
+                {
+                    IncreaseProgressValue();
+
+                    if (item.Tag is MusicInfo musicInfo)
+                    {
+                        SetBottomStatusLabelText($"正在下载 {musicInfo.Name} - {musicInfo.Artist} 的专辑图像。");
+
+                        var result = defaultAlbumImageDownloader.Download(musicInfo);
+                        musicInfo.AlbumImage = result;
+                        
+                        _musicInfoLoader.Save(musicInfo);
+                        SetBottomStatusLabelText($"已经将专辑图像写入到了 {musicInfo.FilePath}");
+                    }
+                }
+                
+                SetBottomStatusLabelText($"{listView_MusicList.Items.Count} 首专辑图像已经下载完成，并已成功写入到歌曲文件。");
+            }
+        }
+
+        #endregion
+
         private void listView_MusicList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView_MusicList.SelectedItems.Count == 1)
@@ -171,14 +213,14 @@ namespace ZonyLrcToolsX.Forms
         {
             toolStripButton_SearchMusicFile.Enabled = false;
             toolStripButton_DownloadLyric.Enabled = false;
-            toolStripButton_DownloadAblumImage.Enabled = false;
+            toolStripButton_DownloadAlbumImage.Enabled = false;
             toolStripButton_Config.Enabled = false;
 
             return new DisposeAction(() =>
             {
                 toolStripButton_SearchMusicFile.Enabled = true;
                 toolStripButton_DownloadLyric.Enabled = true;
-                toolStripButton_DownloadAblumImage.Enabled = true;
+                toolStripButton_DownloadAlbumImage.Enabled = true;
                 toolStripButton_Config.Enabled = true;
             });
         }

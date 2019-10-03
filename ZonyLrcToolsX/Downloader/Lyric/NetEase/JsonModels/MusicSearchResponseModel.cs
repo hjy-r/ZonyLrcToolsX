@@ -10,6 +10,11 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
         
         [JsonProperty("code")]
         public int StatusCode { get; set; }
+
+        public int GetFirstSongId()
+        {
+            return Items.SongItems[0].Id;
+        }
     }
     
     internal class InnerListItemModel

@@ -34,7 +34,7 @@
             this.toolStripButton_SearchMusicFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_DownloadLyric = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_DownloadAblumImage = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_DownloadAlbumImage = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSplitButton_MusicConvert = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripMenuItem_ConvertNcm = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +72,7 @@
             this.toolStripButton_SearchMusicFile,
             this.toolStripSeparator1,
             this.toolStripButton_DownloadLyric,
-            this.toolStripButton_DownloadAblumImage,
+            this.toolStripButton_DownloadAlbumImage,
             this.toolStripSeparator2,
             this.toolStripSplitButton_MusicConvert,
             this.toolStripSeparator3,
@@ -109,13 +109,15 @@
             this.toolStripButton_DownloadLyric.Text = "下载歌词";
             this.toolStripButton_DownloadLyric.Click += new System.EventHandler(this.ToolStripButton_DownloadLyric_Click);
             // 
-            // toolStripButton_DownloadAblumImage
+            // toolStripButton_DownloadAlbumImage
             // 
-            this.toolStripButton_DownloadAblumImage.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_DownloadAblumImage.Image")));
-            this.toolStripButton_DownloadAblumImage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_DownloadAblumImage.Name = "toolStripButton_DownloadAblumImage";
-            this.toolStripButton_DownloadAblumImage.Size = new System.Drawing.Size(226, 68);
-            this.toolStripButton_DownloadAblumImage.Text = "下载专辑图像";
+            this.toolStripButton_DownloadAlbumImage.Enabled = false;
+            this.toolStripButton_DownloadAlbumImage.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_DownloadAlbumImage.Image")));
+            this.toolStripButton_DownloadAlbumImage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_DownloadAlbumImage.Name = "toolStripButton_DownloadAlbumImage";
+            this.toolStripButton_DownloadAlbumImage.Size = new System.Drawing.Size(226, 68);
+            this.toolStripButton_DownloadAlbumImage.Text = "下载专辑图像";
+            this.toolStripButton_DownloadAlbumImage.Click += new System.EventHandler(this.ToolStripButton_DownloadAlbumImage_Click);
             // 
             // toolStripSeparator2
             // 
@@ -126,6 +128,7 @@
             // 
             this.toolStripSplitButton_MusicConvert.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_ConvertNcm});
+            this.toolStripSplitButton_MusicConvert.Enabled = false;
             this.toolStripSplitButton_MusicConvert.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton_MusicConvert.Image")));
             this.toolStripSplitButton_MusicConvert.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton_MusicConvert.Name = "toolStripSplitButton_MusicConvert";
@@ -154,6 +157,7 @@
             // 
             // toolStripButton_PayMoney
             // 
+            this.toolStripButton_PayMoney.Enabled = false;
             this.toolStripButton_PayMoney.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_PayMoney.Image")));
             this.toolStripButton_PayMoney.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_PayMoney.Name = "toolStripButton_PayMoney";
@@ -163,6 +167,7 @@
             // 
             // toolStripButton_About
             // 
+            this.toolStripButton_About.Enabled = false;
             this.toolStripButton_About.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_About.Image")));
             this.toolStripButton_About.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_About.Name = "toolStripButton_About";
@@ -352,8 +357,8 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1958, 1203);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
@@ -381,7 +386,7 @@
         private System.Windows.Forms.ToolStrip toolStrip_Bottom;
         private System.Windows.Forms.ToolStripButton toolStripButton_SearchMusicFile;
         private System.Windows.Forms.ToolStripButton toolStripButton_DownloadLyric;
-        private System.Windows.Forms.ToolStripButton toolStripButton_DownloadAblumImage;
+        private System.Windows.Forms.ToolStripButton toolStripButton_DownloadAlbumImage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton_MusicConvert;

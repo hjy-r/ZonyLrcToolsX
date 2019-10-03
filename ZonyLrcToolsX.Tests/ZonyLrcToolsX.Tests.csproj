@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Downloader\AlbumDownloader\NetEaseCloudMusicAlbumDownloader_Tests.cs" />
     <Compile Include="Downloader\LyricDownloader\NetEaseCloudMusicLyricDownloader_Tests.cs" />
     <Compile Include="Downloader\LyricDownloader\QQMusicLyricDownloader_Tests.cs" />
     <Compile Include="Infrastructure\Configuration\AppConfiguration_Tests.cs" />

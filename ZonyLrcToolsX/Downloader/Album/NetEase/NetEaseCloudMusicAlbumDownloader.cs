@@ -1,5 +1,12 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using Nito.AsyncEx;
+using ZonyLrcToolsX.Downloader.Album.NetEase.JsonModels;
+using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
+using ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels;
+using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.Network.Http;
 
 namespace ZonyLrcToolsX.Downloader.Album.NetEase
@@ -16,9 +23,32 @@ namespace ZonyLrcToolsX.Downloader.Album.NetEase
             _wrappedHttpClient = new WrappedHttpClient();
         }
 
-        public Task<byte[]> DownloadAsync()
+        public async Task<byte[]> DownloadAsync(MusicInfo musicInfo)
         {
-            throw new NotImplementedException();
+            var requestParameter = new SongSearchRequestModel(musicInfo.Name, musicInfo.Artist);
+            var searchResult = await _wrappedHttpClient.PostAsync<MusicSearchResponseModel>(
+                url: @"https://music.163.com/api/search/get/web",
+                parameters: requestParameter,
+                isBuildForm: true,
+                refererUrl: @"https://music.163.com",
+                mediaTypeValue: "application/x-www-form-urlencoded");
+
+            if (searchResult == null || searchResult.StatusCode != 200 || searchResult.Items == null)
+            {
+                throw new RequestErrorException("网易云音乐接口没有正常返回结果...", musicInfo);
+            }
+            if (searchResult.Items.SongCount <= 0 ) throw new NotFoundSongException("没有搜索到指定的歌曲。",musicInfo);
+
+            var songDetailJsonStr = await _wrappedHttpClient.GetAsync(
+                @"http://music.163.com/api/song/detail",
+                new MusicGetSongDetailsRequest(searchResult.GetFirstSongId()),
+                @"https://music.163.com");
+
+            var url = JObject.Parse(songDetailJsonStr).SelectToken("$.songs[0].album.picUrl").Value<string>();
+            
+            return await new HttpClient().GetByteArrayAsync(new Uri(url));
         }
+
+        public byte[] Download(MusicInfo musicInfo) => AsyncContext.Run(() => DownloadAsync(musicInfo));
     }
 }
