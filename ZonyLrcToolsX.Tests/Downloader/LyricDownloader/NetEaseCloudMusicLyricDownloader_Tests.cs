@@ -98,5 +98,15 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
 
             await Should.ThrowAsync<RequestErrorException>(async () => await downloader.DownloadAsync(musicInfo6));
         }
+
+        [Fact]
+        public async Task SongCount_Is_Zero_Should_Return_A_LyricCollectItem()
+        {
+            var downloader = new NetEaseCloudMusicLyricDownloader();
+            var result = await downloader.DownloadAsync(new MusicInfo("MOIL","須田景凪"));
+            
+            result.ShouldNotBeNull();
+            result.IsPureMusic.ShouldBe(false);
+        }
     }
 }
