@@ -1,5 +1,6 @@
 ﻿using Shouldly;
 using System.Threading.Tasks;
+using System.Web;
 using Xunit;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
 using ZonyLrcToolsX.Downloader.Lyric.QQMusic;
@@ -82,6 +83,18 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             lyricA.ShouldNotBeNull();
             lyricA.IsPureMusic.ShouldBe(false);
             lyricA.ToString().Contains("微凉的晨露沾湿黑礼服").ShouldBe(true);
+        }
+
+        [Fact]
+        public async Task Should_Contains_Punctuation()
+        {
+            var downloader = new QQMusicCloudMusicLyricDownloader();
+            var result = await downloader.DownloadAsync(new MusicInfo("Hello", "Adele"));
+            
+            result.ShouldNotBeNull();
+            result.IsPureMusic.ShouldBe(false);
+            
+            result.ToString().Contains("'").ShouldBe(true);
         }
     }
 }
