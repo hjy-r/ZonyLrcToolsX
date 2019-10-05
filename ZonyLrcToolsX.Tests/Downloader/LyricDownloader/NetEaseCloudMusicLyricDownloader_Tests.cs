@@ -77,26 +77,19 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             else
             {
                 result1.IsPureMusic.ShouldBe(false);
-                result1.Count.ShouldBeGreaterThan(1);
+                result1.Count.ShouldBe(0);
             }
-            await Task.Delay(500);
             
             result2.ShouldNotBeNull();
             result2.IsPureMusic.ShouldBe(false);
             result2.Count.ShouldBeGreaterThan(1);
-            await Task.Delay(500);
             
             result3.ShouldNotBeNull();
             result3.IsPureMusic.ShouldBe(true);
             result3.Count.ShouldBe(0);
-            await Task.Delay(500);
             
             await Should.ThrowAsync<NotFoundSongException>(async () => await downloader.DownloadAsync(musicInfo4));
-            await Task.Delay(500);
-            
             await Should.ThrowAsync<RequestErrorException>(async () => await downloader.DownloadAsync(musicInfo5));
-            await Task.Delay(500);
-
             await Should.ThrowAsync<RequestErrorException>(async () => await downloader.DownloadAsync(musicInfo6));
         }
 
