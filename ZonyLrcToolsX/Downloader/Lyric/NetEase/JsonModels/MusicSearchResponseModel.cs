@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
 {
-    internal class MusicSearchResponseModel
+    public class MusicSearchResponseModel
     {
         [JsonProperty("result")]
         public InnerListItemModel Items { get; set; }
@@ -17,7 +17,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
         }
     }
     
-    internal class InnerListItemModel
+    public class InnerListItemModel
     {
         [JsonProperty("songs")]
         public IList<SongModel> SongItems { get; set; }
@@ -26,7 +26,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
         public int SongCount { get; set; }
     }
 
-    internal class SongModel
+    public class SongModel
     {
         /// <summary>
         /// 歌曲的名称。
@@ -53,7 +53,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
         public SongAlbumModel Album { get; set; }
     }
 
-    internal class SongArtistModel
+    public class SongArtistModel
     {
         /// <summary>
         /// 歌手/艺术家的名称。
@@ -62,7 +62,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
         public string Name { get; set; }
     }
 
-    internal class SongAlbumModel
+    public class SongAlbumModel
     {
         /// <summary>
         /// 专辑的名称。

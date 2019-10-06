@@ -30,15 +30,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase
                 refererUrl: @"https://music.163.com",
                 mediaTypeValue: "application/x-www-form-urlencoded");
 
-            if (searchResult == null || searchResult.StatusCode != 200 || searchResult.Items == null)
-            {
-                throw new RequestErrorException("网易云音乐接口没有正常返回结果...", musicInfo);
-            }
-
-            if (searchResult.Items.SongItems == null || (searchResult.Items.SongItems?.Count <= 0 && searchResult.Items.SongCount <= 0))
-            {
-                throw new NotFoundSongException("没有搜索到指定的歌曲。",musicInfo);
-            }
+            ValidateResponse(searchResult, musicInfo);
 
             var lyricJsonObj = await _wrappedHttpClient.GetAsync<MusicGetLyricResponse>(
                 url: @"https://music.163.com/api/song/lyric",
@@ -59,6 +51,19 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase
             }
 
             return new LyricItemCollection(lyricJsonObj.OriginalLyric.Text).Merge(new LyricItemCollection(lyricJsonObj.TranslationLyric?.Text));
+        }
+        
+        protected virtual void ValidateResponse(MusicSearchResponseModel searchResult, MusicInfo musicInfo)
+        {
+            if (searchResult == null || searchResult.StatusCode != 200 || searchResult.Items == null)
+            {
+                throw new RequestErrorException("网易云音乐接口没有正常返回结果...", musicInfo);
+            }
+
+            if (searchResult.Items.SongItems == null || (searchResult.Items.SongItems?.Count <= 0 && searchResult.Items.SongCount <= 0))
+            {
+                throw new NotFoundSongException("没有搜索到指定的歌曲。",musicInfo);
+            }
         }
     }
 }
