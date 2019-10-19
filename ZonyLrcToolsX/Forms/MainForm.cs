@@ -1,4 +1,4 @@
-﻿using Nito.AsyncEx;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,8 +6,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
 using ZonyLrcToolsX.Downloader.Album.NetEase;
 using ZonyLrcToolsX.Downloader.Lyric;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
@@ -94,7 +94,7 @@ namespace ZonyLrcToolsX.Forms
             SetBottomStatusLabelText("歌词数据加载完成。");
         }
 
-        private void ToolStripButton_DownloadLyric_Click(object sender, EventArgs e)
+        private async void ToolStripButton_DownloadLyric_Click(object sender, EventArgs e)
         {
             if (listView_MusicList.Items.Count == 0)
             {
@@ -110,40 +110,46 @@ namespace ZonyLrcToolsX.Forms
 
                 var defaultDownloader = _lyricDownloaderContainer.GetDownloader();
                 if (defaultDownloader == null) throw new NullReferenceException("程序初始化失败，无法获取到歌词下载器。");
-                
-                foreach (var item in items)
+
+                var worker = new TaskWorker(AppConfiguration.Instance.Configuration.DownloadThreadNumber);
+                var tasks = items.Select(item => worker.RunAsync( () =>
                 {
-                    IncreaseProgressValue();
-                    
-                    var musicInfo = item.Tag as MusicInfo;
-                    if (FileUtils.Instance.IsIgnoreWriteLyricFile(musicInfo))
+                    return Task.Run(async () =>
                     {
-                        SetViewItemStatus(item,"略过");
-                        continue;
-                    }
+                        IncreaseProgressValue();
 
-                    try
-                    {
-                        var result = AsyncContext.Run(() => defaultDownloader.DownloadAsync(musicInfo));
-
-                        if (result.IsPureMusic)
+                        var musicInfo = item.Tag as MusicInfo;
+                        if (FileUtils.Instance.IsIgnoreWriteLyricFile(musicInfo))
                         {
-                            SetViewItemStatus(item, "无歌词");
-                            continue;
+                            SetViewItemStatus(item, "略过");
+                            return;
                         }
 
-                        AsyncContext.Run(() => FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result));
-                        SetViewItemStatus(item, "完成");
-                    }
-                    catch (HttpRequestFailedException exception)
-                    {
-                        HandleNetEaseAbroadUser(item, exception);
-                    }
-                    catch (NotFoundSongException)
-                    {
-                        SetViewItemStatus(item,"没有找到歌词");
-                    }
-                }
+                        try
+                        {
+                            var result = await defaultDownloader.DownloadAsync(musicInfo);
+
+                            if (result.IsPureMusic)
+                            {
+                                SetViewItemStatus(item, "无歌词");
+                                return;
+                            }
+
+                            await FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result);
+                            SetViewItemStatus(item, "完成");
+                        }
+                        catch (HttpRequestFailedException exception)
+                        {
+                            HandleNetEaseAbroadUser(item, exception);
+                        }
+                        catch (NotFoundSongException)
+                        {
+                            SetViewItemStatus(item, "没有找到歌词");
+                        }
+                    });
+                }));
+
+                await Task.WhenAll(tasks);
             }
 
             SetBottomStatusLabelText($"{listView_MusicList.Items.Count} 首歌词已经下载完成。");
@@ -304,12 +310,26 @@ namespace ZonyLrcToolsX.Forms
         private void SetViewItemStatus(ListViewItem listViewItem, string text)
         {
             if (listViewItem == null) return;
-            listViewItem.SubItems[3].Text = text;
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => listViewItem.SubItems[3].Text = text));
+            }
+            else
+            {
+                listViewItem.SubItems[3].Text = text;
+            }
         }
 
         private void SetBottomStatusLabelText(string text)
         {
-            toolStripStatusLabel1.Text = $"软件状态: {text}";
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => toolStripStatusLabel1.Text = $"软件状态: {text}"));
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = $"软件状态: {text}";
+            }
         }
 
         private void SetDefaultSelectedItem()
@@ -328,7 +348,14 @@ namespace ZonyLrcToolsX.Forms
         
         private void IncreaseProgressValue()
         {
-            toolStripProgressBar1.Value += 1;
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => toolStripProgressBar1.Value += 1));
+            }
+            else
+            {
+                toolStripProgressBar1.Value += 1;
+            }
         }
         
         private void HandleNetEaseAbroadUser(ListViewItem item, HttpRequestFailedException exception)
