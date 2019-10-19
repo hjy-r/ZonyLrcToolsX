@@ -15,6 +15,10 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
         /// <summary>
         /// 歌词/专辑图像，已经下载完成。
         /// </summary>
-        DownloadCompleted
+        DownloadCompleted,
+        /// <summary>
+        /// 歌曲的标签信息无效。
+        /// </summary>
+        MusicTagInvalid
     }
 }

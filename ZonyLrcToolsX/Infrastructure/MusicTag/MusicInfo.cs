@@ -35,7 +35,7 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
         /// </summary>
         public string FilePath { get;  set; }
 
-        public MusicInfoStatus Status { get; private set; }
+        public MusicInfoStatus Status { get; set; }
 
         public MusicInfo()
         {
@@ -62,7 +62,7 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
             newItem.Text = Name;
             newItem.SubItems.Add(new ListViewItem.ListViewSubItem(newItem, Artist));
             newItem.SubItems.Add(new ListViewItem.ListViewSubItem(newItem, AlbumName));
-            newItem.SubItems.Add(new ListViewItem.ListViewSubItem(newItem, GetStatusString()));
+            newItem.SubItems.Add(new ListViewItem.ListViewSubItem(newItem,GetStatusString()));
 
             newItem.Tag = this;
 
@@ -73,6 +73,7 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
         {
             if (Status == MusicInfoStatus.DownloadCompleted) return "下载完成";
             if (Status == MusicInfoStatus.WaitingDownload) return "等待下载";
+            if (Status == MusicInfoStatus.MusicTagInvalid) return "标签信息无效";
 
             return "未知状态";
         }

@@ -13,20 +13,32 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag.TagLib
             var result = new MusicInfo();
             var fileName = Path.GetFileNameWithoutExtension(musicFilePath);
 
-            var tagFile = TagFile.Create(musicFilePath);
-            result.Name = tagFile.Tag.Title;
-            result.Artist = tagFile.Tag.FirstPerformer;
-            if (!string.IsNullOrEmpty(tagFile.Tag.FirstAlbumArtist)) result.Artist = tagFile.Tag.FirstAlbumArtist;
-            result.AlbumName = tagFile.Tag.Album;
-            result.FilePath = musicFilePath;
-
-            // 如果都没有标签信息，则使用文件名作为歌手名和歌曲名。
-            if (string.IsNullOrEmpty(result.Name)) result.Name = fileName;
-            if (string.IsNullOrEmpty(result.Artist)) result.Artist = fileName;
-
-            if (tagFile.Tag.Pictures.Length > 0)
+            TagFile tagFile = null;
+            try
             {
-                result.AlbumImage = tagFile.Tag.Pictures[0].Data.Data;
+                tagFile = TagFile.Create(musicFilePath);
+                result.Name = tagFile.Tag.Title;
+                result.Artist = tagFile.Tag.FirstPerformer;
+                if (!string.IsNullOrEmpty(tagFile.Tag.FirstAlbumArtist)) result.Artist = tagFile.Tag.FirstAlbumArtist;
+                result.AlbumName = tagFile.Tag.Album;
+            }
+            catch (CorruptFileException)
+            {
+                // 可能存在标签文件损坏的情况，忽略处理。
+                result.Status = MusicInfoStatus.MusicTagInvalid;
+            }
+            finally
+            {
+                // 如果都没有标签信息，则使用文件名作为歌手名和歌曲名。
+                if (string.IsNullOrEmpty(result.Name)) result.Name = fileName;
+                if (string.IsNullOrEmpty(result.Artist)) result.Artist = fileName;
+
+                if (tagFile?.Tag.Pictures.Length > 0)
+                {
+                    result.AlbumImage = tagFile.Tag.Pictures[0].Data.Data;
+                }
+
+                result.FilePath = musicFilePath;
             }
 
             return result;
