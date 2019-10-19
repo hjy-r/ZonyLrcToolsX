@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nito.AsyncEx;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -6,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Nito.AsyncEx;
+using Newtonsoft.Json.Linq;
 using ZonyLrcToolsX.Downloader.Album.NetEase;
 using ZonyLrcToolsX.Downloader.Lyric;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
@@ -14,6 +15,7 @@ using ZonyLrcToolsX.Infrastructure;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.MusicTag.TagLib;
+using ZonyLrcToolsX.Infrastructure.Network.Http.Exceptions;
 using ZonyLrcToolsX.Infrastructure.Utils;
 using ZonyLrcToolsX.Properties;
 
@@ -123,15 +125,19 @@ namespace ZonyLrcToolsX.Forms
                     try
                     {
                         var result = AsyncContext.Run(() => defaultDownloader.DownloadAsync(musicInfo));
-                        
+
                         if (result.IsPureMusic)
                         {
                             SetViewItemStatus(item, "无歌词");
                             continue;
                         }
 
-                        AsyncContext.Run(()=> FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result));
+                        AsyncContext.Run(() => FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result));
                         SetViewItemStatus(item, "完成");
+                    }
+                    catch (HttpRequestFailedException exception)
+                    {
+                        HandleNetEaseAbroadUser(item, exception);
                     }
                     catch (NotFoundSongException)
                     {
@@ -189,6 +195,41 @@ namespace ZonyLrcToolsX.Forms
                 {
                     Process.Start(AppConfiguration.Instance.Configuration.Mp3TagPath, $"/fn:\"{selectedMusicInfo.FilePath}\"");
                 }
+            }
+        }
+
+        private void toolStripMenuItem_ConvertNcm_Click(object sender, EventArgs e)
+        {
+            var selectNcmFileFolder = new FolderBrowserDialog
+            {
+                Description = "请选择 NCM 文件所在的文件夹路径。"
+            };
+
+            if (selectNcmFileFolder.ShowDialog() == DialogResult.OK)
+            {
+                if (!Directory.Exists(selectNcmFileFolder.SelectedPath))
+                {
+                    MessageBox.Show("选择的目录不存在，请重新选择。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
+                WinFormUtils.InvokeAction(this, async () =>
+                {
+                    SetBottomStatusLabelText("搜索 NCM 文件中。");
+                    var ncmFiles = await FileUtils.Instance.FindFilesAsync(selectNcmFileFolder.SelectedPath,new List<string>{"*.ncm"});
+                    if (ncmFiles.Count == 0) MessageBox.Show("没有搜索到有效的 NCM 文件。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    listView_MusicList.Items.Clear();
+                    foreach (var ncmFile in ncmFiles.FirstOrDefault().Value)
+                    {
+                        listView_MusicList.Items.Add(new ListViewItem(new string[] { })
+                        {
+                            Tag = ncmFile
+                        });
+                    }
+                    
+                    SetBottomStatusLabelText($"已经找到 {ncmFiles.Count} 个 NCM 文件，等待进行转换操作。");
+                });
             }
         }
 
@@ -288,6 +329,18 @@ namespace ZonyLrcToolsX.Forms
         private void IncreaseProgressValue()
         {
             toolStripProgressBar1.Value += 1;
+        }
+        
+        private void HandleNetEaseAbroadUser(ListViewItem item, HttpRequestFailedException exception)
+        {
+            if (JObject.Parse(exception.Data["Response"] as string).SelectToken("$.abroad").Value<bool>())
+            {
+                SetViewItemStatus(item,"海外用户，无法下载");
+            }
+            else
+            {
+                SetViewItemStatus(item,"接口错误");
+            }
         }
     }
 }

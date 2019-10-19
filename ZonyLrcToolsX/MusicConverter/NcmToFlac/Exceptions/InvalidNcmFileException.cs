@@ -1,6 +1,11 @@
-﻿namespace ZonyLrcToolsX.MusicConverter.NcmToFlac.Exceptions
+﻿using System;
+
+namespace ZonyLrcToolsX.MusicConverter.NcmToFlac.Exceptions
 {
-    public class InvalidNcmFileException
+    /// <summary>
+    /// 当文件是无效的 NCM 文件时，将会抛出本异常。
+    /// </summary>
+    public class InvalidNcmFileException : Exception
     {
         
     }

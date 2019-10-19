@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -7,7 +6,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.Network.Http.Exceptions;
 using ZonyLrcToolsX.Infrastructure.Utils;
@@ -95,38 +95,34 @@ namespace ZonyLrcToolsX.Infrastructure.Network.Http
         public async Task<TResponse> GetAsync<TResponse>(string url,object parameters = null,string refererUrl = null)
         {
             var responseStr = await GetAsync(url, parameters, refererUrl);
+            var throwException = new HttpRequestFailedException("将请求的结果，转换到 JSON 对象时出现错误，无法进行转换。", BuildFormParameters(parameters), responseStr);
             try
             {
                 var responseObj = JsonConvert.DeserializeObject<TResponse>(responseStr);
-                if (responseObj == null)
-                {
-                    throw new HttpRequestFailedException("请求结果转换为 JSON 失败。", BuildFormParameters(parameters), responseStr);
-                }
+                if (responseObj != null) return responseObj;
 
-                return responseObj;
+                throw throwException;
             }
-            catch (Exception)
+            catch (JsonSerializationException)
             {
-                throw new HttpRequestFailedException("请求结果转换为 JSON 失败。",BuildFormParameters(parameters),responseStr);
+                throw throwException;
             }
         }
 
         public async Task<TResponse> PostAsync<TResponse>(string url, object parameters, bool isBuildForm = false, string refererUrl = null, string mediaTypeValue = null)
         {
             var responseStr = await PostAsync(url, parameters,isBuildForm, refererUrl, mediaTypeValue);
+            var throwException = new HttpRequestFailedException("将请求的结果，转换到 JSON 对象时出现错误，无法进行转换。", BuildFormParameters(parameters), responseStr);
             try
             {
                 var responseObj = JsonConvert.DeserializeObject<TResponse>(responseStr);
-                if (responseObj == null)
-                {
-                    throw new HttpRequestFailedException("请求结果转换为 JSON 失败。", BuildFormParameters(parameters), responseStr);
-                }
+                if (responseObj != null) return responseObj;
 
-                return responseObj;
+                throw throwException;
             }
-            catch (Exception)
+            catch (JsonSerializationException)
             {
-                throw new HttpRequestFailedException("请求结果转换为 JSON 失败。",BuildFormParameters(parameters),responseStr);
+                throw throwException;
             }
         }
 
