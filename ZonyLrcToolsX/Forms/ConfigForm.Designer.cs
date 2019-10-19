@@ -75,9 +75,9 @@
             this.groupBox_DownloadConfig.Controls.Add(this.textBox_SuffixName);
             this.groupBox_DownloadConfig.Controls.Add(this.label_SuffixName);
             this.groupBox_DownloadConfig.Location = new System.Drawing.Point(16, 112);
-            this.groupBox_DownloadConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_DownloadConfig.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_DownloadConfig.Name = "groupBox_DownloadConfig";
-            this.groupBox_DownloadConfig.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_DownloadConfig.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_DownloadConfig.Size = new System.Drawing.Size(552, 316);
             this.groupBox_DownloadConfig.TabIndex = 0;
             this.groupBox_DownloadConfig.TabStop = false;
@@ -86,7 +86,7 @@
             // button_Mp3TagPath
             // 
             this.button_Mp3TagPath.Location = new System.Drawing.Point(444, 260);
-            this.button_Mp3TagPath.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button_Mp3TagPath.Margin = new System.Windows.Forms.Padding(6);
             this.button_Mp3TagPath.Name = "button_Mp3TagPath";
             this.button_Mp3TagPath.Size = new System.Drawing.Size(88, 46);
             this.button_Mp3TagPath.TabIndex = 20;
@@ -97,7 +97,7 @@
             // textBox_Mp3TagPath
             // 
             this.textBox_Mp3TagPath.Location = new System.Drawing.Point(170, 262);
-            this.textBox_Mp3TagPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Mp3TagPath.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Mp3TagPath.Name = "textBox_Mp3TagPath";
             this.textBox_Mp3TagPath.Size = new System.Drawing.Size(260, 35);
             this.textBox_Mp3TagPath.TabIndex = 19;
@@ -114,9 +114,8 @@
             // 
             // numericUpDown_DownloadThreadNumber
             // 
-            this.numericUpDown_DownloadThreadNumber.Enabled = false;
             this.numericUpDown_DownloadThreadNumber.Location = new System.Drawing.Point(208, 212);
-            this.numericUpDown_DownloadThreadNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown_DownloadThreadNumber.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_DownloadThreadNumber.Name = "numericUpDown_DownloadThreadNumber";
             this.numericUpDown_DownloadThreadNumber.Size = new System.Drawing.Size(226, 35);
             this.numericUpDown_DownloadThreadNumber.TabIndex = 17;
@@ -139,7 +138,7 @@
             // textBox_ProxyPort
             // 
             this.textBox_ProxyPort.Location = new System.Drawing.Point(208, 162);
-            this.textBox_ProxyPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ProxyPort.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_ProxyPort.Name = "textBox_ProxyPort";
             this.textBox_ProxyPort.Size = new System.Drawing.Size(320, 35);
             this.textBox_ProxyPort.TabIndex = 6;
@@ -157,7 +156,7 @@
             // textBox_ProxyIp
             // 
             this.textBox_ProxyIp.Location = new System.Drawing.Point(208, 116);
-            this.textBox_ProxyIp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ProxyIp.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_ProxyIp.Name = "textBox_ProxyIp";
             this.textBox_ProxyIp.Size = new System.Drawing.Size(320, 35);
             this.textBox_ProxyIp.TabIndex = 5;
@@ -176,7 +175,7 @@
             // 
             this.checkBox_IsEnableProxy.AutoSize = true;
             this.checkBox_IsEnableProxy.Location = new System.Drawing.Point(12, 84);
-            this.checkBox_IsEnableProxy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_IsEnableProxy.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_IsEnableProxy.Name = "checkBox_IsEnableProxy";
             this.checkBox_IsEnableProxy.Size = new System.Drawing.Size(186, 28);
             this.checkBox_IsEnableProxy.TabIndex = 4;
@@ -187,7 +186,7 @@
             // textBox_SuffixName
             // 
             this.textBox_SuffixName.Location = new System.Drawing.Point(152, 36);
-            this.textBox_SuffixName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_SuffixName.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_SuffixName.Name = "textBox_SuffixName";
             this.textBox_SuffixName.Size = new System.Drawing.Size(376, 35);
             this.textBox_SuffixName.TabIndex = 2;
@@ -206,9 +205,9 @@
             // 
             this.groupBox_ProgramConfig.Controls.Add(this.checkBox_IsAutoCheckUpdate);
             this.groupBox_ProgramConfig.Location = new System.Drawing.Point(16, 16);
-            this.groupBox_ProgramConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_ProgramConfig.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_ProgramConfig.Name = "groupBox_ProgramConfig";
-            this.groupBox_ProgramConfig.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_ProgramConfig.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_ProgramConfig.Size = new System.Drawing.Size(552, 84);
             this.groupBox_ProgramConfig.TabIndex = 0;
             this.groupBox_ProgramConfig.TabStop = false;
@@ -219,7 +218,7 @@
             this.checkBox_IsAutoCheckUpdate.AutoSize = true;
             this.checkBox_IsAutoCheckUpdate.Enabled = false;
             this.checkBox_IsAutoCheckUpdate.Location = new System.Drawing.Point(12, 36);
-            this.checkBox_IsAutoCheckUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_IsAutoCheckUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_IsAutoCheckUpdate.Name = "checkBox_IsAutoCheckUpdate";
             this.checkBox_IsAutoCheckUpdate.Size = new System.Drawing.Size(186, 28);
             this.checkBox_IsAutoCheckUpdate.TabIndex = 1;
@@ -230,7 +229,7 @@
             // button_SaveChanges
             // 
             this.button_SaveChanges.Location = new System.Drawing.Point(836, 388);
-            this.button_SaveChanges.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_SaveChanges.Margin = new System.Windows.Forms.Padding(4);
             this.button_SaveChanges.Name = "button_SaveChanges";
             this.button_SaveChanges.Size = new System.Drawing.Size(176, 68);
             this.button_SaveChanges.TabIndex = 8;
@@ -250,9 +249,9 @@
             this.groupBox_LyricConfig.Controls.Add(this.comboBox_LyricFileEncoding);
             this.groupBox_LyricConfig.Controls.Add(this.label_LyricFileEncoding);
             this.groupBox_LyricConfig.Location = new System.Drawing.Point(576, 16);
-            this.groupBox_LyricConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_LyricConfig.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_LyricConfig.Name = "groupBox_LyricConfig";
-            this.groupBox_LyricConfig.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_LyricConfig.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_LyricConfig.Size = new System.Drawing.Size(436, 364);
             this.groupBox_LyricConfig.TabIndex = 9;
             this.groupBox_LyricConfig.TabStop = false;
@@ -262,7 +261,7 @@
             // 
             this.comboBox_LineBreak.FormattingEnabled = true;
             this.comboBox_LineBreak.Location = new System.Drawing.Point(184, 220);
-            this.comboBox_LineBreak.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_LineBreak.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_LineBreak.Name = "comboBox_LineBreak";
             this.comboBox_LineBreak.Size = new System.Drawing.Size(228, 32);
             this.comboBox_LineBreak.TabIndex = 16;
@@ -281,7 +280,7 @@
             // 
             this.comboBox_LyricDownloader.FormattingEnabled = true;
             this.comboBox_LyricDownloader.Location = new System.Drawing.Point(184, 176);
-            this.comboBox_LyricDownloader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_LyricDownloader.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_LyricDownloader.Name = "comboBox_LyricDownloader";
             this.comboBox_LyricDownloader.Size = new System.Drawing.Size(228, 32);
             this.comboBox_LyricDownloader.TabIndex = 14;
@@ -300,7 +299,7 @@
             // 
             this.comboBox_LyricContentType.FormattingEnabled = true;
             this.comboBox_LyricContentType.Location = new System.Drawing.Point(184, 88);
-            this.comboBox_LyricContentType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_LyricContentType.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_LyricContentType.Name = "comboBox_LyricContentType";
             this.comboBox_LyricContentType.Size = new System.Drawing.Size(228, 32);
             this.comboBox_LyricContentType.TabIndex = 12;
@@ -319,7 +318,7 @@
             // 
             this.checkBox_IsCoverSourceLyricFile.AutoSize = true;
             this.checkBox_IsCoverSourceLyricFile.Location = new System.Drawing.Point(12, 140);
-            this.checkBox_IsCoverSourceLyricFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_IsCoverSourceLyricFile.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_IsCoverSourceLyricFile.Name = "checkBox_IsCoverSourceLyricFile";
             this.checkBox_IsCoverSourceLyricFile.Size = new System.Drawing.Size(186, 28);
             this.checkBox_IsCoverSourceLyricFile.TabIndex = 10;
@@ -330,7 +329,7 @@
             // 
             this.comboBox_LyricFileEncoding.FormattingEnabled = true;
             this.comboBox_LyricFileEncoding.Location = new System.Drawing.Point(184, 44);
-            this.comboBox_LyricFileEncoding.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_LyricFileEncoding.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_LyricFileEncoding.Name = "comboBox_LyricFileEncoding";
             this.comboBox_LyricFileEncoding.Size = new System.Drawing.Size(228, 32);
             this.comboBox_LyricFileEncoding.TabIndex = 9;
@@ -355,7 +354,7 @@
             this.Controls.Add(this.groupBox_ProgramConfig);
             this.Controls.Add(this.groupBox_DownloadConfig);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ConfigForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "软件设置";
