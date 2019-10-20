@@ -21,6 +21,7 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag.TagLib
                 result.Artist = tagFile.Tag.FirstPerformer;
                 if (!string.IsNullOrEmpty(tagFile.Tag.FirstAlbumArtist)) result.Artist = tagFile.Tag.FirstAlbumArtist;
                 result.AlbumName = tagFile.Tag.Album;
+                result.Duration = (int)tagFile.Properties.Duration.TotalMilliseconds;
             }
             catch (CorruptFileException)
             {

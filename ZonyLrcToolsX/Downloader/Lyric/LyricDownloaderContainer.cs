@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ZonyLrcToolsX.Downloader.Lyric.KuGou;
 using ZonyLrcToolsX.Downloader.Lyric.NetEase;
 using ZonyLrcToolsX.Downloader.Lyric.QQMusic;
 using ZonyLrcToolsX.Infrastructure.Configuration;
@@ -17,7 +18,8 @@ namespace ZonyLrcToolsX.Downloader.Lyric
             Downloader = new List<ILyricDownloader>
             {
                 new NetEaseCloudMusicLyricDownloader(),
-                new QQMusicCloudMusicLyricDownloader()
+                new QQMusicCloudMusicLyricDownloader(),
+                new KuGouMusicLyricDownloader()
             };
         }
 
@@ -37,6 +39,8 @@ namespace ZonyLrcToolsX.Downloader.Lyric
                     return Downloader.FirstOrDefault(type => type.GetType().FullName.Contains("NetEase"));
                 case LyricDownloaderEnum.QQMusic:
                     return Downloader.FirstOrDefault(type => type.GetType().FullName.Contains("QQMusic"));
+                case LyricDownloaderEnum.KuGouMusic:
+                    return Downloader.FirstOrDefault(type => type.GetType().FullName.Contains("KuGou"));
                 default:
                     return Downloader.First();
             }

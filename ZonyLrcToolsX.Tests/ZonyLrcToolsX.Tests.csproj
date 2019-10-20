@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Web" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c">
@@ -61,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloader\AlbumDownloader\NetEaseCloudMusicAlbumDownloader_Tests.cs" />
+    <Compile Include="Downloader\LyricDownloader\KuGouMusicLyricDownloader_Tests.cs" />
     <Compile Include="Downloader\LyricDownloader\NetEaseCloudMusicLyricDownloader_Tests.cs" />
     <Compile Include="Downloader\LyricDownloader\QQMusicLyricDownloader_Tests.cs" />
     <Compile Include="Infrastructure\Configuration\AppConfiguration_Tests.cs" />

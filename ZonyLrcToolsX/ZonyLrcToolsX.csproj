@@ -108,6 +108,7 @@
     <Compile Include="Downloader\Lyric\Exceptions\NotFoundSongException.cs" />
     <Compile Include="Downloader\Lyric\Exceptions\RequestErrorException.cs" />
     <Compile Include="Downloader\Lyric\ILyricDownloader.cs" />
+    <Compile Include="Downloader\Lyric\KuGou\KuGouMusicLyricDownloader.cs" />
     <Compile Include="Downloader\Lyric\LyricDownloaderContainer.cs" />
     <Compile Include="Downloader\Lyric\LyricDownloaderEnum.cs" />
     <Compile Include="Downloader\Lyric\NetEase\JsonModels\MusicGetLyricRequest.cs" />
@@ -227,7 +228,6 @@
     <None Include="Resources\Configuration.png" />
     <None Include="Resources\Donate.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

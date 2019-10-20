@@ -1,15 +1,14 @@
-﻿using Shouldly;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Shouldly;
 using Xunit;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
-using ZonyLrcToolsX.Downloader.Lyric.NetEase;
-using ZonyLrcToolsX.Downloader.Lyric.QQMusic;
+using ZonyLrcToolsX.Downloader.Lyric.KuGou;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 
 namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
 {
-    public class NetEaseCloudMusicLyricDownloader_Tests
+    public class KuGouMusicLyricDownloader_Tests
     {
         [Fact]
         public async Task DownloadAsync_Original_Lyric_Test()
@@ -20,30 +19,10 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             // Act & Assert
             await Internal_DownloadAsync_Test();
         }
-
-        [Fact]
-        public async Task DownloadAsync_Translation_Lyric_Test()
-        {
-            // Arrange
-            AppConfiguration.Instance.Configuration.LyricContentType = LyricContentTypes.Translation;
-            
-            // Act & Assert
-            await Internal_DownloadAsync_Test();
-        }
-
-        [Fact]
-        public async Task DownloadAsync_Original_And_Translation_Lyric_Test()
-        {
-            // Arrange
-            AppConfiguration.Instance.Configuration.LyricContentType = LyricContentTypes.OriginalAndTranslation;
-            
-            // Act & Assert
-            await Internal_DownloadAsync_Test();
-        }
-
+        
         private async Task Internal_DownloadAsync_Test()
         {
-            var downloader = new NetEaseCloudMusicLyricDownloader();
+            var downloader = new KuGouMusicLyricDownloader();
             
             // 仅包含原始歌词。
             var musicInfo1 = new MusicInfo("黄金甲","周杰伦");
@@ -73,11 +52,11 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             if (AppConfiguration.Instance.Configuration.LyricContentType == LyricContentTypes.Translation)
             {
                 result1.IsPureMusic.ShouldBe(true);
-                result1.Count.ShouldBe(0);
             }
             else
             {
                 result1.IsPureMusic.ShouldBe(false);
+                result1.Count.ShouldBe(47);
             }
             
             result2.ShouldNotBeNull();
@@ -91,20 +70,6 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             await Should.ThrowAsync<NotFoundSongException>(async () => await downloader.DownloadAsync(musicInfo4));
             await Should.ThrowAsync<NotFoundSongException>(async () => await downloader.DownloadAsync(musicInfo5));
             await Should.ThrowAsync<NotFoundSongException>(async () => await downloader.DownloadAsync(musicInfo6));
-        }
-
-        [Fact]
-        public async Task SongCount_Is_Zero_Should_Return_A_LyricCollectItem()
-        {
-            var downloader = new NetEaseCloudMusicLyricDownloader();
-            var lyricA = await downloader.DownloadAsync(new MusicInfo("MOIL","須田景凪"));
-            var lyricB = await downloader.DownloadAsync(new MusicInfo("couch", "須田景凪"));
-            
-            lyricA.ShouldNotBeNull();
-            lyricA.IsPureMusic.ShouldBe(false);
-            
-            lyricB.ShouldNotBeNull();
-            lyricB.IsPureMusic.ShouldBe(false);
         }
     }
 }

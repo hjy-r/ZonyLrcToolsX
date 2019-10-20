@@ -30,6 +30,7 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.MusicTag
             info.ShouldNotBeNull();
             info.Name.ShouldBe("凡人修仙路");
             info.Artist.ShouldBe("小旭音乐");
+            info.Duration.ShouldBe(234281);
         }
 
         [Fact]

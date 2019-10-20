@@ -36,6 +36,11 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
         /// </summary>
         public string FilePath { get; set; }
 
+        /// <summary>
+        /// 歌曲时常，单位是毫秒，主要用于酷狗音乐 API 进行搜索。
+        /// </summary>
+        public int Duration { get; set; }
+        
         public MusicInfoStatus Status { get; set; }
 
         public MusicInfo()

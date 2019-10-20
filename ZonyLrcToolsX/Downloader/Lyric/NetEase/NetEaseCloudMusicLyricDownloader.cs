@@ -17,6 +17,11 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase
 
         public async Task<LyricItemCollection> DownloadAsync(MusicInfo musicInfo)
         {
+            if (string.IsNullOrEmpty(musicInfo.Name) && string.IsNullOrEmpty(musicInfo.Artist))
+            {
+                throw new NotFoundSongException("没有搜索到指定的歌曲。", musicInfo);
+            }
+            
             var requestParameter = new SongSearchRequestModel(musicInfo.Name, musicInfo.Artist);
             var searchResult = await _wrappedHttpClient.PostAsync<MusicSearchResponseModel>(
                 url: @"https://music.163.com/api/search/get/web",

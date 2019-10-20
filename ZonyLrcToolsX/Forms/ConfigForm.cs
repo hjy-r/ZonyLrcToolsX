@@ -101,7 +101,8 @@ namespace ZonyLrcToolsX.Forms
             var lyricDownloaderComboBox = new List<ComboBoxLyricDownloaderItemDto>
             {
                 new ComboBoxLyricDownloaderItemDto {Text = "网易云音乐", Value = LyricDownloaderEnum.NetEase},
-                new ComboBoxLyricDownloaderItemDto {Text = "QQ 音乐", Value = LyricDownloaderEnum.QQMusic}
+                new ComboBoxLyricDownloaderItemDto {Text = "QQ 音乐", Value = LyricDownloaderEnum.QQMusic},
+                new ComboBoxLyricDownloaderItemDto {Text = "酷狗音乐", Value = LyricDownloaderEnum.KuGouMusic}
             };
             comboBox_LyricDownloader.DataSource = lyricDownloaderComboBox;
             comboBox_LyricDownloader.SelectedIndex = lyricDownloaderComboBox.FindIndex(item => item.Value == ConfigurationInstance.Configuration.SelectedLyricDownloader);

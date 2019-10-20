@@ -138,6 +138,10 @@ namespace ZonyLrcToolsX.Forms
                             await FileUtils.Instance.WriteToLyricFileAsync(musicInfo, result);
                             SetViewItemStatus(item, "完成");
                         }
+                        catch (ServerUnavailableException)
+                        {
+                            SetViewItemStatus(item, "服务限制");
+                        }
                         catch (HttpRequestFailedException exception)
                         {
                             HandleNetEaseAbroadUser(item, exception);

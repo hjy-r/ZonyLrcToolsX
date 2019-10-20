@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZonyLrcToolsX.Infrastructure.MusicTag;
 
 // ReSharper disable LocalizableElement
 // ReSharper disable InconsistentNaming
@@ -99,6 +100,13 @@ namespace ZonyLrcToolsX.Infrastructure.Utils
             if (exception == null) return;
 
             var messageBuilder = new StringBuilder();
+
+            if (exception.Data.Contains("MusicInfo"))
+            {
+                var info = exception.Data["MusicInfo"] as MusicInfo;
+                messageBuilder.Append($"歌曲名：{info?.Name} - 歌手名：{info?.Artist}").Append("\r\n");
+            }
+            
             messageBuilder.Append(GetNowDateTimeString()).Append(" - 产生了异常。").Append("\r\n");
             messageBuilder.Append(exception.GetFormatExceptionMessage()).Append("\r\n");
 

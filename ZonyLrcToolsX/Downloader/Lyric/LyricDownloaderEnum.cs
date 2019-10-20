@@ -12,6 +12,10 @@ namespace ZonyLrcToolsX.Downloader.Lyric
         /// <summary>
         /// QQ 音乐。
         /// </summary>
-        QQMusic
+        QQMusic,
+        /// <summary>
+        /// 酷狗音乐
+        /// </summary>
+        KuGouMusic
     }
 }
