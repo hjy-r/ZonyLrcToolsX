@@ -1,6 +1,6 @@
-using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Newtonsoft.Json.Linq;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
 using ZonyLrcToolsX.Downloader.Lyric.QQMusic.JsonModels;
 using ZonyLrcToolsX.Infrastructure.Lyric;
@@ -20,6 +20,11 @@ namespace ZonyLrcToolsX.Downloader.Lyric.QQMusic
 
         public async Task<LyricItemCollection> DownloadAsync(MusicInfo musicInfo)
         {
+            if (string.IsNullOrEmpty(musicInfo.Name) && string.IsNullOrEmpty(musicInfo.Artist))
+            {
+                throw new NotFoundSongException("没有搜索到指定的歌曲。", musicInfo);
+            }
+
             var requestParameter = new MusicSearchRequestModel(musicInfo.Name, musicInfo.Artist);
             var searchResult = await _wrappedHttpClient.GetAsync<MusicSearchResponseModel>(
                 url: @"http://c.y.qq.com/soso/fcgi-bin/client_search_cp",

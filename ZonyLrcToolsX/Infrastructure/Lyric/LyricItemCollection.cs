@@ -35,7 +35,7 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
             }
             
             // 根据正则获取所有的歌词条目，并将其加入到集合当中。
-            var regex = new Regex(@"\[\d+:\d+.\d+\].+\n");
+            var regex = new Regex(@"\[\d+:\d+.\d+\].+\n?");
             foreach (Match match in regex.Matches(srcLyricText))
             {
                 Add(new LyricItem(match.Value));

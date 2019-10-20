@@ -1,6 +1,5 @@
-﻿using Shouldly;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
+using Shouldly;
 using Xunit;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
 using ZonyLrcToolsX.Downloader.Lyric.QQMusic;
@@ -83,6 +82,17 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             lyricA.ShouldNotBeNull();
             lyricA.IsPureMusic.ShouldBe(false);
             lyricA.ToString().Contains("微凉的晨露沾湿黑礼服").ShouldBe(true);
+        }
+
+        [Fact]
+        public async Task Should_Has_Last_Line_Of_Lyrics()
+        {
+            var downloader = new QQMusicCloudMusicLyricDownloader();
+            var lyric = await downloader.DownloadAsync(new MusicInfo("说好不哭", "周杰伦"));
+            
+            lyric.IsPureMusic.ShouldNotBeNull();
+            lyric.IsPureMusic.ShouldBe(false);
+            lyric[lyric.Count - 1].ToString().ShouldContain("还在找理由等我");
         }
 
         [Fact]
