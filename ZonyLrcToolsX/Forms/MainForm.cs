@@ -250,7 +250,14 @@ namespace ZonyLrcToolsX.Forms
                     pictureBox_AblumImage.Image = null;
                     if (selectedMusicInfo.AlbumImage != null)
                     {
-                        pictureBox_AblumImage.Image = Image.FromStream(new MemoryStream(selectedMusicInfo.AlbumImage));
+                        try
+                        {
+                            pictureBox_AblumImage.Image = Image.FromStream(new MemoryStream(selectedMusicInfo.AlbumImage));
+                        }
+                        catch (ArgumentException)
+                        {
+                            // 忽略参数异常导致专辑封面加载失败的 BUG。
+                        }
                     }
                     
                     linkLabel_MusicPath.Text = $"歌曲文件路径: {selectedMusicInfo.FilePath}";
