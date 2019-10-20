@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Nito.AsyncEx;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -159,7 +160,7 @@ namespace ZonyLrcToolsX.Forms
             SetBottomStatusLabelText($"{listView_MusicList.Items.Count} 首歌词已经下载完成。");
         }
 
-        private void ToolStripButton_DownloadAlbumImage_Click(object sender, EventArgs e)
+        private async void ToolStripButton_DownloadAlbumImage_Click(object sender, EventArgs e)
         {
             if (listView_MusicList.Items.Count == 0)
             {
@@ -175,24 +176,38 @@ namespace ZonyLrcToolsX.Forms
 
                 var defaultAlbumImageDownloader = new NetEaseCloudMusicAlbumDownloader();
 
-                foreach (var item in items)
+
+                var worker = new TaskWorker(AppConfiguration.Instance.Configuration.DownloadThreadNumber);
+                var tasks = items.Select(item => worker.RunAsync(() =>
                 {
-                    IncreaseProgressValue();
-
-                    if (item.Tag is MusicInfo musicInfo)
+                    return Task.Run(async () =>
                     {
-                        SetBottomStatusLabelText($"正在下载 {musicInfo.Name} - {musicInfo.Artist} 的专辑图像。");
-                        SetViewItemStatus(item, "下载中");
+                        IncreaseProgressValue();
 
-                        var result = defaultAlbumImageDownloader.Download(musicInfo);
-                        musicInfo.AlbumImage = result;
-                        
-                        _musicInfoLoader.Save(musicInfo);
-                        SetViewItemStatus(item, "完成");
-                        SetBottomStatusLabelText($"已经将专辑图像写入到了 {musicInfo.FilePath}");
-                    }
-                }
-                
+                        if (item.Tag is MusicInfo musicInfo)
+                        {
+                            SetBottomStatusLabelText($"正在下载 {musicInfo.Name} - {musicInfo.Artist} 的专辑图像。");
+
+                            try
+                            {
+                                SetViewItemStatus(item, "下载中");
+
+                                var result = await defaultAlbumImageDownloader.DownloadAsync(musicInfo);
+                                musicInfo.AlbumImage = result;
+
+                                await _musicInfoLoader.SaveAsync(musicInfo);
+                                SetViewItemStatus(item, "完成");
+                                SetBottomStatusLabelText($"已经将专辑图像写入到了 {musicInfo.FilePath}");
+                            }
+                            catch (NotFoundSongException)
+                            {
+                                SetViewItemStatus(item, "没有找到歌词");
+                            }
+                        }
+                    });
+                }));
+
+                await tasks.WhenAll();
                 SetBottomStatusLabelText($"{listView_MusicList.Items.Count} 首专辑图像已经下载完成，并已成功写入到歌曲文件。");
             }
         }
