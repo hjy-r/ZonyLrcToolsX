@@ -39,7 +39,6 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag.TagLib
                 }
 
                 result.FilePath = musicFilePath;
-                tagFile?.Save();
                 tagFile?.Dispose();
             }
 
