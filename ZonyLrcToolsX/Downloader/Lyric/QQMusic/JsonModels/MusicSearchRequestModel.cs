@@ -95,7 +95,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.QQMusic.JsonModels
 
         public MusicSearchRequestModel(string musicName, string artistName) : this()
         {
-			Keyword = $"{HttpUtility.UrlEncode(musicName, Encoding.UTF8)}+{HttpUtility.UrlEncode(artistName, Encoding.UTF8)}";
+	        Keyword = HttpUtility.UrlEncode($"{musicName}+{artistName}", Encoding.UTF8);
         }
     }
 }

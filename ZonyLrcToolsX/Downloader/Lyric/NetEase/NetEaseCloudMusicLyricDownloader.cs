@@ -13,12 +13,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase
     /// </summary>
     public class NetEaseCloudMusicLyricDownloader : ILyricDownloader
     {
-        private readonly WrappedHttpClient _wrappedHttpClient;
-
-        public NetEaseCloudMusicLyricDownloader()
-        {
-            _wrappedHttpClient = new WrappedHttpClient();
-        }
+        private readonly WrappedHttpClient _wrappedHttpClient = new WrappedHttpClient();
 
         public async Task<LyricItemCollection> DownloadAsync(MusicInfo musicInfo)
         {

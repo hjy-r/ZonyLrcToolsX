@@ -1,5 +1,6 @@
 using System;
-using System.Drawing;
+using System.Text;
+using System.Web;
 using System.Windows.Forms;
 
 namespace ZonyLrcToolsX.Infrastructure.MusicTag
@@ -13,27 +14,27 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
         /// <summary>
         /// 歌曲的名称。
         /// </summary>
-        public string Name { get;  set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 歌手，或者说是艺术家。
         /// </summary>
-        public string Artist { get;  set; }
+        public string Artist { get; set; }
 
         /// <summary>
         /// 歌曲的专辑名称。
         /// </summary>
-        public string AlbumName { get;  set; }
+        public string AlbumName { get; set; }
 
         /// <summary>
         /// 歌曲的专辑图像。
         /// </summary>
-        public byte[] AlbumImage { get;  set; }
+        public byte[] AlbumImage { get; set; }
 
         /// <summary>
         /// 歌曲对应的物理文件路径。
         /// </summary>
-        public string FilePath { get;  set; }
+        public string FilePath { get; set; }
 
         public MusicInfoStatus Status { get; set; }
 
@@ -48,7 +49,8 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
             Artist = artist;
         }
 
-        public MusicInfo(string name, string artist, string albumName, byte[] albumImage, string filePath) : this(name,artist)
+        public MusicInfo(string name, string artist, string albumName, byte[] albumImage, string filePath) : this(name,
+            artist)
         {
             AlbumName = albumName;
             AlbumImage = albumImage;
@@ -62,7 +64,7 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
             newItem.Text = Name;
             newItem.SubItems.Add(new ListViewItem.ListViewSubItem(newItem, Artist));
             newItem.SubItems.Add(new ListViewItem.ListViewSubItem(newItem, AlbumName));
-            newItem.SubItems.Add(new ListViewItem.ListViewSubItem(newItem,GetStatusString()));
+            newItem.SubItems.Add(new ListViewItem.ListViewSubItem(newItem, GetStatusString()));
 
             newItem.Tag = this;
 
@@ -76,6 +78,11 @@ namespace ZonyLrcToolsX.Infrastructure.MusicTag
             if (Status == MusicInfoStatus.MusicTagInvalid) return "标签信息无效";
 
             return "未知状态";
+        }
+
+        public string GetSearchKeyword()
+        {
+            return HttpUtility.UrlEncode($"{Name}+{Artist}", Encoding.UTF8);
         }
     }
 }

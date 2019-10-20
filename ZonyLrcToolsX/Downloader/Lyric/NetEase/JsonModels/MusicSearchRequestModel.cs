@@ -1,6 +1,6 @@
+using Newtonsoft.Json;
 using System.Text;
 using System.Web;
-using Newtonsoft.Json;
 
 namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
 {
@@ -53,7 +53,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.NetEase.JsonModels
 
         public SongSearchRequestModel(string musicName, string artistName) : this()
         {
-            SearchKey = $"{HttpUtility.UrlEncode(musicName, Encoding.UTF8)}+{HttpUtility.UrlEncode(artistName, Encoding.UTF8)}";
+            SearchKey = HttpUtility.UrlEncode($"{musicName}+{artistName}", Encoding.UTF8);
         }
     }
 }
