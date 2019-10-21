@@ -6,11 +6,5 @@ Language: 中文 | [English](README_en.md)
 **注意：**
 **项目源码仅供研究学习使用，不得用于商业和非法用途。因使用本工具造成的任何影响与作者无关。**
 
-## 一、下载地址  
-**[戳我去下载](https://github.com/GameBelial/ZonyLrcToolsX/releases)**
-
-## 二、感谢
-待写...
-
-## 三、支持作者
-待写...
+**下载地址：**  
+**[Release](https://github.com/GameBelial/ZonyLrcToolsX/releases)**
