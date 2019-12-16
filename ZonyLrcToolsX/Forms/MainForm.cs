@@ -147,6 +147,10 @@ namespace ZonyLrcToolsX.Forms
                         {
                             HandleNetEaseAbroadUser(item, exception);
                         }
+                        catch (RequestErrorException)
+                        {
+                            SetViewItemStatus(item,"接口异常");
+                        }
                         catch (NotFoundSongException)
                         {
                             SetViewItemStatus(item, "没有找到歌词");
