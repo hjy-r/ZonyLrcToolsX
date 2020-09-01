@@ -3,22 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95AF7EB0-6F20-485C-AA87-E68D78A09F9F}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C29FB05C-54B1-4020-94D2-87E192EB2F98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZonyLrcToolsX", "ZonyLrcToolsX\ZonyLrcToolsX.csproj", "{A6640227-0C37-4A45-ACC0-E816C9F69CD0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AF8ADB2F-E46C-4DEE-8316-652D9FE1A69B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4DA91A0E-5455-45AE-BFAC-047844572003}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZonyLrcToolsX.Core", "src\ZonyLrcToolsX.Core\ZonyLrcToolsX.Core.csproj", "{9555DE10-0F90-4678-829F-0869FE6C705B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZonyLrcToolsX.Tests", "ZonyLrcToolsX.Tests\ZonyLrcToolsX.Tests.csproj", "{37DC9548-CB97-4B74-99AD-E8318166B8BC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testFiles", "testFiles", "{DA3884C9-6C83-4885-9784-724A84222564}"
-ProjectSection(SolutionItems) = preProject
-	testFiles\tagLib 读取标签问题歌曲.mp3 = testFiles\tagLib 读取标签问题歌曲.mp3
-	testFiles\tagLib 读取正常歌曲.mp3 = testFiles\tagLib 读取正常歌曲.mp3
-EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZonyLrcToolsX.Core.Tests", "tests\ZonyLrcToolsX.Core.Tests\ZonyLrcToolsX.Core.Tests.csproj", "{D22B8821-5390-4A1D-B579-64EA732DAE09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,14 +17,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A6640227-0C37-4A45-ACC0-E816C9F69CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6640227-0C37-4A45-ACC0-E816C9F69CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6640227-0C37-4A45-ACC0-E816C9F69CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6640227-0C37-4A45-ACC0-E816C9F69CD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37DC9548-CB97-4B74-99AD-E8318166B8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37DC9548-CB97-4B74-99AD-E8318166B8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37DC9548-CB97-4B74-99AD-E8318166B8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37DC9548-CB97-4B74-99AD-E8318166B8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9555DE10-0F90-4678-829F-0869FE6C705B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9555DE10-0F90-4678-829F-0869FE6C705B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9555DE10-0F90-4678-829F-0869FE6C705B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9555DE10-0F90-4678-829F-0869FE6C705B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D22B8821-5390-4A1D-B579-64EA732DAE09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D22B8821-5390-4A1D-B579-64EA732DAE09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D22B8821-5390-4A1D-B579-64EA732DAE09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D22B8821-5390-4A1D-B579-64EA732DAE09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,7 +33,7 @@ Global
 		SolutionGuid = {7A6191C3-CC25-4732-885C-F4DD32F9E412}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{37DC9548-CB97-4B74-99AD-E8318166B8BC} = {4DA91A0E-5455-45AE-BFAC-047844572003}
-		{DA3884C9-6C83-4885-9784-724A84222564} = {4DA91A0E-5455-45AE-BFAC-047844572003}
+		{9555DE10-0F90-4678-829F-0869FE6C705B} = {C29FB05C-54B1-4020-94D2-87E192EB2F98}
+		{D22B8821-5390-4A1D-B579-64EA732DAE09} = {AF8ADB2F-E46C-4DEE-8316-652D9FE1A69B}
 	EndGlobalSection
 EndGlobal
