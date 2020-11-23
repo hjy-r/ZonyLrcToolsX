@@ -183,6 +183,7 @@
     <Compile Include="Infrastructure\Network\Http\Exceptions\ServerInternalErrorException.cs" />
     <Compile Include="Infrastructure\Network\Http\Exceptions\ServerUnavailableException.cs" />
     <Compile Include="Infrastructure\Network\Http\WrappedHttpClient.cs" />
+    <Compile Include="Infrastructure\Network\UpdateModel.cs" />
     <Compile Include="Infrastructure\TaskWorker.cs" />
     <Compile Include="Infrastructure\Utils\ExceptionUtils.cs" />
     <Compile Include="Infrastructure\Utils\FileUtils.cs" />

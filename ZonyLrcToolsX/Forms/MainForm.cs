@@ -1,14 +1,15 @@
-﻿using Newtonsoft.Json.Linq;
-using Nito.AsyncEx;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
+using Nito.AsyncEx;
 using ZonyLrcToolsX.Downloader.Album.NetEase;
 using ZonyLrcToolsX.Downloader.Lyric;
 using ZonyLrcToolsX.Downloader.Lyric.Exceptions;
@@ -16,6 +17,8 @@ using ZonyLrcToolsX.Infrastructure;
 using ZonyLrcToolsX.Infrastructure.Configuration;
 using ZonyLrcToolsX.Infrastructure.MusicTag;
 using ZonyLrcToolsX.Infrastructure.MusicTag.TagLib;
+using ZonyLrcToolsX.Infrastructure.Network;
+using ZonyLrcToolsX.Infrastructure.Network.Http;
 using ZonyLrcToolsX.Infrastructure.Network.Http.Exceptions;
 using ZonyLrcToolsX.Infrastructure.Utils;
 using ZonyLrcToolsX.Properties;
@@ -33,7 +36,7 @@ namespace ZonyLrcToolsX.Forms
         {
             AppConfiguration.Instance.Load();
             AppConfiguration.Instance.Save();
-            
+
             InitializeInfrastructure();
             InitializeComponent();
         }
@@ -48,6 +51,8 @@ namespace ZonyLrcToolsX.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             Icon = Resources.application;
+
+            CheckUpdate();
         }
 
         #region > 工具栏按钮点击事件 <
@@ -76,7 +81,7 @@ namespace ZonyLrcToolsX.Forms
             {
                 var files = await FileUtils.Instance.FindFilesAsync(dirDlg.SelectedPath,
                     AppConfiguration.Instance.Configuration.SuffixName);
-                InitializeProgress(files.SelectMany(x=>x.Value).Count());
+                InitializeProgress(files.SelectMany(x => x.Value).Count());
 
                 MessageBox.Show(BuildSearchCompletedMessage(files), "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -85,7 +90,7 @@ namespace ZonyLrcToolsX.Forms
                 foreach (var file in files.SelectMany(x => x.Value))
                 {
                     IncreaseProgressValue();
-                    
+
                     var musicInfo = await _musicInfoLoader.LoadAsync(file);
                     listView_MusicList.Items.Add(musicInfo.ToListViewItem());
                 }
@@ -113,7 +118,7 @@ namespace ZonyLrcToolsX.Forms
                 if (defaultDownloader == null) throw new NullReferenceException("程序初始化失败，无法获取到歌词下载器。");
 
                 var worker = new TaskWorker(AppConfiguration.Instance.Configuration.DownloadThreadNumber);
-                var tasks = items.Select(item => worker.RunAsync( () =>
+                var tasks = items.Select(item => worker.RunAsync(() =>
                 {
                     return Task.Run(async () =>
                     {
@@ -149,7 +154,7 @@ namespace ZonyLrcToolsX.Forms
                         }
                         catch (RequestErrorException)
                         {
-                            SetViewItemStatus(item,"接口异常");
+                            SetViewItemStatus(item, "接口异常");
                         }
                         catch (NotFoundSongException)
                         {
@@ -241,11 +246,11 @@ namespace ZonyLrcToolsX.Forms
                     MessageBox.Show("选择的目录不存在，请重新选择。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
                 WinFormUtils.InvokeAction(this, async () =>
                 {
                     SetBottomStatusLabelText("搜索 NCM 文件中。");
-                    var ncmFiles = await FileUtils.Instance.FindFilesAsync(selectNcmFileFolder.SelectedPath,new List<string>{"*.ncm"});
+                    var ncmFiles = await FileUtils.Instance.FindFilesAsync(selectNcmFileFolder.SelectedPath, new List<string> {"*.ncm"});
                     if (ncmFiles.Count == 0) MessageBox.Show("没有搜索到有效的 NCM 文件。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     listView_MusicList.Items.Clear();
@@ -256,7 +261,7 @@ namespace ZonyLrcToolsX.Forms
                             Tag = ncmFile
                         });
                     }
-                    
+
                     SetBottomStatusLabelText($"已经找到 {ncmFiles.Count} 个 NCM 文件，等待进行转换操作。");
                 });
             }
@@ -282,7 +287,7 @@ namespace ZonyLrcToolsX.Forms
                             // 忽略参数异常导致专辑封面加载失败的 BUG。
                         }
                     }
-                    
+
                     linkLabel_MusicPath.Text = $"歌曲文件路径: {selectedMusicInfo.FilePath}";
                     textBox_MusicName.Text = selectedMusicInfo.Name;
                     textBox_MusicArtist.Text = selectedMusicInfo.Artist;
@@ -324,7 +329,7 @@ namespace ZonyLrcToolsX.Forms
         /// 搜索完成之后，将会调用本方法构建提示文本框。
         /// </summary>
         /// <param name="files">搜索到的文件集合，以 [后缀名-文件路径集合] 的键值对构成。</param>
-        private string BuildSearchCompletedMessage(Dictionary<string,List<string>> files)
+        private string BuildSearchCompletedMessage(Dictionary<string, List<string>> files)
         {
             var messageBuilder = new StringBuilder();
             messageBuilder.Append($"文件搜索完毕，一共找到了 {files.SelectMany(x => x.Value).Count()} 个文件。").Append("\r\n");
@@ -375,7 +380,7 @@ namespace ZonyLrcToolsX.Forms
             toolStripProgressBar1.Maximum = filesCount;
             toolStripProgressBar1.Value = 0;
         }
-        
+
         private void IncreaseProgressValue()
         {
             if (InvokeRequired)
@@ -387,17 +392,44 @@ namespace ZonyLrcToolsX.Forms
                 toolStripProgressBar1.Value += 1;
             }
         }
-        
+
         private void HandleNetEaseAbroadUser(ListViewItem item, HttpRequestFailedException exception)
         {
             if (JObject.Parse(exception.Data["Response"] as string).SelectToken("$.abroad").Value<bool>())
             {
-                SetViewItemStatus(item,"海外用户，无法下载");
+                SetViewItemStatus(item, "海外用户，无法下载");
             }
             else
             {
-                SetViewItemStatus(item,"接口错误");
+                SetViewItemStatus(item, "接口错误");
             }
+        }
+
+        private void CheckUpdate()
+        {
+            AsyncContext.Run(async () =>
+            {
+                using (var client = new WrappedHttpClient())
+                {
+                    var result = await client.GetAsync<UpdateModel>("http://api.myzony.com/api/VersionCheck/CheckVersion");
+                    if (result == null) return;
+
+                    var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
+                    
+                    var builder = new StringBuilder();
+                    builder.Append(" 发现新版本，是否更新？").Append("\r\n");
+                    builder.Append(" 更新信息:").Append("\r\n");
+                    builder.Append(result.UpdateDescription.Replace("|", "\r\n"));
+                    
+                    if (result.Version > currentVersion)
+                    {
+                        if (MessageBox.Show(caption: " 更新提示 ", text: builder.ToString(), icon: MessageBoxIcon.Information, buttons: MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            Process.Start(result.Url);
+                        }
+                    }
+                }
+            });
         }
     }
 }
