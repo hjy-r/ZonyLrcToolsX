@@ -26,7 +26,7 @@ namespace ZonyLrcToolsX.Downloader.Lyric.QQMusic.JsonModels
 
     public class QQMusicInnerSongItem
     {
-        [JsonProperty("id")]
-        public int SongId { get; set; }
+        [JsonProperty("mid")]
+        public string SongId { get; set; }
     }
 }
