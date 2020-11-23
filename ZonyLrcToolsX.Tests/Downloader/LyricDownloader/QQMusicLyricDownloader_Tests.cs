@@ -90,7 +90,6 @@ namespace ZonyLrcToolsX.Tests.Downloader.LyricDownloader
             var downloader = new QQMusicCloudMusicLyricDownloader();
             var lyric = await downloader.DownloadAsync(new MusicInfo("说好不哭", "周杰伦"));
             
-            lyric.IsPureMusic.ShouldNotBeNull();
             lyric.IsPureMusic.ShouldBe(false);
             lyric[lyric.Count - 1].ToString().ShouldContain("还在找理由等我");
         }
