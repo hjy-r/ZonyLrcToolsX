@@ -41,7 +41,6 @@ namespace ZonyLrcToolsX.Forms
             InitializeComponent();
         }
 
-
         private void InitializeInfrastructure()
         {
             _musicInfoLoader = new MusicInfoLoaderByTagLib();

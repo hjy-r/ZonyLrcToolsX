@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DonateForm));
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox_WechatPay = new System.Windows.Forms.PictureBox();
             this.pictureBox_Alipay = new System.Windows.Forms.PictureBox();
@@ -48,9 +49,11 @@
             // 
             // pictureBox_WechatPay
             // 
+            this.pictureBox_WechatPay.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("pictureBox_WechatPay.BackgroundImage")));
+            this.pictureBox_WechatPay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox_WechatPay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_WechatPay.Location = new System.Drawing.Point(10, 30);
-            this.pictureBox_WechatPay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox_WechatPay.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox_WechatPay.Name = "pictureBox_WechatPay";
             this.pictureBox_WechatPay.Size = new System.Drawing.Size(252, 388);
             this.pictureBox_WechatPay.TabIndex = 2;
@@ -58,9 +61,11 @@
             // 
             // pictureBox_Alipay
             // 
+            this.pictureBox_Alipay.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("pictureBox_Alipay.BackgroundImage")));
+            this.pictureBox_Alipay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox_Alipay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_Alipay.Location = new System.Drawing.Point(276, 30);
-            this.pictureBox_Alipay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox_Alipay.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox_Alipay.Name = "pictureBox_Alipay";
             this.pictureBox_Alipay.Size = new System.Drawing.Size(252, 388);
             this.pictureBox_Alipay.TabIndex = 1;
@@ -69,7 +74,7 @@
             // button_Exit
             // 
             this.button_Exit.Location = new System.Drawing.Point(132, 430);
-            this.button_Exit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Exit.Margin = new System.Windows.Forms.Padding(2);
             this.button_Exit.Name = "button_Exit";
             this.button_Exit.Size = new System.Drawing.Size(128, 28);
             this.button_Exit.TabIndex = 3;
@@ -80,7 +85,7 @@
             // button_Exit2
             // 
             this.button_Exit2.Location = new System.Drawing.Point(276, 430);
-            this.button_Exit2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Exit2.Margin = new System.Windows.Forms.Padding(2);
             this.button_Exit2.Name = "button_Exit2";
             this.button_Exit2.Size = new System.Drawing.Size(128, 28);
             this.button_Exit2.TabIndex = 4;
@@ -99,7 +104,7 @@
             this.Controls.Add(this.pictureBox_Alipay);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DonateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "捐赠作者";
