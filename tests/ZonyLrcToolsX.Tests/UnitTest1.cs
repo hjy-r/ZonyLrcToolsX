@@ -1,6 +1,7 @@
+using System;
 using Xunit;
 
-namespace ZonyLrcToolsX.Core.Tests
+namespace ZonyLrcToolsX.Tests
 {
     public class UnitTest1
     {
