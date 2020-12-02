@@ -2,6 +2,9 @@ using System;
 
 namespace ZonyLrcToolsX.Infrastructure.Lyric
 {
+    /// <summary>
+    /// 每一行歌词的对象。
+    /// </summary>
     public class LyricItem : IComparable<LyricItem>
     {
         /// <summary>
