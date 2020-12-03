@@ -79,7 +79,12 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
         {
             return !(item1 == item2);
         }
-        
+
+        public static LyricItem operator +(LyricItem src, LyricItem dist)
+        {
+            return new LyricItem(src.Minute, src.Second, $"{src.LyricText}  {dist.LyricText}");
+        }
+
         protected bool Equals(LyricItem other)
         {
             return LyricText == other.LyricText && Minute == other.Minute && Second.Equals(other.Second);

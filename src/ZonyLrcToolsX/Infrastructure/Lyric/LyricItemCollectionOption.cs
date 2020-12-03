@@ -5,11 +5,11 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric
         /// <summary>
         /// 双语歌词是否合并为一行。
         /// </summary>
-        public bool IsOneLine { get; set; }
+        public bool IsOneLine { get; set; } = false;
 
         /// <summary>
         /// 换行符格式，取值来自 <see cref="LineBreakType"/> 常量类。
         /// </summary>
-        public string LineBreak { get; set; }
+        public string LineBreak { get; set; } = LineBreakType.Windows;
     }
 }
