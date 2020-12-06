@@ -40,7 +40,7 @@ namespace ZonyLrcToolsX.Downloader.Album.NetEase
             if (searchResult.Items.SongCount <= 0 ) throw new NotFoundSongException("没有搜索到指定的歌曲。",musicInfo);
 
             var songDetailJsonStr = await _wrappedHttpClient.GetAsync(
-                @"http://music.163.com/api/song/detail",
+                @"https://music.163.com/api/song/detail",
                 new MusicGetSongDetailsRequest(searchResult.GetFirstSongId()),
                 @"https://music.163.com");
 
