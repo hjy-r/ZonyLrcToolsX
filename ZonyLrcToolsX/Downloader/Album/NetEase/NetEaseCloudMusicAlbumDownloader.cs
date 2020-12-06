@@ -37,15 +37,20 @@ namespace ZonyLrcToolsX.Downloader.Album.NetEase
             {
                 throw new RequestErrorException("网易云音乐接口没有正常返回结果...", musicInfo);
             }
-            if (searchResult.Items.SongCount <= 0 ) throw new NotFoundSongException("没有搜索到指定的歌曲。",musicInfo);
+
+            if (searchResult.Items.SongCount <= 0) throw new NotFoundSongException("没有搜索到指定的歌曲。", musicInfo);
 
             var songDetailJsonStr = await _wrappedHttpClient.GetAsync(
                 @"https://music.163.com/api/song/detail",
                 new MusicGetSongDetailsRequest(searchResult.GetFirstSongId()),
                 @"https://music.163.com");
 
-            var url = JObject.Parse(songDetailJsonStr).SelectToken("$.songs[0].album.picUrl").Value<string>();
-            
+            var url = JObject.Parse(songDetailJsonStr).SelectToken("$.songs[0].album.picUrl")?.Value<string>();
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new RequestErrorException("网易云音乐接口没有正常返回结果...", musicInfo);
+            }
+
             return await new HttpClient().GetByteArrayAsync(new Uri(url));
         }
 
