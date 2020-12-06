@@ -30,9 +30,9 @@ namespace ZonyLrcToolsX.Infrastructure.Network
         {
             var parametersStr = isQueryStringParam ? BuildQueryString(parameters) : BuildJsonBodyString(parameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, new Uri(url));
-            requestOption?.Invoke(requestMessage);
-
             requestMessage.Content = new StringContent(parametersStr);
+
+            requestOption?.Invoke(requestMessage);
 
             using (var responseMessage = await _httpClientFactory.CreateClient().SendAsync(requestMessage))
             {

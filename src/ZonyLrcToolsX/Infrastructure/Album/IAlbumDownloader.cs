@@ -4,6 +4,6 @@ namespace ZonyLrcToolsX.Infrastructure.Album
 {
     public interface IAlbumDownloader
     {
-        ValueTask<byte> DownloadAsync();
+        ValueTask<byte[]> DownloadAsync(MusicInfo info);
     }
 }
