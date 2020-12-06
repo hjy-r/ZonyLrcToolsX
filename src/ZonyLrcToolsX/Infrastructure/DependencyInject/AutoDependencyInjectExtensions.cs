@@ -9,6 +9,14 @@ namespace ZonyLrcToolsX.Infrastructure.DependencyInject
 {
     public static class AutoDependencyInjectExtensions
     {
+        /// <summary>
+        /// 开始进行自动依赖注入。
+        /// </summary>
+        /// <remarks>
+        /// 会根据实现了 <see cref="ITransientDependency"/> 或 <see cref="ISingletonDependency"/> 的接口进行自动注入。
+        /// </remarks>
+        /// <param name="services">服务定义集合。</param>
+        /// <typeparam name="TAssemblyType">需要注入的任意类型。</typeparam>
         public static IServiceCollection BeginAutoDependencyInject<TAssemblyType>(this IServiceCollection services)
         {
             var allTypes = typeof(TAssemblyType).Assembly

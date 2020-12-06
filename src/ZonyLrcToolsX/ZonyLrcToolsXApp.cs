@@ -16,6 +16,7 @@ namespace ZonyLrcToolsX
 
             RegisterControllerAssembly(services, typeof(ZonyLrcToolsXApp).Assembly);
             services.BeginAutoDependencyInject<ZonyLrcToolsXApp>();
+            services.AddHttpClient();
         }
     }
 }

@@ -6,6 +6,11 @@ namespace ZonyLrcToolsX.Tests.Infrastructure.DependencyInject
 {
     public class AutoInjectExtensionsTests : TestBase
     {
+        public AutoInjectExtensionsTests()
+        {
+            Services.Clear();
+        }
+        
         [Fact]
         public void BeginAutoDependencyInject_Tests()
         {
