@@ -62,6 +62,7 @@ namespace ZonyLrcToolsX.Infrastructure.DependencyInject
                 if (type.Name.EndsWith(interfaceName))
                 {
                     serviceTypes.Add(interfaceType);
+                    serviceTypes.Add(type);
                 }
             }
 
