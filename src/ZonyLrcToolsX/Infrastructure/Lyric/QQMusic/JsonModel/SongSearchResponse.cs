@@ -29,4 +29,10 @@ namespace ZonyLrcToolsX.Infrastructure.Lyric.QQMusic.JsonModel
         [JsonProperty("mid")]
         public string SongId { get; set; }
     }
+
+    public class AlbumInfo
+    {
+        [JsonProperty("id")]
+        public long Id { get; set; }
+    }
 }
